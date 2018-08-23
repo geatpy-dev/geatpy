@@ -102,4 +102,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-!/Lib
+!*.pyd
