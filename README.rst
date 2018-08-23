@@ -8,16 +8,8 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
     :target: https://www.travis-ci.org/geatpy-dev/geatpy
     :alt: Build Status
 
-.. image:: https://img.shields.io/badge/python-3.5-green.svg
-    :target: https://www.python.org/downloads/release/python-35/
-    :alt: platform
-
-.. image:: https://img.shields.io/badge/python-3.6-green.svg
-    :target: https://www.python.org/downloads/release/python-36/
-    :alt: platform
-
-.. image:: https://img.shields.io/badge/python-3.6-green.svg
-    :target: https://www.python.org/downloads/release/python-36/
+.. image:: https://img.shields.io/badge/python->=3.5-green.svg
+    :target: https://www.python.org/downloads/release/python/
     :alt: platform
 
 .. image:: https://img.shields.io/badge/pypi-1.0.0-blue.svg
@@ -31,6 +23,7 @@ Introduction
 2. **Contact us:** https://www.geatpy.com/supports
 3. **Source:** https://github.com/geatpy-dev/geatpy
 4. **Bug reports:** https://github.com/geatpy-dev/geatpy/issues
+5. **Franchised blog** https://blog.csdn.net/qq_33353186
 
 It provides:
 
@@ -38,8 +31,7 @@ It provides:
 
 2. a great many of genetic and evolutionary operators, so that you can deal with single or multi-objective optimization problems.
 
-It can work faster with Numpy+mkl. If you want to speed your projects, please install numpy+mkl.
-
+It can work faster with numpy+mkl. If you want to speed your projects, please install numpy+mkl.
 
 Versions
 --------------

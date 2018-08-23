@@ -18,14 +18,14 @@ def read(fname):
 LONG_DESCRIPTION = read("README.rst")
 
 setup(name = "geatpy",
-    version = "1.0.0r15",
+    version = "1.0.0",
     description = "This is Geatpy for Python",
     author = "Geatpy Team",
     author_email = "jazzbin@geatpy.com",
     url = "http://www.geatpy.com",
     packages= find_packages(),
     Scripts = ["geatpy/*"],
-    include_package_data = True,    # 启用清单文件MANIFEST.in
+    include_package_data = True,    # Enabled list file: MANIFEST.in
     install_requires=[
         'numpy>=1.10.0',
         'matplotlib>=1.5.1',

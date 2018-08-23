@@ -24,8 +24,7 @@ Created on Sat May 12 08:36:49 2018
 import sys
 import platform
 
-lib_path = __file__[:-11]
-lib_path = lib_path + 'Lib/win' + platform.architecture()[0][:2] + '-' + sys.version[:3] + '/'
+lib_path = __file__[:-11] + 'lib' + platform.architecture()[0][:2] + '/v' + sys.version[:3] + '/'
 if lib_path not in sys.path:
     sys.path.append(lib_path)
 
