@@ -3,7 +3,7 @@ python:
   - "3.5"
 # command to install dependencies
 install:
-    - pip install geatpy==35.1.1
+    - pip install geatpy
 # command to run tests
 script:
     - 
