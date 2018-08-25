@@ -1,12 +1,11 @@
 #    This is a list of files to install Geatpy
 #
-#    Geatpy is a free toolbox: you can redistribute it and/or modify
-#    it as you want.
+#    Geatpy is a free toolbox: you can redistribute it and/or modify as you want.
 #
 #    Geatpy is distributed in the hope that it will be useful for the genetic 
 #    and evolutionary algorithm, you can get the tutorial from http://www.geatpy.com
 #
-#    If you want to donate to it, please e-mail jazzbin@geatpy.com
+#    If you want to donate to it, please email jazzbin@geatpy.com
 
 from setuptools import setup, find_packages
 import codecs
@@ -18,7 +17,7 @@ def read(fname):
 LONG_DESCRIPTION = read("README.rst")
 
 setup(name = "geatpy",
-    version = "1.0.0",
+    version = "1.0.1",
     description = "This is Geatpy for Python",
     author = "Geatpy Team",
     author_email = "jazzbin@geatpy.com",

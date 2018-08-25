@@ -17,9 +17,9 @@ Introduction
 
 It provides:
 
-- Global optimization capabilities in Python using genetic and evolutionary algorithm to solve problems unsuitable for traditional optimization approaches.
+- global optimization capabilities in Python using genetic and evolutionary algorithm to solve problems unsuitable for traditional optimization approaches.
 
-- A great many of genetic and evolutionary operators, so that you can deal with single or multi-objective optimization problems.
+- a great many of genetic and evolutionary operators, so that you can deal with single or multi-objective optimization problems.
 
 It can work faster with numpy+mkl. If you want to speed your projects, please install numpy+mkl.
 

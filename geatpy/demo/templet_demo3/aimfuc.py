@@ -1,4 +1,5 @@
 import numpy as np
+
 def aimfuc(Phen):
     x1 = Phen[:, 0]
     x2 = Phen[:, 1]

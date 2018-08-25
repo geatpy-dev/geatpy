@@ -28,6 +28,5 @@ SUBPOP = 1               # 设置种群数为1f
 maxormin = 1             # 设置标记表明这是最小化目标
 MAXSIZE = 1000                 # 帕累托最优集最大个数
 """=======================调用编程模板进行种群进化==================="""
-# 调用编程模板进行种群进化，得到种群进化和变量的追踪器以及运行时间
 [ObjV, NDSet, times] = ga.q_sorted_templet(AIM_M, AIM_F, None, None, ranges, borders, precisions, maxormin, MAXGEN, MAXSIZE, NIND, SUBPOP, GGAP, selectStyle, recombinStyle, recopt, pm, drawing = 1)
 

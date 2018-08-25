@@ -24,7 +24,7 @@ maxormin = 1             # 设置标记表明这是最小化目标
 # 调用编程模板进行种群进化，得到种群进化和变量的追踪器以及运行时间
 [ObjV, NDSet, times] = multimin(AIM_M, 'aimfuc', NIND, NVAR, Base, MAXGEN, SUBPOP, GGAP, selectStyle, recombinStyle, recopt, pm, maxormin)
 """=========================绘图及输出结果========================="""
-ga.frontplot(NDSet)
+ga.frontplot(NDSet, True)
 print('用时：', times, '秒')
 print(NDSet.shape)
-print(NDSet.shape[0] / times)
+print('平均每秒找到的帕累托前沿个数: ', int(NDSet.shape[0] / times))
