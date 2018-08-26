@@ -23,11 +23,6 @@ It provides:
 
 It can work faster with numpy+mkl. If you want to speed your projects, please install numpy+mkl.
 
-Versions
---------------
-
-**Geatpy** must run under **Python**3.5, 3.6 or 3.7 in x32 or x64 in Windows systems.
-
 Installation
 ------------
 
@@ -44,6 +39,17 @@ Installation
     pip install <filename>.whl
     
 Attention: **Geatpy** requires numpy>=1.10.0 and matplotlib>=1.5.1, the installation program won't help you install them so that you have to install both of them by yourselves.
+
+Versions
+--------------
+
+**Geatpy** must run under **Python**3.5, 3.6 or 3.7 in x32 or x64 in Windows systems.
+
+The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
+
+You can also update **Geatpy** by executing the command:
+
+    pip install --upgrade geatpy
 
 Quick start
 -----------

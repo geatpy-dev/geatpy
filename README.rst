@@ -33,11 +33,6 @@ It provides:
 
 It can work faster with numpy+mkl. If you want to speed your projects, please install numpy+mkl.
 
-Versions
---------------
-
-The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
-
 Installation
 ------------
 
@@ -50,6 +45,15 @@ Installation
     python setup.py install
 
 **Attention**: **Geatpy** requires numpy>=1.10.0 and matplotlib>=1.5.1, the installation program will help you install all the requires. But if something wrong happened, you have to install all requires by yourselves.
+
+Versions
+--------------
+
+The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
+
+You can also update **Geatpy** by executing the command:
+
+    pip install --upgrade geatpy
 
 Quick start
 -----------
