@@ -18,7 +18,7 @@ LONG_DESCRIPTION = read("README.rst")
 
 setup(name = "geatpy",
     version = "1.0.2",
-    description = "This is Geatpy for Python",
+    description = "Geatpy is a high-performance GEA toolbox for Python.",
     author = "Geatpy Team",
     author_email = "jazzbin@geatpy.com",
     url = "http://www.geatpy.com",
