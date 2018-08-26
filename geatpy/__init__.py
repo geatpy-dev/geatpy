@@ -9,8 +9,8 @@
 #    If you want to donate to it, please e-mail jazzbin@geatpy.com
 
 __author__ = "Geatpy Team"
-__version__ = "1.0.0"
-__revision__ = "1.0.0"
+__version__ = "1.0.2"
+__revision__ = "1.0.2"
 
 # -*- coding: utf-8 -*-
 """

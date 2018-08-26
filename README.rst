@@ -12,7 +12,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
     :target: https://www.python.org/downloads/release/python/
     :alt: platform
 
-.. image:: https://img.shields.io/badge/pypi-1.0.0-blue.svg
+.. image:: https://img.shields.io/badge/pypi-1.0.2-blue.svg
     :target: https://pypi.org/project/geatpy/
     :alt: versions
 
@@ -108,7 +108,7 @@ You can use **Geatpy** to solve single or multi-objective optimization problems 
 
     """=======================use sga2_templet to find the Pareto front==================="""
 
-    [ObjV, NDSet, times] = ga.nsga2_templet(AIM_M, 'aimfuc',None, None, ranges, borders, precisions, maxormin = 1, MAXGEN = 1000, MAXSIZE = 1000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, drawing = 1)
+    [ObjV, NDSet, NDSetObjV, times] = ga.nsga2_templet(AIM_M, 'aimfuc',None, None, ranges, borders, precisions, maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, drawing = 1)
 
 The partial of the result can be seen in:
 

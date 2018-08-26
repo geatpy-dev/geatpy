@@ -10,14 +10,14 @@ Created on Sun Jul 29 14:42:13 2018
 import numpy as np
 
 # ZDT1
-#def aimfuc(Chrom):
-#    
-#    ObjV1 = Chrom[:, 0]
-#    gx = 1 + (9 / 29) * np.sum(Chrom[:, 1:30], 1)
-#    hx = 1 - np.sqrt(ObjV1 / gx)
-#    ObjV2 = gx * hx
-#    
-#    return np.array([ObjV1, ObjV2]).T
+def aimfuc(Chrom):
+    
+    ObjV1 = Chrom[:, 0]
+    gx = 1 + (9 / 29) * np.sum(Chrom[:, 1:30], 1)
+    hx = 1 - np.sqrt(ObjV1 / gx)
+    ObjV2 = gx * hx
+    
+    return np.array([ObjV1, ObjV2]).T
 
 # ZDT2
 #def aimfuc(Chrom):
@@ -50,14 +50,14 @@ import numpy as np
 #    return np.array([ObjV1, ObjV2]).T
 
 # ZDT5
-def aimfuc(Chrom):
-    
-    ObjV1 = Chrom[:, 0]
-    gx = 1 + (9 / 29) * np.sum(Chrom[:, 1:30], 1)
-    hx = 1 - (ObjV1 / gx) ** 2
-    ObjV2 = gx * hx
-    
-    return np.array([ObjV1, ObjV2]).T
+#def aimfuc(Chrom):
+#    
+#    ObjV1 = Chrom[:, 0]
+#    gx = 1 + (9 / 29) * np.sum(Chrom[:, 1:30], 1)
+#    hx = 1 - (ObjV1 / gx) ** 2
+#    ObjV2 = gx * hx
+#    
+#    return np.array([ObjV1, ObjV2]).T
 
 # ZDT6
 #def aimfuc(Chrom):

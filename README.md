@@ -4,7 +4,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 
 ![Travis](https://www.travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
-![Pypi](https://img.shields.io/badge/pypi-1.0.0-blue.svg)
+![Pypi](https://img.shields.io/badge/pypi-1.0.2-blue.svg)
 
 Introduction
 ------------
@@ -83,7 +83,7 @@ You can use **Geatpy** mainly in two ways:
     borders = np.vstack([np.ones((1,6)), np.ones((1,6))]) # define the borders of variables in DTLZ1
     precisions = [4] * 30 # define the precision of variables in DTLZ1
     """=======================use sga2_templet to find the Pareto front==================="""
-    [ObjV, NDSet, times] = ga.nsga2_templet(AIM_M, 'aimfuc',None, None, ranges, borders, precisions, maxormin = 1, MAXGEN = 1000, MAXSIZE = 1000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, drawing = 1)
+    [ObjV, NDSet, NDSetObjV, times] = ga.nsga2_templet(AIM_M, 'aimfuc',None, None, ranges, borders, precisions, maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, drawing = 1)
 
 The partial of the result is:
 

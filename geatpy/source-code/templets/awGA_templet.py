@@ -74,8 +74,8 @@ awGA_templet.py - 基于awGA的多目标优化编程模板
     #=========================开始遗传算法进化=======================
     Chrom = ga.crtrp(NIND, FieldDR) # 创建简单离散种群
     ObjV = aimfuc(Chrom) # 计算种群目标函数值
-    # 定义帕累托最优解记录器
-    NDSet = np.zeros((0, ObjV.shape[1]))
+    NDSet = np.zeros((0, Chrom.shape[1])) # 定义帕累托最优解记录器
+    NDSetObjV = np.zeros((0, ObjV.shape[1])) # 定义帕累托最优解的目标函数值记录器
     ax = None
     start_time = time.time() # 开始计时
     # 开始进化！！
@@ -85,7 +85,7 @@ awGA_templet.py - 基于awGA的多目标优化编程模板
         [CombinObjV, weight] = ga.awGA(maxormin * ObjV) # 计算适应性权重以及多目标的加权单目标
         FitnV  = ga.ranking(maxormin * CombinObjV) # 根据加权单目标计算适应度
         # 更新帕累托最优集以及种群非支配个体的适应度
-        [FitnV, NDSet, repnum] = ga.upNDSet(FitnV, maxormin * ObjV, maxormin * NDSet)
+        [FitnV, NDSet, NDSetObjV, repnum] = ga.upNDSet(Chrom, maxormin * ObjV, FitnV, NDSet, maxormin * NDSetObjV)
         # 进行遗传操作！！
         SelCh=ga.selecting(selectStyle, Chrom, FitnV, GGAP, SUBPOP) # 选择
         SelCh=ga.recombin(recombinStyle, SelCh, recopt, SUBPOP) #交叉
@@ -97,14 +97,14 @@ awGA_templet.py - 基于awGA的多目标优化编程模板
         FitnVSel = ga.ranking(maxormin * CombinObjV)
         [Chrom,ObjV] = ga.reins(Chrom,SelCh,SUBPOP,1,0.9,FitnV,FitnVSel,ObjV,ObjVSel) #重插入
         if drawing == 2:
-            ax = ga.frontplot(NDSet, False, ax, gen + 1) # 绘制动态图
+            ax = ga.frontplot(NDSetObjV, False, ax, gen + 1) # 绘制动态图
     end_time = time.time() # 结束计时
     #=========================绘图及输出结果=========================
     if drawing != 0:
-        ga.frontplot(NDSet,True)
+        ga.frontplot(NDSetObjV,True)
     times = end_time - start_time
-    print('用时：' + str(times) + '秒')
-    print('帕累托前沿点个数：' + str(NDSet.shape[0]) + '个')
-    print('单位时间找到帕累托前沿点个数：' + str(NDSet.shape[0] // times) + '个')
+    print('用时：', times, '秒')
+    print('帕累托前沿点个数：', NDSet.shape[0], '个')
+    print('单位时间找到帕累托前沿点个数：', int(NDSet.shape[0] // times), '个')
     # 返回帕累托最优集以及执行时间
-    return [ObjV, NDSet, end_time - start_time]
+    return [ObjV, NDSet, NDSetObjV, end_time - start_time]

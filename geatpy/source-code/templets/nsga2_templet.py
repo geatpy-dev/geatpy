@@ -85,7 +85,8 @@ nsga2_templet.py - 基于改进NSGA-Ⅱ算法求解多目标优化问题编程�
     #=========================开始遗传算法进化=======================
     Chrom = ga.crtrp(NIND, FieldDR) # 创建简单离散种群
     ObjV = aimfuc(Chrom) # 计算种群目标函数值
-    NDSet = np.zeros((0, ObjV.shape[1])) # 定义帕累托最优解集合(初始为空集)
+    NDSet = np.zeros((0, Chrom.shape[1])) # 定义帕累托最优解集合(初始为空集)
+    NDSetObjV = np.zeros((0, ObjV.shape[1])) # 定义帕累托最优解对应的目标函数集合(初始为空集)
     ax = None
     start_time = time.time() # 开始计时
     [FitnV, levels] = ga.ndomindeb(maxormin * ObjV, 1) # deb非支配分级
@@ -93,7 +94,7 @@ nsga2_templet.py - 基于改进NSGA-Ⅱ算法求解多目标优化问题编程�
         FitnV = punishing(Chrom, FitnV) # 调用罚函数
     frontIdx = np.where(levels == 1)[0] # 处在第一级的个体即为种群的非支配个体
         # 更新帕累托最优集以及种群非支配个体的适应度
-    [FitnV, NDSet, repnum] = ga.upNDSet(FitnV, maxormin * ObjV, maxormin * NDSet, frontIdx)
+    [FitnV, NDSet, NDSetObjV, repnum] = ga.upNDSet(Chrom, maxormin * ObjV, FitnV, NDSet, maxormin * NDSetObjV, frontIdx)
     # 开始进化！！
     for gen in range(MAXGEN):
         if NDSet.shape[0] > MAXSIZE:
@@ -111,7 +112,7 @@ nsga2_templet.py - 基于改进NSGA-Ⅱ算法求解多目标优化问题编程�
             FitnV = punishing(Chrom, FitnV) # 调用罚函数
         frontIdx = np.where(levels == 1)[0] # 处在第一级的个体即为种群的非支配个体
         # 更新帕累托最优集以及种群非支配个体的适应度
-        [FitnV, NDSet, repnum] = ga.upNDSet(FitnV, maxormin * ObjV, maxormin * NDSet, frontIdx)
+        [FitnV, NDSet, NDSetObjV, repnum] = ga.upNDSet(Chrom, maxormin * ObjV, FitnV, NDSet, maxormin * NDSetObjV, frontIdx)
         # 计算每个目标下个体的聚集距离(不需要严格计算欧氏距离，计算绝对值即可)
         for i in range(ObjV.shape[1]):
             idx = np.argsort(ObjV[:, i], 0)
@@ -120,14 +121,14 @@ nsga2_templet.py - 基于改进NSGA-Ⅱ算法求解多目标优化问题编程�
             FitnV[idx, 0] += dis # 根据聚集距离修改适应度，以增加种群的多样性
         Chrom=ga.selecting(selectStyle, Chrom, FitnV, GGAP, SUBPOP) # 选择出下一代
         if drawing == 2:
-            ax = ga.frontplot(NDSet, False, ax, gen + 1) # 绘制动态图
+            ax = ga.frontplot(NDSetObjV, False, ax, gen + 1) # 绘制动态图
     end_time = time.time() # 结束计时
     #=========================绘图及输出结果=========================
     if drawing != 0:
-        ga.frontplot(NDSet,True)
+        ga.frontplot(NDSetObjV,True)
     times = end_time - start_time
-    print('用时：' + str(times) + '秒')
-    print('帕累托前沿点个数：' + str(NDSet.shape[0]) + '个')
-    print('单位时间找到帕累托前沿点个数：' + str(NDSet.shape[0] // times) + '个')
+    print('用时：', times, '秒')
+    print('帕累托前沿点个数：', NDSet.shape[0], '个')
+    print('单位时间找到帕累托前沿点个数：', int(NDSet.shape[0] // times), '个')
     # 返回帕累托最优集以及执行时间
-    return [ObjV, NDSet, times]
+    return [ObjV, NDSet, NDSetObjV, times]

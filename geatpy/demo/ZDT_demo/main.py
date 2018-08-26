@@ -1,12 +1,6 @@
-"""sortedParetoGA_main.py"""
+"""main.py"""
 import numpy as np
 import geatpy as ga # 导入geatpy库
-# 导入自定义的编程模板
-from awGA_tmplet import awGA
-from i_awGA_tmplet import i_awGA
-from q_sorted_tmplet import q_sorted
-from nsga2_tmplet import nsga2
-from aimfuc import aimfuc # 导入自定义的目标函数接口
 
 # 获取函数接口地址
 AIM_M = __import__('aimfuc')
@@ -28,5 +22,4 @@ SUBPOP = 1               # 设置种群数为1f
 maxormin = 1             # 设置标记表明这是最小化目标
 MAXSIZE = 1000                 # 帕累托最优集最大个数
 """=======================调用编程模板进行种群进化==================="""
-[ObjV, NDSet, times] = ga.q_sorted_templet(AIM_M, AIM_F, None, None, ranges, borders, precisions, maxormin, MAXGEN, MAXSIZE, NIND, SUBPOP, GGAP, selectStyle, recombinStyle, recopt, pm, drawing = 1)
-
+[ObjV, NDSet, NDSetObjV, times] = ga.q_sorted_templet(AIM_M, AIM_F, None, None, ranges, borders, precisions, maxormin, MAXGEN, MAXSIZE, NIND, SUBPOP, GGAP, selectStyle, recombinStyle, recopt, pm, drawing = 1)

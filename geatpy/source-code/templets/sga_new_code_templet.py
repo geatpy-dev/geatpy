@@ -126,16 +126,16 @@ sga_new_code_templet.py - 改进的单目标编程模板(二进制/格雷编码)
     # 输出结果
     if maxormin == 1:
         best_gen = np.argmin(pop_trace[:, 1]) # 记录最优种群是在哪一代
-        print('最优的目标函数值为：'+ str(np.min(pop_trace[:, 1])))
+        print('最优的目标函数值为：', np.min(pop_trace[:, 1]))
     elif maxormin == -1:
         best_gen = np.argmax(pop_trace[:, 1]) # 记录最优种群是在哪一代
-        print('最优的目标函数值为：' + str(np.max(pop_trace[:, 1])))
+        print('最优的目标函数值为：', np.max(pop_trace[:, 1]))
     print('最优的控制变量值为：')
     for i in range(NVAR):
         print(var_trace[best_gen, i])
-    print('最优的一代是第' + str(best_gen + 1) + '代')
+    print('最优的一代是第', best_gen + 1, '代')
     times = end_time - start_time
-    print('时间已过'+ str(times) + '秒')
+    print('时间已过', times, '秒')
     # 返回进化记录器、变量记录器以及执行时间
     return [pop_trace, var_trace, times]
 
