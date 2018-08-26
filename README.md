@@ -1,6 +1,18 @@
 # **Geatpy**
 The Genetic and Evolutionary Algorithm Toolbox for Python
 
+.. image:: https://www.travis-ci.org/geatpy-dev/geatpy.svg?branch=master
+    :target: https://www.travis-ci.org/geatpy-dev/geatpy
+    :alt: Build Status
+
+.. image:: https://img.shields.io/badge/python->=3.5-green.svg
+    :target: https://www.python.org/downloads/release/python/
+    :alt: platform
+
+.. image:: https://img.shields.io/badge/pypi-1.0.2-blue.svg
+    :target: https://pypi.org/project/geatpy/
+    :alt: versions
+
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com (repairing)
 * **Contact us**: https://www.geatpy.com/supports
