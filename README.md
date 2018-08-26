@@ -1,17 +1,9 @@
 # **Geatpy**
 The Genetic and Evolutionary Algorithm Toolbox for Python
 
-.. image:: https://www.travis-ci.org/geatpy-dev/geatpy.svg?branch=master
-    :target: https://www.travis-ci.org/geatpy-dev/geatpy
-    :alt: Build Status
-
-.. image:: https://img.shields.io/badge/python->=3.5-green.svg
-    :target: https://www.python.org/downloads/release/python/
-    :alt: platform
-
-.. image:: https://img.shields.io/badge/pypi-1.0.2-blue.svg
-    :target: https://pypi.org/project/geatpy/
-    :alt: versions
+![Travis](https://www.travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
+![Python](https://img.shields.io/badge/python->=3.5-green.svg)
+![Pypi](https://img.shields.io/badge/pypi-1.0.0-blue.svg)
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com (repairing)
@@ -49,7 +41,7 @@ or
 
 The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
 
-You can also update Geatpy by executing the command:
+You can also **update** Geatpy by executing the command:
 
     pip install --upgrade geatpy
 
@@ -99,4 +91,4 @@ The partial of the result is:
 
 To get more tutorials, please link to http://www.geatpy.com
 
-There are more demos in Geatpy's source. Including ZDT1/2/3/4/6、 DTLZ1/2/3/4、single-objective examples、discrete problem solving and so forth.
+There are more demos in **Geatpy**'s source. Including ZDT1/2/3/4/6、 DTLZ1/2/3/4、single-objective examples、discrete problem solving and so forth.
