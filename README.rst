@@ -51,7 +51,7 @@ Versions
 
 The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
 
-You can also update **Geatpy** by executing the command:
+You can also update **Geatpy** by executing the command::
 
     pip install --upgrade geatpy
 
