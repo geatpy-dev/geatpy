@@ -14,4 +14,4 @@ install:
 
 script:
 
-    - 
+    - python tests/importTest.py
