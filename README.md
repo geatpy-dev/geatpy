@@ -38,7 +38,7 @@ or
 
 ## Versions
 
-**Geatpy** must run under **Python**3.5, 3.6 or 3.7 in x32 or x64 in **Windows** systems.
+**Geatpy** must run under **Python**3.5, 3.6 or 3.7 in **Windows** x32 or x64 systems.
 
 The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
 
