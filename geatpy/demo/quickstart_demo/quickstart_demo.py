@@ -6,7 +6,7 @@ import time
 """============================函数定义============================"""
 def aimfuc(Phen): # 传入种群染色体矩阵解码后的基因表现型矩阵
     x = np.array([Phen[:, 0]]).T # 取出Phen第一列得到种群所有个体的x值
-    y = np.array([Phen[:, 1]]).T # 取出Phen第一列得到种群所有个体的y值
+    y = np.array([Phen[:, 1]]).T # 取出Phen第二列得到种群所有个体的y值
     # 计算MoCormick函数值
     f = np.sin(x + y) + (x - y) ** 2 - 1.5 * x + 2.5 * y +1
     return f
@@ -22,7 +22,7 @@ borders=np.vstack([b1, b2]).T      # 生成自变量的边界矩阵
 NIND = 50;               # 种群规模
 MAXGEN = 1000;           # 最大遗传代数
 GGAP = 0.8;              # 代沟：子代与父代个体不相同的概率为0.8
-selectStyle = 'sus';     # 遗传算法的选择方式设为"rws"——轮盘赌选择
+selectStyle = 'sus';     # 遗传算法的选择方式设为"sus"：随机抽样选择
 recombinStyle = 'xovdp'  # 遗传算法的重组方式，设为两点交叉
 recopt = 0.9;            # 交叉概率                                                      
 pm = 0.1;                # 变异概率
