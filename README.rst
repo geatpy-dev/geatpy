@@ -12,7 +12,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
     :target: https://www.python.org/downloads/release/python/
     :alt: platform
 
-.. image:: https://img.shields.io/badge/pypi-1.0.4-blue.svg
+.. image:: https://img.shields.io/badge/pypi-1.0.6-blue.svg
     :target: https://pypi.org/project/geatpy/
     :alt: versions
 
