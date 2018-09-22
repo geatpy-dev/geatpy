@@ -54,7 +54,7 @@ You can use **Geatpy** mainly in two ways:
 
 1. Create a script, write all the codes on it and run. It's the easiest way, but it needs much too codes and is not good for reuse. To get some examples, please link to http://www.geatpy.com/tutorial.
 
-2. Using templets and functional interfaces. For example, we try to find the Pareto front of DTLZ1, do as the following:
+2. Using templets and functional interfaces. **For example**, we try to find the pareto front of **DTLZ1**, do as the following:
 
 2.1) Write DTLZ1 function on a file named "aimfuc.py" as a functional interfaces:
 
@@ -88,7 +88,7 @@ You can use **Geatpy** mainly in two ways:
     """=======================use sga2_templet to find the Pareto front==================="""
     [ObjV, NDSet, NDSetObjV, times] = ga.nsga2_templet(AIM_M, AIM_F, None, None, FieldDR, problem = 'R', maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, distribute = False, drawing = 2)
 
-The partial of the result is:
+The partial of the pareto front is:
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/demo/DTLZ_demo/Pareto%20Front.png)
 
