@@ -6,7 +6,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 ![Pypi](https://img.shields.io/badge/pypi-1.0.6-blue.svg)
 
 ## Introduction
-* **Website (including documentation)**: http://www.geatpy.com (almost ready)
+* **Website (including documentation)**: http://www.geatpy.com (Almost ready)
 * **Pypi page** : https://pypi.org/project/geatpy/
 * **Contact us**: https://www.geatpy.com/supports
 * **Source**: https://github.com/geatpy-dev/geatpy
