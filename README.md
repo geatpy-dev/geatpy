@@ -6,7 +6,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 ![Pypi](https://img.shields.io/badge/pypi-1.0.6-blue.svg)
 
 ## Introduction
-* **Website (including documentation)**: http://www.geatpy.com (Almost ready)
+* **Website (including documentation)**: http://www.geatpy.com
 * **Pypi page** : https://pypi.org/project/geatpy/
 * **Contact us**: https://www.geatpy.com/supports
 * **Source**: https://github.com/geatpy-dev/geatpy
@@ -92,6 +92,6 @@ The partial of the pareto front is:
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/demo/DTLZ_demo/Pareto%20Front.png)
 
-To get more tutorials, please link to http://www.geatpy.com (almost ready)
+To get more tutorials, please link to http://www.geatpy.com
 
 There are more demos in **Geatpy**'s source. Including ZDT1/2/3/4/6、 DTLZ1/2/3/4、single-objective examples、discrete problem solving and so forth.
