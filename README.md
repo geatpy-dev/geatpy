@@ -1,4 +1,4 @@
-# **Geatpy**
+# **Geatpy** (Version 1.0.7 is on the way)
 The Genetic and Evolutionary Algorithm Toolbox for Python
 
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
