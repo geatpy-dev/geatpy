@@ -122,6 +122,6 @@ The partial of the result can be seen in:
 
 https://github.com/geatpy-dev/geatpy/blob/master/geatpy/demo/DTLZ_demo/Pareto%20Front.png
 
-To get more examples and more tutorials, please link to http://www.geatpy.com/tutorial.
+To get more examples and more tutorials, please link to http://www.geatpy.com/tutorials.
 
 There are also some demos in Geatpy's source. Including ZDT1/2/3/4/6、 DTLZ1/2/3/4、single-objective examples、discrete problem solving and so forth.
