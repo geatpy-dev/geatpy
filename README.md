@@ -61,7 +61,7 @@ You can use **Geatpy** mainly in two ways:
 
     """aimfuc.py"""
     # DTLZ1
-    def aimfuc(Chrom, M = 3): # M is the dimensions of DTLZ1.
+    def DTLZ1(Chrom, M = 3): # M is the dimensions of DTLZ1.
         x = Chrom.T # Chrom is a numpy array standing for the chromosomes of a population
 	    XM = x[M-1:]
 	    k = x.shape[0] - M + 1
@@ -87,7 +87,7 @@ You can use **Geatpy** mainly in two ways:
     borders = np.vstack([np.ones((1,7)), np.ones((1,7))]) # define the borders of variables in DTLZ1
     FieldDR = ga.crtfld(ranges, borders) # create the FieldDR
     """=======================use sga2_templet to find the Pareto front==================="""
-    [ObjV, NDSet, NDSetObjV, times] = ga.nsga2_templet(AIM_M, AIM_F, None, None, FieldDR, problem = 'R', maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, distribute = False, drawing = 2)
+    [ObjV, NDSet, NDSetObjV, times] = ga.nsga2_templet(AIM_M, AIM_F, None, None, FieldDR, problem = 'R', maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, distribute = False, drawing = 1)
 
 The partial of the pareto front is:
 
