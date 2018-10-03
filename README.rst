@@ -23,7 +23,7 @@ Introduction
 2. **Tutorial pdf:** https://github.com/geatpy-dev/geatpy/tree/master/geatpy/doc/tutorial
 3. **Demo:**  https://github.com/geatpy-dev/geatpy/tree/master/geatpy/demo
 4. **Contact us:** http://www.geatpy.com/support
-5. **Source:** https://github.com/geatpy-dev/geatpy
+5. **Source code:** https://github.com/geatpy-dev/geatpy/tree/master/geatpy/source-code
 6. **Bug reports:** https://github.com/geatpy-dev/geatpy/issues
 7. **Franchised blog** https://blog.csdn.net/qq_33353186
 
