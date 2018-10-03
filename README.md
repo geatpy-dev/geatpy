@@ -25,11 +25,11 @@ It provides:
 It can work faster with numpy+mkl. If you want to speed your projects, please install numpy+mkl.
 
 ## Installation
-1.Via pip::
+1.Via pip:
 
     pip install geatpy
 
-2.From source::
+2.From source:
 
     python setup.py install
 
