@@ -1,5 +1,6 @@
 # **Geatpy** 
 The Genetic and Evolutionary Algorithm Toolbox for Python
+(**A bran-new version: v1.1.0 is on the way.**)
 
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
