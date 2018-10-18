@@ -61,9 +61,9 @@ You can use **Geatpy** mainly in two ways:
 
     """aimfuc.py"""
     # DTLZ1
-    def DTLZ1(Chrom, LegV): # M is the dimensions of DTLZ1.
-        M = 3
-        x = Chrom.T # Chrom is a numpy array standing for the chromosomes of a population
+    def DTLZ1(Chrom, LegV): # LegV is legal-sign of the population.
+        M = 3 # M is the dimensions of DTLZ1.
+        x = Chrom.T # Chrom is a numpy array standing for the chromosomes of the population
 	    XM = x[M-1:]
 	    k = x.shape[0] - M + 1
 	    gx = 100 * (k + np.sum((XM - 0.5) ** 2 - np.cos(20 * np.pi * (XM - 0.5)), 0))
