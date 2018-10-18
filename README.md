@@ -1,7 +1,7 @@
 # **Geatpy** 
 The Genetic and Evolutionary Algorithm Toolbox for Python
 
-(Warning: There is something wrong with Pypi, don't update from pypi, because the files have not been uploaded there.)
+**(Warning: The version of geatpy in Pypi is still v1.0.7, so don't update geatpy from pip.)**
 
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
