@@ -29,7 +29,6 @@ if lib_path not in sys.path:
     sys.path.append(lib_path)
 
 from awGA import awGA
-from awGA_templet import awGA_templet
 from bs2int import bs2int
 from bs2rv import bs2rv
 from crtbase import crtbase
@@ -38,11 +37,16 @@ from crtfld import crtfld
 from crtip import crtip
 from crtpp import crtpp
 from crtrp import crtrp
+from etour import etour
 from frontplot import frontplot
-from i_awGA_templet import i_awGA_templet
 from indexing import indexing
 from meshrng import meshrng
 from migrate import migrate
+from moea_awGA_templet import moea_awGA_templet
+from moea_nsga2_templet import moea_nsga2_templet
+from moea_q_sorted_new_templet import moea_q_sorted_new_templet
+from moea_q_sorted_templet import moea_q_sorted_templet
+from moea_rwGA_templet import moea_rwGA_templet
 from mut import mut
 from mutate import mutate
 from mutbga import mutbga
@@ -53,15 +57,13 @@ from mutpp import mutpp
 from ndomindeb import ndomindeb
 from ndomin import ndomin
 from ndominfast import ndominfast
-from nsga2_templet import nsga2_templet
 from powing import powing
-from q_sorted_new_templet import q_sorted_new_templet
-from q_sorted_templet import q_sorted_templet
 from ranking import ranking
 from recdis import recdis
 from recint import recint
 from reclin import reclin
 from recombin import recombin
+from redisNDSet import redisNDSet
 from reins import reins
 from rep import rep
 from rwGA import rwGA
@@ -76,6 +78,7 @@ from sga_permut_templet import sga_permut_templet
 from sga_new_permut_templet import sga_new_permut_templet
 from sga_real_templet import sga_real_templet
 from sga_new_real_templet import sga_new_real_templet
+from sgaplot import sgaplot
 from sus import sus
 from tour import tour
 from trcplot import trcplot
