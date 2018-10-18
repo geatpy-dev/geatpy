@@ -48,6 +48,12 @@ You can also **update** Geatpy by executing the command:
 
     pip install --upgrade geatpy
 
+Run this command in Python to see your **geatpy** version:
+
+    import geatpy
+    
+    print(geatpy.__version__)
+
 Quick start
 -----------
 
