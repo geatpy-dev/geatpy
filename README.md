@@ -1,11 +1,9 @@
 # **Geatpy** 
 The Genetic and Evolutionary Algorithm Toolbox for Python
 
-(**A bran-new version: v1.1.0 is on the way.**)
-
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
-![Pypi](https://img.shields.io/badge/pypi-1.0.7-blue.svg)
+![Pypi](https://img.shields.io/badge/pypi-1.1.0-blue.svg)
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com
@@ -50,10 +48,6 @@ You can also **update** Geatpy by executing the command:
 
     pip install --upgrade geatpy
 
-If something wrong happened, you can run this command:
-
-    pip install --user --upgrade geatpy
-
 Quick start
 -----------
 
@@ -67,7 +61,8 @@ You can use **Geatpy** mainly in two ways:
 
     """aimfuc.py"""
     # DTLZ1
-    def DTLZ1(Chrom, M = 3): # M is the dimensions of DTLZ1.
+    def DTLZ1(Chrom, LegV): # M is the dimensions of DTLZ1.
+        M = 3
         x = Chrom.T # Chrom is a numpy array standing for the chromosomes of a population
 	    XM = x[M-1:]
 	    k = x.shape[0] - M + 1
@@ -77,7 +72,7 @@ You can use **Geatpy** mainly in two ways:
 	    for i in range(2, M):
 	        ObjV = np.vstack([ObjV, 0.5 * np.cumprod(x[: M-i], 0)[-1] * (1 - x[M-i]) * (1 + gx)])
 	    ObjV = np.vstack([ObjV, 0.5 * (1 - x[0]) * (1 + gx)])
-	    return ObjV.T # use '.T' to change ObjV so that each row stands for function values of each individual of the population
+	    return [ObjV.T, LegV] # use '.T' to change ObjV so that each row stands for function values of each individual of the population
 
 2.2) Write the main script using NSGA-II templet of **Geatpy** to solve the problem.
 
@@ -93,7 +88,7 @@ You can use **Geatpy** mainly in two ways:
     borders = np.vstack([np.ones((1,7)), np.ones((1,7))]) # define the borders of variables in DTLZ1
     FieldDR = ga.crtfld(ranges, borders) # create the FieldDR
     """=======================use sga2_templet to find the Pareto front==================="""
-    [ObjV, NDSet, NDSetObjV, times] = ga.nsga2_templet(AIM_M, AIM_F, None, None, FieldDR, problem = 'R', maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, distribute = False, drawing = 1)
+    [ObjV, NDSet, NDSetObjV, times] = ga.moea_nsga2_templet(AIM_M, AIM_F, None, None, FieldDR, problem = 'R', maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, distribute = False, drawing = 1)
 
 The partial of the pareto front is:
 
