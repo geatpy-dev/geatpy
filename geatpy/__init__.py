@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #    This file is part of Geatpy.
 #
 #    Geatpy is a free toolbox: you can redistribute it and/or modify
