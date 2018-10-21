@@ -8,7 +8,8 @@ python:
 
 install:
     
-
+  pip install geatpy
+  
 # command to run tests, we only need to test the installation so that we do nothing here.
 
 script:
