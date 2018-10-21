@@ -8,9 +8,9 @@ python:
 
 install:
     
-  pip install geatpy
+  # needn't to do anything.
   
-# command to run tests, we only need to test the installation so that we do nothing here.
+# command to run tests, we have done other tests so that we do nothing here.
 
 script:
 
