@@ -48,7 +48,7 @@ You can also **update** Geatpy by executing the command:
 
     pip install --upgrade geatpy
 
-If something wrong happened, just like decoding error about 'utf8' of pip, run this command instead or execute it as an administrator:
+If something wrong happened, such as decoding error about 'utf8' of pip, run this command instead or execute it as an administrator:
 
     pip install --user --upgrade geatpy
 
