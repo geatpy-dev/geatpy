@@ -179,8 +179,6 @@ sga_new_code_templet.py - 改进的单目标编程模板(二进制/格雷编码)
     times = end_time - start_time
     # 绘图
     if drawing != 0:
-        ga.sgaplot(pop_trace[:,[1]],'种群最优个体目标函数值',
-		 True)
         ga.trcplot(pop_trace, [['种群个体平均目标函数值', '种群最优个体目标函数值']])
     # 输出结果
     if maxormin == 1:
