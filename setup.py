@@ -17,7 +17,7 @@ def read(fname):
 LONG_DESCRIPTION = read("README.rst")
 
 setup(name = "geatpy",
-    version = "1.1.2",
+    version = "1.1.3r1",
     description = "Geatpy is a high-performance GEA toolbox for Python.",
     author = "Geatpy Team",
     author_email = "jazzbin@geatpy.com",

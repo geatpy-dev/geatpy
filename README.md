@@ -3,7 +3,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
-![Pypi](https://img.shields.io/badge/pypi-1.1.2-blue.svg)
+![Pypi](https://img.shields.io/badge/pypi-1.1.3-blue.svg)
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com

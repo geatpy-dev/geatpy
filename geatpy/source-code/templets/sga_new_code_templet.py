@@ -170,6 +170,7 @@ sga_new_code_templet.py - 改进的单目标编程模板(二进制/格雷编码)
             # 绘制动态图
             if drawing == 2:
                 ax = ga.sgaplot(pop_trace[:,[1]],'种群最优个体目标函数值', False, ax, gen)
+            badCounter = 0 # badCounter计数器清零
         else:
             gen -= 1 # 忽略这一代（遗忘策略）
             badCounter += 1
@@ -177,6 +178,12 @@ sga_new_code_templet.py - 改进的单目标编程模板(二进制/格雷编码)
         gen += 1
     end_time = time.time() # 结束计时
     times = end_time - start_time
+    # 后处理进化记录器
+    delIdx = np.where(np.isnan(pop_trace))[0]
+    pop_trace = np.delete(pop_trace, delIdx, 0)
+    var_trace = np.delete(var_trace, delIdx, 0)
+    if pop_trace.shape[0] == 0:
+        raise RuntimeError('error: no feasible solution. (有效进化代数为0，没找到可行解。)')
     # 绘图
     if drawing != 0:
         ga.trcplot(pop_trace, [['种群个体平均目标函数值', '种群最优个体目标函数值']])
@@ -187,13 +194,12 @@ sga_new_code_templet.py - 改进的单目标编程模板(二进制/格雷编码)
     elif maxormin == -1:
         best_gen = np.argmax(pop_trace[:, 1]) # 记录最优种群是在哪一代
         best_ObjV = np.max(pop_trace[:, 1])
-    if np.isnan(best_ObjV):
-        raise RuntimeError('error: no feasible solution. (没找到可行解。)')
-    print('最优的目标函数值为：', best_ObjV)
+    print('最优的目标函数值为：%f'%(best_ObjV))
     print('最优的控制变量值为：')
     for i in range(NVAR):
         print(var_trace[best_gen, i])
-    print('最优的一代是第', best_gen + 1, '代')
-    print('时间已过', times, '秒')
+    print('有效进化代数：%d'%(pop_trace.shape[0]))
+    print('最优的一代是第 %d 代'%(best_gen + 1))
+    print('时间已过 %f 秒'%(times))
     # 返回进化记录器、变量记录器以及执行时间
     return [pop_trace, var_trace, times]
