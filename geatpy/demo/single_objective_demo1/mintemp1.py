@@ -46,5 +46,9 @@ def mintemp1(AIM_M, AIM_F, PUN_M, PUN_F, ranges, borders, MAXGEN, NIND, SUBPOP, 
         [Chrom,ObjV,LegV] = ga.reins(Chrom,SelCh,SUBPOP,1,1,FitnV,FitnVSel,ObjV,ObjVSel,
         LegV,LegVSel) #重插入
     end_time = time.time() # 结束计时
+    # 后处理进化记录器
+    delIdx = np.where(np.isnan(pop_trace))[0]
+    pop_trace = np.delete(pop_trace, delIdx, 0)
+    var_trace = np.delete(var_trace, delIdx, 0)
     # 返回进化记录器、变量记录器以及执行时间
     return [pop_trace, var_trace, end_time - start_time]
