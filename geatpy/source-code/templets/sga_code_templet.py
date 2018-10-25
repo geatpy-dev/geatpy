@@ -152,7 +152,7 @@ sga_code_templet.py - 单目标编程模板(二进制/格雷编码)
             FitnV[idx, 0] *= np.exp(dis) # 根据相邻距离修改适应度，突出相邻距离大的个体，以增加种群的多样性
         # 进行遗传算子
         SelCh=ga.selecting(selectStyle, Chrom, FitnV, GGAP, SUBPOP) # 选择
-        SelCh=ga.recombin(recombinStyle, Chrom, recopt, SUBPOP) # 重组
+        SelCh=ga.recombin(recombinStyle, Selch, recopt, SUBPOP) # 对选择的个体进行重组
         SelCh=ga.mutbin(SelCh,pm) # 变异
         # 计算种群适应度
         if problem == 'R':
