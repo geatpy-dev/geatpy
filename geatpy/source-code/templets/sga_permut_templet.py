@@ -124,7 +124,7 @@ sga_permut_templet.py - 单目标编程模板(排列编码)
             badCounter += 1
         # 进行遗传算子
         SelCh=ga.selecting(selectStyle, Chrom, FitnV, GGAP, SUBPOP) # 选择
-        SelCh=ga.recombin(recombinStyle, Chrom, recopt, SUBPOP) # 重组
+        SelCh=ga.recombin(recombinStyle, Selch, recopt, SUBPOP) # 对选择的个体进行重组
         SelCh=ga.mutpp(SelCh, VarLen, pm) # 排列编码种群变异
         LegVSel = np.ones((SelCh.shape[0], 1)) # 初始化育种种群的可行性列向量
         [ObjVSel, LegVSel] = aimfuc(SelCh, LegVSel) # 求育种种群的目标函数值
