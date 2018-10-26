@@ -136,7 +136,7 @@ sga_real_templet.py - 单目标编程模板(实值编码)
             FitnV[idx, 0] *= np.exp(dis) # 根据相邻距离修改适应度，突出相邻距离大的个体，以增加种群的多样性
         # 进行遗传算子
         SelCh=ga.selecting(selectStyle, Chrom, FitnV, GGAP, SUBPOP) # 选择
-        SelCh=ga.recombin(recombinStyle, Selch, recopt, SUBPOP) # 对选择的个体进行重组
+        SelCh=ga.recombin(recombinStyle, SelCh, recopt, SUBPOP) # 对选择的个体进行重组
         if problem == 'R':
             SelCh=ga.mutbga(SelCh,FieldDR, pm) # 变异
             if repnum > Chrom.shape[0] * 0.01: # 当最优个体重复率高达1%时，进行一次高斯变异
