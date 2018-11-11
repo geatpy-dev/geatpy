@@ -7,7 +7,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com
-* **Tutorial pdf**: https://github.com/geatpy-dev/geatpy/tree/master/geatpy/doc/tutorial
+* **Tutorial pdf**: https://github.com/geatpy-dev/geatpy/tree/master/geatpy/doc/Geatpy-tutorials
 * **Demo** : https://github.com/geatpy-dev/geatpy/tree/master/geatpy/demo
 * **Pypi page** : https://pypi.org/project/geatpy/
 * **Contact us**: http://www.geatpy.com/support
