@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #    This file is part of Geatpy.
 #
 #    Geatpy is a free toolbox: you can redistribute it and/or modify
@@ -12,13 +13,12 @@ __author__ = "Geatpy Team"
 __version__ = "1.1.5"
 __revision__ = "1.1.5"
 
-# -*- coding: utf-8 -*-
 """
 geatpy  -  import all libs of geatpy
 
 Created on Sat May 12 08:36:49 2018
 
-@author: jazzbin
+@author: geatpy-dev
 """
 
 import sys

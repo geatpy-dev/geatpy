@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #    This is a list of files to install Geatpy
 #
 #    Geatpy is a free toolbox: you can redistribute it and/or modify as you want.
@@ -11,10 +12,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-def read(fname):
-    return codecs.open(os.path.join(os.path.dirname(__file__), fname), encoding='UTF-8').read()
-
-LONG_DESCRIPTION = read("README.rst")
+LONG_DESCRIPTION = "Geatpy--The Genetic and Evolutionary Algorithms Toolbox for Python. http://www.geatpy.com"
 
 setup(name = "geatpy",
     version = "1.1.5",
