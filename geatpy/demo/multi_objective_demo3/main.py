@@ -2,7 +2,7 @@
 """
 执行脚本main.py
 描述：
-    该demo是展示如何计算带约束的两个最大化目标的帕累托前沿
+    该demo是展示如何计算带约束的两个最小化目标的帕累托前沿
     其中为了方便展示，把目标函数aimfuc和适应度罚函数punishing均和执行脚本写在同一个文件里，建议分开写在不同的文件中。
     本案例调用了“moea_q_sorted_new_templet”算法模板，其详细用法可利用help命令查看，或是在github下载并查看源码。
     调用算法模板时可以设置drawing=2，此时算法模板将在种群进化过程中绘制动画，但注意执行前要在Python控制台执行命令matplotlib qt5。
@@ -30,7 +30,7 @@ def aimfuc(x, LegV): # 定义目标函数
     # (也可以不写punishing，因为算法模板中在一些与适应度有关的计算时已传入LegV，此时内核函数会自动处理非可行解的适应度)
     # (写punishing实质上是进一步惩罚非可行解的适应度值)
     LegV[exIdx] = 0 # 标记非可行解对应的可行性列向量中元素的值为0
-    return [np.hstack([fun1, fun2]), LegV] # 对矩阵进行转置使得目标函数矩阵符合Geatpy数据结构
+    return [np.hstack([fun1, fun2]), LegV]
 
 def punishing(LegV, FitnV): # 定义罚函数
     FitnV[np.where(LegV == 0)[0]] = 0
