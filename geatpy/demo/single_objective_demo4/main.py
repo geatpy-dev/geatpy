@@ -5,6 +5,7 @@
     该demo是展示如何计算带等式约束的单目标优化问题:
         max 4 * x1 + 2 * x2 + x3
         s.t.
+            x1,x2,x3 ∈ [0,1]
             2 * x1 + x2 <= 1
             x1 + 2 * x3 > 2
             x1 + x2 + x3 == 1
@@ -12,7 +13,7 @@
             0 <= x2 <= 1
             0 <= x3 <= 2
     其中目标函数和约束条件写在aimfuc.py文件中，适应度罚函数写在罚函数文件punishing.py中
-    本案例通过降维的方法，将等式约束化成了不等式约束，大大拓宽了可行解的空间，方便遗传算法求解
+    本案例通过降维的方法，把x3用x1和x2线性表出，从而将等式约束化成了不等式约束，大大拓宽了可行解的空间，方便遗传算法求解
     此外，本案例展示了利用多种群竞争的进化算法模板sga_mpc_real_templet了解决该问题。
 """
 
@@ -35,7 +36,7 @@ newRanges = ga.meshrng(ranges, gridnum = 2) # 对控制变量范围进行网格�
 FieldDRs = []
 for i in range(len(newRanges)):
     FieldDRs.append(ga.crtfld(newRanges[i], borders, precisions))
-# 调用编程模板
+# 调用编程模板(设置problem = 'R'处理实数型变量问题，详见该算法模板的源代码)
 [pop_trace, var_trace, times] = ga.sga_mpc_real_templet(AIM_M, 'aimfuc', PUN_M,\
  'punishing', FieldDRs, problem = 'R', maxormin = -1, MAXGEN = 50, NIND = 50,\
  SUBPOP = 1, GGAP = 0.9, selectStyle = 'tour', recombinStyle = 'xovdprs',\

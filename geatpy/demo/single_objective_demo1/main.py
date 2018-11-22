@@ -1,9 +1,15 @@
 """
 执行脚本main.py
 描述：
-	该demo是展示如何计算带约束的单目标优化问题
-	本案例通过自定义算法模板"mintemp1.py"来解决该问题
-	其中目标函数和约束条件写在aimfuc.py文件中，适应度罚函数写在罚函数文件punishing.py中
+    该demo是展示如何计算带约束的单目标优化问题
+    min x1*x1 + x2*x2
+    s.t.
+    x1 ∈ [-5, 5]
+    x2 ∈ (2, 10] 
+    x1 ≠ 0
+    x2 ≠ 0
+    本案例通过自定义算法模板"mintemp1.py"来解决该问题
+    其中目标函数和约束条件写在aimfuc.py文件中，适应度罚函数写在罚函数文件punishing.py中
 """
 import numpy as np
 import geatpy as gea # 导入geatpy库

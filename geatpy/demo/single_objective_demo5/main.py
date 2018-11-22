@@ -21,5 +21,5 @@ AIM_M = __import__('aimfuc')
 # 参数设置
 NVAR = 5                  # 排列编码的染色体长度
 VarLen = 5                # 排列集合的大小，等于5表示排列集合为{1,2,3,4,5}
-# 调用编程模板，其中recombinStyle要设置为'xovpm',对于排列编码问题，必须采用xovpm(部分匹配交叉)的重组方式
+# 调用编程模板，其中recombinStyle要设置为'xovpm',对于排列编码问题，要采用特殊的xovpm(部分匹配交叉)的重组方式
 [pop_trace, var_trace, times] = ga.sga_new_permut_templet(AIM_M, 'aimfuc', None, None, NVAR, VarLen, maxormin = 1, MAXGEN = 100, NIND = 10, SUBPOP = 1, GGAP = 0.9, selectStyle = 'etour', recombinStyle = 'xovpm', recopt = 0.9, pm = 0.1, distribute = True, drawing = 1)

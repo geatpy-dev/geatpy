@@ -3,6 +3,10 @@
 执行脚本main.py
 描述：
     该demo是展示如何计算无约束的单目标优化问题
+    max 21.5 + x1 * np.sin(4 * np.pi * x1) + x2 * np.sin(20 * np.pi * x2)
+    s.t.
+    x1 ∈ [-3, 12.1]
+    x2 ∈ [4.1, 5.8]
     本案例通过调用sga_new_code_templet算法模板来解决该问题
     其中目标函数写在aimfuc.py文件中
     本案例调用了“sga_new_code_templet”这个算法模板，其详细用法可利用help命令查看，或是在github下载并查看源码
@@ -27,5 +31,5 @@ borders = np.vstack([b1, b2]).T # 生成自变量的边界矩阵
 # 生成区域描述器
 FieldD = ga.crtfld(ranges, borders, precisions, codes, scales)
 
-# 调用编程模板
+# 调用编程模板(设置problem = 'R'处理实数型变量问题，详见该算法模板的源代码)
 [pop_trace, var_trace, times] = ga.sga_new_code_templet(AIM_M, 'aimfuc', None, None, FieldD, problem = 'R', maxormin = -1, MAXGEN = 1000, NIND = 100, SUBPOP = 1, GGAP = 0.8, selectStyle = 'sus', recombinStyle = 'xovdp', recopt = None, pm = None, distribute = True, drawing = 1)
