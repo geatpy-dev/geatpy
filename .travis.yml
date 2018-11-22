@@ -7,8 +7,7 @@ python:
 # command to install dependencies
 
 install:
-    
-  # needn't to do anything.
+
   pip install geatpy
   
 # command to run tests, we have done other tests so that we do nothing here.
