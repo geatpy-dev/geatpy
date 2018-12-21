@@ -176,7 +176,7 @@ sga_code_templet.py - 单目标编程模板(二进制/格雷编码)
             if np.any(FieldD >= sys.maxsize):
                 variable = ga.bs2int(Chrom, FieldD).astype('object') # 解码
             else:
-                variable = ga.bs2int(SelCh, FieldD).astype('int64')
+                variable = ga.bs2int(Chrom, FieldD).astype('int64')
         gen += 1
     end_time = time.time() # 结束计时
     times = end_time - start_time
