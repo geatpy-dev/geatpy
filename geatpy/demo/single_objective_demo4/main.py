@@ -37,7 +37,7 @@ FieldDRs = []
 for i in range(len(newRanges)):
     FieldDRs.append(ga.crtfld(newRanges[i], borders, precisions))
 # 调用编程模板(设置problem = 'R'处理实数型变量问题，详见该算法模板的源代码)
-[pop_trace, var_trace, times] = ga.sga_mps_real_templet(AIM_M, 'aimfuc', PUN_M,\
+[pop_trace, var_trace, times] = ga.sga_mpc_real_templet(AIM_M, 'aimfuc', PUN_M,\
  'punishing', FieldDRs, problem = 'R', maxormin = -1, MAXGEN = 50, NIND = 50,\
  SUBPOP = 1, GGAP = 0.9, selectStyle = 'tour', recombinStyle = 'xovdprs',\
  recopt = 0.9, pm = 0.3, distribute = True, drawing = 1)
