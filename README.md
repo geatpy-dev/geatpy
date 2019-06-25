@@ -60,6 +60,7 @@ You can use **Geatpy** mainly in two steps:
 
 1. Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class.
 
+"""python
     """MyProblem.py"""
     import numpy as np
     import geatpy as ga
@@ -86,9 +87,11 @@ You can use **Geatpy** mainly in two steps:
             uniformPoint, ans = ga.crtup(self.M, 10000) # create 10000 uniform points.
             realBestObjV = uniformPoint / 2
             return realBestObjV
+"""
 
 2. Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
     
+"""python
     """main.py"""
     import geatpy as ea # Import geatpy
     from MyProblem import MyProblem # Import MyProblem class
@@ -117,7 +120,7 @@ You can use **Geatpy** mainly in two steps:
     print('IGD: ',IGD)
     print('HV: ', HV)
     print('Space: ', Space)
-
+"""
 The result is:
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/moea_test/moea_test_DTLZ/Pareto%20Front.png)
