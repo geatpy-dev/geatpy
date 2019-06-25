@@ -59,38 +59,65 @@ Here is the UML of Geatpy2.0.
 
 You can use **Geatpy** mainly in two steps:
 
-1. Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class.
+1) Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class.
 
-    """aimfuc.py"""
-    # DTLZ1
-    def DTLZ1(Chrom, LegV): # LegV is legal-sign of the population
-        M = 3 # M is the dimensions of DTLZ1
-        x = Chrom.T # Chrom is a numpy array standing for the chromosomes of the population
-	    XM = x[M-1:]
-	    k = x.shape[0] - M + 1
-	    gx = 100 * (k + np.sum((XM - 0.5) ** 2 - np.cos(20 * np.pi * (XM - 0.5)), 0))
-	    ObjV = (np.array([[]]).T) * np.zeros((1, Chrom.shape[0])) # define ObjV to recod function values
-	    ObjV = np.vstack([ObjV, 0.5 * np.cumprod(x[:M-1], 0)[-1] * (1 + gx)])
-	    for i in range(2, M):
-	        ObjV = np.vstack([ObjV, 0.5 * np.cumprod(x[: M-i], 0)[-1] * (1 - x[M-i]) * (1 + gx)])
-	    ObjV = np.vstack([ObjV, 0.5 * (1 - x[0]) * (1 + gx)])
-	    return [ObjV.T, LegV] # use '.T' to change ObjV so that each row stands for function values of each individual of the population
-
-2. Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
-
-    """main.py"""
+    """MyProblem.py"""
     import numpy as np
-    import geatpy as ga # import geatpy
+    import geatpy as ea
+    class MyProblem(ea.Problem): # Inherited from Problem class.
+        def __init__(self, M):
+            self.name = 'DTLZ1' # Problem's name.
+            self.M = M # Set the number of objects.
+            self.maxormins = [1] * self.M # All objects are need to be minimized.
+            self.Dim = self.M + 4 # Set the dimension of decision variables.
+            self.varTypes = np.array([0] * self.Dim) # Set the types of decision variables. 0 means continuous while 1 means discrete.
+            lb = [0] * self.Dim # The lower bound of each decision variable.
+            ub = [1] * self.Dim # The upper bound of each decision variable.
+            self.ranges = np.array([lb, ub])
+            lbin = [1] * self.Dim # Whether the lower boundary is included.
+            ubin = [1] * self.Dim # Whether the upper boundary is included.
+            self.borders = np.array([lbin, ubin])
+        def aimFuc(self, Vars, CV):
+            XM = Vars[:,(self.M-1):]
+            g = np.array([100 * (self.Dim - self.M + 1 + np.sum(((XM - 0.5)**2 - np.cos(20 * np.pi * (XM - 0.5))), 1))]).T
+            ones_metrix = np.ones((Vars.shape[0], 1))
+            ObjV = 0.5 * np.fliplr(np.cumprod(np.hstack([ones_metrix, Vars[:,:self.M-1]]), 1)) * np.hstack([ones_metrix, 1 - Vars[:, range(self.M - 2, -1, -1)]]) * np.tile(1 + g, (1, self.M))
+            return ObjV, CV
+        def calBest(self):
+            uniformPoint, ans = ea.crtup(self.M, 10000) # create 10000 uniform points.
+            realBestObjV = uniformPoint / 2
+            return realBestObjV
+
+2) Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
     
-    AIM_M = __import__('aimfuc') # get the address of objective function
-    AIM_F = 'DTLZ1' # You can set DTL1,2,3 or 4
-    
-    """==================================variables setting================================"""
-    ranges = np.vstack([np.zeros((1,7)), np.ones((1,7))]) # define the ranges of variables in DTLZ1
-    borders = np.vstack([np.ones((1,7)), np.ones((1,7))]) # define the borders of variables in DTLZ1
-    FieldDR = ga.crtfld(ranges, borders) # create the FieldDR
-    """=======================use sga2_templet to find the Pareto front==================="""
-    [ObjV, NDSet, NDSetObjV, times] = ga.moea_nsga2_templet(AIM_M, AIM_F, None, None, FieldDR, problem = 'R', maxormin = 1, MAXGEN = 1000, MAXSIZE = 2000, NIND = 50, SUBPOP = 1, GGAP = 1, selectStyle = 'tour', recombinStyle = 'xovdprs', recopt = 0.9, pm = None, distribute = True, drawing = 1)
+    """main.py"""
+    import geatpy as ea # Import geatpy
+    from MyProblem import MyProblem # Import MyProblem class
+    """=========================Instantiate your problem=========================="""
+    M = 3                      # Set the number of objects.
+    problem = MyProblem(M)     # Instantiate MyProblem class
+    """===============================Population set=============================="""
+    Encoding = 'R'             # Encoding type.
+    conordis = 0               # 0 means each element of a chromosome is a continuous number.
+    NIND = 100                 # Set the number of individuals.
+    Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # Create the field descriptor.
+    population = ea.Population(Encoding, conordis, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
+    """================================Algorithm set==============================="""
+    myAlgorithm = ea.moea_NSGA3_templet(problem, population) # 实例化一个算法模板对象
+    myAlgorithm.MAXGEN = 500 # Set the max times of iteration.
+    """===============================Start evolution=============================="""
+    NDSet = myAlgorithm.run() # Start evolution.
+    """=============================Analyze the result============================="""
+    PF = problem.calBest() # Get the global pareto front.
+    GD = ea.indicator.GD(NDSet.ObjV, PF) # Calculate GD
+    IGD = ea.indicator.IGD(NDSet.ObjV, PF) # Calculate IGD
+    HV = ea.indicator.HV(NDSet.ObjV, PF) # Calculate HV
+    Space = ea.indicator.spacing(NDSet.ObjV) # Calculate Space
+    print('The number of non-dominated result: %s'%(NDSet.sizes))
+    print('GD: ',GD)
+    print('IGD: ',IGD)
+    print('HV: ', HV)
+    print('Space: ', Space)
 
 The result is:
 
