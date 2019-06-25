@@ -121,7 +121,7 @@ You can use **Geatpy** mainly in two steps:
 
 The result is:
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/moea_test/moea_test_DTLZ/Pareto%20Front.png)
+![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/moea_test/moea_test_DTLZ/Pareto%20Front.svg)
 
 The number of non-dominated result: 91
 
