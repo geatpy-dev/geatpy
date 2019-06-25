@@ -32,7 +32,7 @@ or
 
     pip install <filename>.whl
 
-**Attention**: Geatpy requires numpy>=1.12.1 and matplotlib>=3.0.0, the installation program won't help you install them so that you have to install both of them by yourselves.
+**Attention**: Geatpy requires numpy>=1.12.1, matplotlib>=3.0.0 and scipy>=1.0.0, the installation program won't help you install them so that you have to install both of them by yourselves.
 
 ## Versions
 
