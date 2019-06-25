@@ -34,7 +34,7 @@
 		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
 				v:shadowOffsetY="-8.50394"/>
 		<v:layer v:name="连接线" v:index="0"/>
-		<g id="group1-1" transform="translate(334.488,-226.772)" v:mID="1" v:groupContext="group">
+		<g id="group1-1" transform="translate(334.488,-130.186)" v:mID="1" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
 				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
@@ -56,7 +56,7 @@
 				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(类名)"/>
 				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
-				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.24050088026259):1"/>
@@ -114,7 +114,7 @@
 				<v:textRect cx="92.126" cy="281.865" width="184.26" height="38.6036"/>
 				<text x="4" y="287.27" class="st3" v:langID="2052"><v:paragraph/><v:tabList/>Algorithm</text>			</g>
 		</g>
-		<g id="shape6-9" v:mID="6" v:groupContext="shape" transform="translate(337.323,-266.044)">
+		<g id="shape6-9" v:mID="6" v:groupContext="shape" transform="translate(337.323,-169.458)">
 			<title>成员</title>
 			<desc>+ name : string + problem : Problem + MAXGEN: int + currentGe...</desc>
 			<v:userDefs>
@@ -123,8 +123,8 @@
 				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
-				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(0)"/>
-				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(1)"/>
 				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(0)"/>
 				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
@@ -153,7 +153,7 @@
 						x="8.5" dy="1.2em" class="st7">+ selFunc : string<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
 						class="st7">+ recFunc : string<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st7">+ mutFunc : string<v:newlineChar/></tspan><tspan
 						x="8.5" dy="1.2em" class="st7">+ drawing : int</tspan></text>		</g>
-		<g id="shape7-27" v:mID="7" v:groupContext="shape" transform="translate(337.323,-263.21)">
+		<g id="shape7-27" v:mID="7" v:groupContext="shape" transform="translate(337.323,-166.624)">
 			<title>分隔符</title>
 			<v:userDefs>
 				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
@@ -166,7 +166,7 @@
 			<path d="M0 593.86 L178.58 593.86 L0 593.86 Z" class="st8"/>
 			<path d="M0 593.86 L178.58 593.86" class="st9"/>
 		</g>
-		<g id="shape8-30" v:mID="8" v:groupContext="shape" transform="translate(337.323,-229.606)">
+		<g id="shape8-30" v:mID="8" v:groupContext="shape" transform="translate(337.323,-133.02)">
 			<title>成员.8</title>
 			<desc>+ terminated() + run()</desc>
 			<v:userDefs>
@@ -175,8 +175,8 @@
 				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
-				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(0)"/>
-				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(1)"/>
 				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(0)"/>
 				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
@@ -196,7 +196,7 @@
 			<rect x="0" y="561.672" width="178.583" height="33.6033" class="st5"/>
 			<text x="8.5" y="574.27" class="st6" v:langID="2052"><v:paragraph/><v:tabList/>+ <tspan class="st7" v:langID="1033">terminated</tspan>()<v:newlineChar/><tspan
 						x="8.5" dy="1.2em" class="st7">+ run()</tspan></text>		</g>
-		<g id="group9-36" transform="translate(29.3386,-293.971)" v:mID="9" v:groupContext="group">
+		<g id="group9-36" transform="translate(29.3386,-197.385)" v:mID="9" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
 				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
@@ -218,7 +218,7 @@
 				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(类名)"/>
 				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
-				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.24050088026259):1"/>
@@ -276,7 +276,7 @@
 				<v:textRect cx="92.126" cy="416.264" width="184.26" height="38.6036"/>
 				<text x="4" y="421.66" class="st3" v:langID="2052"><v:paragraph/><v:tabList/>Problem</text>			</g>
 		</g>
-		<g id="shape14-44" v:mID="14" v:groupContext="shape" transform="translate(32.1732,-333.244)">
+		<g id="shape14-44" v:mID="14" v:groupContext="shape" transform="translate(32.1732,-236.658)">
 			<title>成员.14</title>
 			<desc>+ name : string + M : int + maxormins : list + Dim : int + va...</desc>
 			<v:userDefs>
@@ -285,8 +285,8 @@
 				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
-				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(0)"/>
-				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(1)"/>
 				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(0)"/>
 				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
@@ -310,7 +310,7 @@
 						x="8.5" dy="1.2em" class="st7">+ Dim : int<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st7">+ varTypes : Numpy array<v:newlineChar/></tspan><tspan
 						x="8.5" dy="1.2em" class="st7">+ ranges : Numpy array<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
 						class="st7">+ borders : Numpy array</tspan></text>		</g>
-		<g id="shape18-54" v:mID="18" v:groupContext="shape" transform="translate(32.1732,-296.806)">
+		<g id="shape18-54" v:mID="18" v:groupContext="shape" transform="translate(32.1732,-200.22)">
 			<title>成员.18</title>
 			<desc>+ aimFuc() + calBest()</desc>
 			<v:userDefs>
@@ -319,8 +319,8 @@
 				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
-				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(0)"/>
-				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(1)"/>
 				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(0)"/>
 				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
@@ -340,7 +340,7 @@
 			<rect x="0" y="561.672" width="178.583" height="33.6033" class="st5"/>
 			<text x="8.5" y="574.27" class="st6" v:langID="2052"><v:paragraph/><v:tabList/>+ aimFuc()<v:newlineChar/><tspan x="8.5"
 						dy="1.2em" class="st7">+ calBest()</tspan></text>		</g>
-		<g id="shape20-59" v:mID="20" v:groupContext="shape" transform="translate(32.1732,-330.409)">
+		<g id="shape20-59" v:mID="20" v:groupContext="shape" transform="translate(32.1732,-233.823)">
 			<title>分隔符.20</title>
 			<v:userDefs>
 				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
@@ -353,7 +353,7 @@
 			<path d="M0 593.86 L178.58 593.86 L0 593.86 Z" class="st8"/>
 			<path d="M0 593.86 L178.58 593.86" class="st9"/>
 		</g>
-		<g id="group22-62" transform="translate(636.803,-209.972)" v:mID="22" v:groupContext="group">
+		<g id="group22-62" transform="translate(636.803,-113.386)" v:mID="22" v:groupContext="group">
 			<v:userDefs>
 				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
 				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
@@ -375,7 +375,7 @@
 				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(类名)"/>
 				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
 				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
-				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.24050088026259):1"/>
@@ -433,7 +433,7 @@
 				<v:textRect cx="92.126" cy="248.265" width="184.26" height="38.6036"/>
 				<text x="4" y="253.67" class="st3" v:langID="2052"><v:paragraph/><v:tabList/>Population</text>			</g>
 		</g>
-		<g id="shape27-70" v:mID="27" v:groupContext="shape" transform="translate(639.638,-350.044)">
+		<g id="shape27-70" v:mID="27" v:groupContext="shape" transform="translate(639.638,-253.458)">
 			<title>成员.27</title>
 			<desc>+ sizes : int + Lind : int + Encoding : string + conordis : i...</desc>
 			<v:userDefs>
@@ -442,8 +442,8 @@
 				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
-				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(0)"/>
-				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(1)"/>
 				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(0)"/>
 				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
@@ -471,7 +471,7 @@
 						x="8.5" dy="1.2em" class="st7">+ ObjV : Numpy array<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
 						class="st7">+ FitnV : Numpy array<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st7">+ CV : Numpy array<v:newlineChar/></tspan><tspan
 						x="8.5" dy="1.2em" class="st7">+ Phen : Numpy array</tspan></text>		</g>
-		<g id="shape28-87" v:mID="28" v:groupContext="shape" transform="translate(639.638,-212.806)">
+		<g id="shape28-87" v:mID="28" v:groupContext="shape" transform="translate(639.638,-116.22)">
 			<title>成员.28</title>
 			<desc>+ initChrom() + decoding() + copy() + __getitem__() + shuffle...</desc>
 			<v:userDefs>
@@ -480,8 +480,8 @@
 				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
-				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT5(0)"/>
-				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT5(0)"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
 				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(1)"/>
 				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT5(0)"/>
 				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
@@ -508,7 +508,7 @@
 						x="8.5" dy="1.2em" class="st7">+ </tspan><tspan class="st7" v:langID="1033">__setitem__</tspan>()<v:newlineChar/><tspan
 						x="8.5" dy="1.2em" class="st7">+ </tspan><tspan class="st7" v:langID="1033">__add__</tspan>()<v:newlineChar/><tspan
 						x="8.5" dy="1.2em" class="st7">+ </tspan><tspan class="st7" v:langID="1033">__len__</tspan>()</text>		</g>
-		<g id="shape29-106" v:mID="29" v:groupContext="shape" transform="translate(639.638,-347.209)">
+		<g id="shape29-106" v:mID="29" v:groupContext="shape" transform="translate(639.638,-250.623)">
 			<title>分隔符.29</title>
 			<v:userDefs>
 				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
@@ -521,7 +521,7 @@
 			<path d="M0 593.86 L178.58 593.86 L0 593.86 Z" class="st8"/>
 			<path d="M0 593.86 L178.58 593.86" class="st9"/>
 		</g>
-		<g id="group30-109" transform="translate(334.488,-386.041)" v:mID="30" v:groupContext="group" v:layerMember="0">
+		<g id="group30-109" transform="translate(334.488,-289.455)" v:mID="30" v:groupContext="group" v:layerMember="0">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="RelationshipName" v:prompt="" v:val="VT4()"/>
@@ -533,9 +533,9 @@
 				<v:ud v:nameU="DYEnd" v:prompt="" v:val="VT0(0):1"/>
 				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(-1.5707963267949):32"/>
 				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(7.372461392282E-15):32"/>
-				<v:ud v:nameU="DXBegin" v:prompt="" v:val="VT0(-0.025187007904358):1"/>
-				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(8.8817841970013E-16):1"/>
-				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(-0.025187007904357):1"/>
+				<v:ud v:nameU="DXBegin" v:prompt="" v:val="VT0(-0.025187007904358):24"/>
+				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(1.7763568394003E-15):1"/>
+				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(-0.025187007904357):24"/>
 				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(3.1415926535898):32"/>
 				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(3.1415926535898):32"/>
 			</v:userDefs>
@@ -544,7 +544,7 @@
 				<path d="M0 588.19 L-120.9 588.19" class="st10"/>
 			</g>
 		</g>
-		<g id="group35-113" transform="translate(518.74,-386.041)" v:mID="35" v:groupContext="group" v:layerMember="0">
+		<g id="group35-113" transform="translate(518.74,-289.455)" v:mID="35" v:groupContext="group" v:layerMember="0">
 			<v:userDefs>
 				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
 				<v:ud v:nameU="RelationshipName" v:prompt="" v:val="VT4()"/>
@@ -556,10 +556,10 @@
 				<v:ud v:nameU="DYEnd" v:prompt="" v:val="VT0(0):1"/>
 				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(-1.5707963267949):32"/>
 				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(7.372461392282E-15):32"/>
-				<v:ud v:nameU="DXBegin" v:prompt="" v:val="VT0(0.024596456723255):1"/>
-				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(8.8817841970013E-16):1"/>
-				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(0.024596456723257):1"/>
-				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(3.6110014938062E-14):32"/>
+				<v:ud v:nameU="DXBegin" v:prompt="" v:val="VT0(0.024596456723252):24"/>
+				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(0.024596456723263):24"/>
+				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(3.6110014938065E-14):32"/>
 			</v:userDefs>
 			<title>复合.35</title>
 			<g id="shape35-114" v:mID="35" v:groupContext="groupContent" v:layerMember="0">
