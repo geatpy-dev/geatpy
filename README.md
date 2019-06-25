@@ -59,11 +59,11 @@ Here is the UML of Geatpy2.0.
 
 You can use **Geatpy** mainly in two steps:
 
-1) Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class:
+Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class:
 
     pip install --upgrade geatpy
 
-2) Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
+Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
 
     pip install --upgrade geatpy
 
