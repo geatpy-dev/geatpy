@@ -61,6 +61,7 @@ You can use **Geatpy** mainly in two steps:
 
 1. Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class.
 
+.. code-block:: python
 
     """MyProblem.py"""
     import numpy as np
@@ -91,6 +92,7 @@ You can use **Geatpy** mainly in two steps:
 
 2. Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
 
+.. code-block:: python
 
     """main.py"""
     import geatpy as ea # Import geatpy
