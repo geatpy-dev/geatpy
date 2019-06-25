@@ -15,9 +15,9 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 
 It provides:
 
-* global optimization capabilities in **Python** using genetic and evolutionary algorithm to solve problems unsuitable for traditional optimization approaches.
+* global optimization capabilities in **Python** using genetic and other evolutionary algorithms to solve problems unsuitable for traditional optimization approaches.
 
-* a great many of **genetic and evolutionary operators**, so that you can deal with **single or multi-objective optimization** problems.
+* a great many of **evolutionary operators**, so that you can deal with **single or multi-objective optimization** problems.
 
 ## Installation
 1.Installing online:
@@ -52,6 +52,7 @@ If something wrong happened, such as decoding error about 'utf8' of pip, run thi
 
 Quick start
 -----------
+
 Here is the UML of Geatpy2.0.
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/structure.svg)
@@ -60,11 +61,12 @@ You can use **Geatpy** mainly in two steps:
 
 1. Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class.
 
-"""python
+.. code-block:: python
+
     """MyProblem.py"""
     import numpy as np
-    import geatpy as ga
-    class MyProblem(ga.Problem): # Inherited from Problem class.
+    import geatpy as ea
+    class MyProblem(ea.Problem): # Inherited from Problem class.
         def __init__(self, M):
             self.name = 'DTLZ1' # Problem's name.
             self.M = M # Set the number of objects.
@@ -84,14 +86,13 @@ You can use **Geatpy** mainly in two steps:
             ObjV = 0.5 * np.fliplr(np.cumprod(np.hstack([ones_metrix, Vars[:,:self.M-1]]), 1)) * np.hstack([ones_metrix, 1 - Vars[:, range(self.M - 2, -1, -1)]]) * np.tile(1 + g, (1, self.M))
             return ObjV, CV
         def calBest(self):
-            uniformPoint, ans = ga.crtup(self.M, 10000) # create 10000 uniform points.
+            uniformPoint, ans = ea.crtup(self.M, 10000) # create 10000 uniform points.
             realBestObjV = uniformPoint / 2
             return realBestObjV
-"""
 
 2. Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
     
-"""python
+.. code-block:: python
     """main.py"""
     import geatpy as ea # Import geatpy
     from MyProblem import MyProblem # Import MyProblem class
@@ -120,7 +121,7 @@ You can use **Geatpy** mainly in two steps:
     print('IGD: ',IGD)
     print('HV: ', HV)
     print('Space: ', Space)
-"""
+
 The result is:
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/moea_test/moea_test_DTLZ/Pareto%20Front.png)
