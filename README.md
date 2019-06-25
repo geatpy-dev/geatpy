@@ -119,7 +119,7 @@ You can use **Geatpy** mainly in two steps:
     print('HV: ', HV)
     print('Space: ', Space)
 
-The result is:
+Run the "main.py" and the result is:
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/moea_test/moea_test_DTLZ/Pareto%20Front.svg)
 
