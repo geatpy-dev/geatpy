@@ -93,6 +93,7 @@ You can use **Geatpy** mainly in two steps:
 2. Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
     
 .. code-block:: python
+
     """main.py"""
     import geatpy as ea # Import geatpy
     from MyProblem import MyProblem # Import MyProblem class
