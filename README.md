@@ -103,7 +103,7 @@ You can use **Geatpy** mainly in two steps:
     Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # Create the field descriptor.
     population = ea.Population(Encoding, conordis, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
     """================================Algorithm set==============================="""
-    myAlgorithm = ea.moea_NSGA3_templet(problem, population) # 实例化一个算法模板对象
+    myAlgorithm = ea.moea_NSGA3_templet(problem, population) # Instantiate a algorithm class
     myAlgorithm.MAXGEN = 500 # Set the max times of iteration.
     """===============================Start evolution=============================="""
     NDSet = myAlgorithm.run() # Start evolution.
