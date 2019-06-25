@@ -61,11 +61,63 @@ You can use **Geatpy** mainly in two steps:
 
 1.Write down the aim function and some relevant settings in a derivative class named **MyProblem**, which is inherited from **Problem** class:
 
-    pip install --upgrade geatpy
+    """MyProblem.py"""
+    import numpy as np
+    import geatpy as ea
+    class MyProblem(ea.Problem): # Inherited from Problem class.
+        def __init__(self, M):
+            self.name = 'DTLZ1' # Problem's name.
+            self.M = M # Set the number of objects.
+            self.maxormins = [1] * self.M # All objects are need to be minimized.
+            self.Dim = self.M + 4 # Set the dimension of decision variables.
+            self.varTypes = np.array([0] * self.Dim) # Set the types of decision variables. 0 means continuous while 1 means discrete.
+            lb = [0] * self.Dim # The lower bound of each decision variable.
+            ub = [1] * self.Dim # The upper bound of each decision variable.
+            self.ranges = np.array([lb, ub])
+            lbin = [1] * self.Dim # Whether the lower boundary is included.
+            ubin = [1] * self.Dim # Whether the upper boundary is included.
+            self.borders = np.array([lbin, ubin])
+        def aimFuc(self, Vars, CV):
+            XM = Vars[:,(self.M-1):]
+            g = np.array([100 * (self.Dim - self.M + 1 + np.sum(((XM - 0.5)**2 - np.cos(20 * np.pi * (XM - 0.5))), 1))]).T
+            ones_metrix = np.ones((Vars.shape[0], 1))
+            ObjV = 0.5 * np.fliplr(np.cumprod(np.hstack([ones_metrix, Vars[:,:self.M-1]]), 1)) * np.hstack([ones_metrix, 1 - Vars[:, range(self.M - 2, -1, -1)]]) * np.tile(1 + g, (1, self.M))
+            return ObjV, CV
+        def calBest(self):
+            uniformPoint, ans = ea.crtup(self.M, 10000) # create 10000 uniform points.
+            realBestObjV = uniformPoint / 2
+            return realBestObjV
 
 2.Instantiate **MyProblem** class and a derivative class inherited from **Algorithm** class in a Python script file "main.py" then execute it. **For example**, trying to find the pareto front of **DTLZ1**, do as the following:
 
-    pip install --upgrade geatpy
+    """main.py"""
+    import geatpy as ea # Import geatpy
+    from MyProblem import MyProblem # Import MyProblem class
+    """=========================Instantiate your problem=========================="""
+    M = 3                      # Set the number of objects.
+    problem = MyProblem(M)     # Instantiate MyProblem class
+    """===============================Population set=============================="""
+    Encoding = 'R'             # Encoding type.
+    conordis = 0               # 0 means each element of a chromosome is a continuous number.
+    NIND = 100                 # Set the number of individuals.
+    Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # Create the field descriptor.
+    population = ea.Population(Encoding, conordis, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
+    """================================Algorithm set==============================="""
+    myAlgorithm = ea.moea_NSGA3_templet(problem, population) # 实例化一个算法模板对象
+    myAlgorithm.MAXGEN = 500 # Set the max times of iteration.
+    """===============================Start evolution=============================="""
+    NDSet = myAlgorithm.run() # Start evolution.
+    """=============================Analyze the result============================="""
+    PF = problem.calBest() # Get the global pareto front.
+    GD = ea.indicator.GD(NDSet.ObjV, PF) # Calculate GD
+    IGD = ea.indicator.IGD(NDSet.ObjV, PF) # Calculate IGD
+    HV = ea.indicator.HV(NDSet.ObjV, PF) # Calculate HV
+    Space = ea.indicator.spacing(NDSet.ObjV) # Calculate Space
+    print('The number of non-dominated result: %s'%(NDSet.sizes))
+    print('GD: ',GD)
+    print('IGD: ',IGD)
+    print('HV: ', HV)
+    print('Space: ', Space)
 
 The result is:
 
