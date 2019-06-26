@@ -133,7 +133,7 @@ HV:  0.8413590788841248
 
 Space:  0.00045742613969278813
 
-For solving another problem: Ackley-30D, which has only one object and 30 decision variables, what you need to do is almost the same as above.
+For solving another problem: **Ackley-30D**, which has only one object and 30 decision variables, what you need to do is almost the same as above.
 
 1.Write the aim function in "MyProblem.py".
 
