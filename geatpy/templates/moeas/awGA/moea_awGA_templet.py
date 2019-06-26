@@ -35,12 +35,11 @@ moea_awGA_templet : class - 基于awGA算法求解多目标优化问题的进化
             self.recFunc = 'xovud' # 均匀交叉
             self.mutFunc = 'mutbin' # 二进制变异
         else:
+            self.mutFunc = 'mutpolyn' # 多项式变异
             if population.conordis == 0:
                 self.recFunc = 'recsbx' # 模拟二进制交叉
-                self.mutFunc = 'mutpolyn' # 多项式变异
             elif population.conordis == 1:
                 self.recFunc = 'xovud' # 均匀交叉
-                self.mutFunc = 'mutint' # 整数值变异
         self.pc = 1 # 重组概率
         self.pm = 1 # 变异概率
         self.MAXSIZE = population.sizes # 非支配解集大小限制
