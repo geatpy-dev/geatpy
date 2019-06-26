@@ -6,7 +6,7 @@ import numpy as np
 problemName = 'Ackley' # 目标函数名
 fileName = problemName # 这里因为目标函数写在与之同名的文件里，所以文件名也是目标函数名
 MyProblem = getattr(__import__(fileName), problemName) # 获得自定义问题类
-problem = MyProblem(2) # 生成问题对象
+problem = MyProblem(30) # 生成问题对象
 
 """==================================种群设置================================"""
 Encoding = 'R'             # 编码方式

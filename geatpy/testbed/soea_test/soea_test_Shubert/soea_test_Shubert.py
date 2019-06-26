@@ -4,9 +4,9 @@ import numpy as np
 
 """==================================实例化问题对象================================"""
 problemName = 'Shubert' # 目标函数名
-fileName = problemName # 这里因为目标函数写在与之同名的文件里，所以文件名也是目标函数名
+fileName = problemName  # 这里因为目标函数写在与之同名的文件里，所以文件名也是目标函数名
 MyProblem = getattr(__import__(fileName), problemName) # 获得自定义问题类
-problem = MyProblem() # 生成问题对象
+problem = MyProblem()   # 生成问题对象
 
 """==================================种群设置================================"""
 Encoding = 'R'             # 编码方式
@@ -18,7 +18,7 @@ population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对
 
 """==================================算法参数设置================================"""
 myAlgorithm = ea.soea_DE_rand_1_bin_templet(problem, population) # 实例化一个算法模板对象
-myAlgorithm.MAXGEN = 1000 # 最大遗传代数
+myAlgorithm.MAXGEN = 1000  # 最大遗传代数
 myAlgorithm.F = 0.5
 myAlgorithm.pc = 0.2
 myAlgorithm.drawing = 1

@@ -6,7 +6,7 @@
 #    Geatpy is distributed in the hope that it will be useful for the genetic 
 #    and evolutionary algorithm, you can get the tutorial from http://www.geatpy.com
 #
-#    If you want to donate to it, please email mathscau@163.com
+#    If you want to donate to it, please email geatpy@163.com
 
 from setuptools import setup, find_packages
 
@@ -16,7 +16,7 @@ setup(name = "geatpy",
     version = "2.0.0",
     description = "Geatpy is a high-performance GEA toolbox for Python.",
     author = "Geatpy Team",
-    author_email = "mathscau@163.com",
+    author_email = "geatpy@163.com",
     url = "http://www.geatpy.com",
     packages= find_packages(),
     Scripts = ["geatpy/*"],

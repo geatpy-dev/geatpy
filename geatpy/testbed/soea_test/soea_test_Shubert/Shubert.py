@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import geatpy as ga
+import geatpy as ea
 
-class Shubert(ga.Problem): # 继承Problem父类
+class Shubert(ea.Problem): # 继承Problem父类
     def __init__(self, M = 1, D = 2):
         self.name = 'Shubert' # 初始化name（函数名称，可以随意设置）
         self.M = M # 初始化M（目标维数）

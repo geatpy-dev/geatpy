@@ -12,8 +12,8 @@ problem = MyProblem(M) # 生成问题对象
 Encoding = 'R'             # 编码方式
 conordis = 0               # 表示染色体解码后得到的变量是连续的
 NIND = 100                 # 种群规模
-FieldDR = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # 创建区域描述器
-population = ea.Population(Encoding, conordis, FieldDR, NIND) # 实例化种群对象（此时种群还没被真正初始化）
+Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # 创建区域描述器
+population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对象（此时种群还没被真正初始化）
 
 """==================================算法参数设置================================"""
 myAlgorithm = ea.moea_NSGA3_templet(problem, population) # 实例化一个算法模板对象

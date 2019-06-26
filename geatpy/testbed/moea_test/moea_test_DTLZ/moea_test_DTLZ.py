@@ -20,17 +20,18 @@ myAlgorithm = ea.moea_NSGA3_templet(problem, population) # 实例化一个算法
 myAlgorithm.MAXGEN = 500 # 最大遗传代数
 """=======================调用算法模板进行种群进化=============================="""
 NDSet = myAlgorithm.run() # 执行算法模板，得到帕累托最优解集NDSet
-# 计算指标
-PF = problem.calBest() # 计算真实前沿
-GD = ea.indicator.GD(NDSet.ObjV, PF) # 计算GD指标
-IGD = ea.indicator.IGD(NDSet.ObjV, PF) # 计算IGD指标
-HV = ea.indicator.HV(NDSet.ObjV, PF)
-Space = ea.indicator.spacing(NDSet.ObjV)
 # 输出
 print('用时：%s 秒'%(myAlgorithm.passTime))
 print('非支配个体数：%s 个'%(NDSet.sizes))
 print('单位时间找到帕累托前沿点个数：%s 个'%(int(NDSet.sizes // myAlgorithm.passTime)))
-print('GD',GD)
-print('IGD',IGD)
-print('HV', HV)
-print('Space', Space)
+# 计算指标
+PF = problem.calBest() # 计算真实前沿
+if PF is not None:
+    GD = ea.indicator.GD(NDSet.ObjV, PF) # 计算GD指标
+    IGD = ea.indicator.IGD(NDSet.ObjV, PF) # 计算IGD指标
+    HV = ea.indicator.HV(NDSet.ObjV, PF)
+    Space = ea.indicator.spacing(NDSet.ObjV)
+    print('GD',GD)
+    print('IGD',IGD)
+    print('HV', HV)
+    print('Space', Space)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import geatpy as ga # import geatpy
+import geatpy as ea # import geatpy
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -12,11 +12,11 @@ problem = MyProblem('att48') # 生成问题对象
 Encoding = 'P'             # 编码方式
 conordis = 1               # 表示染色体解码后得到的变量是离散的
 NIND = 200                 # 种群规模
-Field = ga.crtfld(Encoding, conordis, problem.ranges, problem.borders) # 创建区域描述器
-population = ga.Population(Encoding, conordis, Field, NIND) # 实例化种群对象（此时种群还没被真正初始化）
+Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # 创建区域描述器
+population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对象（此时种群还没被真正初始化）
 
 """==================================算法参数设置================================"""
-myAlgorithm = ga.soea_studGA_templet(problem, population) # 实例化一个算法模板对象
+myAlgorithm = ea.soea_studGA_templet(problem, population) # 实例化一个算法模板对象
 myAlgorithm.MAXGEN = 1000 # 最大遗传代数
 myAlgorithm.drawing = 1
 """=======================调用算法模板进行种群进化=============================="""

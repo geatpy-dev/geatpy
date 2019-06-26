@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import geatpy as ga
+import geatpy as ea
 
-class tsp(ga.Problem): # 继承Problem父类
+class tsp(ea.Problem): # 继承Problem父类
     def __init__(self, testName): # testName为测试集名称
         self.data=np.loadtxt("data/" + testName + ".csv",delimiter=",",usecols=(0,1)) # 读取城市坐标数据
         self.name = testName # 初始化name

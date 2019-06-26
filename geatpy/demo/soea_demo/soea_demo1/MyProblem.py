@@ -13,7 +13,7 @@ class MyProblem(ea.Problem): # 继承Problem父类
         self.M = 1 # 初始化M（目标维数）
         self.maxormins = [-1] # 初始化maxormins（目标最小最大化标记列表）
         self.Dim = 1 # 初始化Dim（决策变量维数）
-        self.varTypes = np.array([1] * self.Dim) # 初始化varTypes（决策变量的类型）
+        self.varTypes = np.array([0] * self.Dim) # 初始化varTypes（决策变量的类型）
         lb = [-1] # 决策变量下界
         ub = [2] # 决策变量上界
         self.ranges = np.array([lb, ub]) # 初始化ranges（决策变量范围矩阵）

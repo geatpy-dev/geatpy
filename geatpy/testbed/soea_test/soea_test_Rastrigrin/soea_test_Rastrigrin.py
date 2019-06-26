@@ -19,8 +19,6 @@ population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对
 """==================================算法参数设置================================"""
 myAlgorithm = ea.soea_SEGA_templet(problem, population) # 实例化一个算法模板对象
 myAlgorithm.MAXGEN = 1000 # 最大遗传代数
-#myAlgorithm.F = 0.5
-#myAlgorithm.pc = 0.2
 myAlgorithm.drawing = 1
 """=======================调用算法模板进行种群进化=============================="""
 [population, obj_trace, var_trace] = myAlgorithm.run() # 执行算法模板

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import geatpy as ea # import geatpy
 
-"""==================================实例化问题对象================================"""
+"""===============================实例化问题对象============================="""
 problemName = 'ZDT1' # 目标函数名
 fileName = problemName # 这里因为目标函数写在与之同名的文件里，所以文件名也是目标函数名
 MyProblem = getattr(__import__(fileName), problemName) # 获得自定义问题类
@@ -18,7 +18,7 @@ population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对
 myAlgorithm = ea.moea_NSGA2_templet(problem, population) # 实例化一个算法模板对象
 myAlgorithm.MAXGEN = 200 # 最大遗传代数
 myAlgorithm.drawing = 1
-"""=======================调用算法模板进行种群进化=============================="""
+"""=============================调用算法模板进行种群进化========================="""
 NDSet = myAlgorithm.run() # 执行算法模板，得到帕累托最优解集NDSet
 # 计算指标
 PF = problem.calBest() # 计算真实前沿

@@ -29,7 +29,7 @@ class ZDT3(ea.Problem): # 继承Problem父类
         ObjV1 = np.linspace(0, 1, N)
         ObjV2 = 1 - ObjV1**0.5 - ObjV1 * np.sin(10*np.pi * ObjV1)
         realBestObjV = np.array([ObjV1, ObjV2]).T
-        levels, criLevel = ga.ndsortESS(realBestObjV, None, 1)
+        levels, criLevel = ea.ndsortESS(realBestObjV, None, 1)
         realBestObjV = realBestObjV[np.where(levels == 1)[0]]
         
         return realBestObjV

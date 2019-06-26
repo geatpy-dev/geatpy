@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import geatpy as ga # import geatpy
+import geatpy as ea # import geatpy
 import numpy as np
 
 """==================================实例化问题对象================================"""
@@ -13,11 +13,11 @@ Encoding = 'R'             # 编码方式
 conordis = 0               # 表示染色体解码后得到的变量是连续的
 NIND = 60                  # 种群规模
 precisions = [50] * problem.Dim # 编码精度（适用于二进制/格雷编码）
-Field = ga.crtfld(Encoding, conordis, problem.ranges, problem.borders, precisions) # 创建区域描述器
-population = ga.Population(Encoding, conordis, Field, NIND) # 实例化种群对象（此时种群还没被真正初始化）
+Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders, precisions) # 创建区域描述器
+population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对象（此时种群还没被真正初始化）
 
 """==================================算法参数设置================================"""
-myAlgorithm = ga.soea_DE_best_1_bin_templet(problem, population) # 实例化一个算法模板对象
+myAlgorithm = ea.soea_DE_best_1_bin_templet(problem, population) # 实例化一个算法模板对象
 myAlgorithm.MAXGEN = 2000 # 最大遗传代数
 myAlgorithm.F = 0.7
 myAlgorithm.pc = 0.9

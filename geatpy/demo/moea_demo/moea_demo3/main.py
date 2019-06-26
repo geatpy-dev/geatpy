@@ -5,7 +5,7 @@ from MyProblem import MyProblem # 导入自定义问题接口
 problem = MyProblem() # 生成问题对象
 """==================================种群设置================================"""
 Encoding = 'I'             # 编码方式
-conordis = 0               # 表示染色体解码后得到的变量是连续的
+conordis = 1               # 表示染色体解码后得到的变量是离散的
 NIND = 30                  # 种群规模
 Field = ea.crtfld(Encoding, conordis, problem.ranges, problem.borders) # 创建区域描述器
 population = ea.Population(Encoding, conordis, Field, NIND) # 实例化种群对象（此时种群还没被真正初始化）

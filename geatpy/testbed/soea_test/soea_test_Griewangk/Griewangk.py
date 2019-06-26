@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import geatpy as ga
+import geatpy as ea
 
-class Griewangk(ga.Problem): # 继承Problem父类
+class Griewangk(ea.Problem): # 继承Problem父类
     def __init__(self, D = 2):
         self.name = 'Griewangk' # 初始化name（函数名称，可以随意设置）
         self.M = 1 # 初始化M（目标维数）
