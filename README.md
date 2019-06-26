@@ -201,4 +201,4 @@ The best generation is: 999
 
 The number of evolution is: 20020
 
-To get more tutorials, please link to http://www.geatpy.com(Website is maintaining, please visit later!).
+To get more tutorials, please link to http://www.geatpy.com (Website is maintaining, please visit later!).
