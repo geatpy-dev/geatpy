@@ -58,7 +58,7 @@ moea_NSGA3_DE_templet : class - 基于NSGA-III-DE算法求解多目标优化问�
         """
         
         [levels, criLevel] = self.ndSort(self.problem.maxormins * population.ObjV, NUM, None, population.CV) # 对NUM个个体进行非支配分层
-        chooseFlag = ea.refselect(population.ObjV, levels, criLevel, NUM, uniformPoint, True) # 根据参考点选择个体(True表示使用伪随机数方法，可以提高速度，详见refselect帮助文档)
+        chooseFlag = ea.refselect(self.problem.maxormins * population.ObjV, levels, criLevel, NUM, uniformPoint, True) # 根据参考点选择个体(True表示使用伪随机数方法，可以提高速度，详见refselect帮助文档)
         FitnV = np.array([1 / (levels - chooseFlag + 1)]).T # 计算适应度
         return FitnV
     
