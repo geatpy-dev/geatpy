@@ -17,7 +17,7 @@ moea_NSGA3_DE_templet : class - 基于NSGA-III-DE算法求解多目标优化问�
     
 模板使用注意:
     1.本模板调用的目标函数形如：[ObjV,CV] = aimFuc(Vars, CV), 
-      其中Vars表示决策变量矩阵, CV为种群的可行度矩阵(详见Geatpy数据结构),
+      其中Vars表示决策变量矩阵, CV为种群的违反约束程度矩阵(详见Geatpy数据结构),
     若不符合上述规范，则请修改算法模板或自定义新算法模板。
 
 参考文献:
