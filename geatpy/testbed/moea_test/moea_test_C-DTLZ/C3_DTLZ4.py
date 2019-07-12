@@ -24,7 +24,7 @@ class C3_DTLZ4(ga.Problem): # 继承Problem父类
         ones_metrix = np.ones((g.shape[0], 1))
         ObjV = np.fliplr(np.cumprod(np.hstack([ones_metrix, np.cos(Vars[:,:M-1]**alpha * np.pi / 2)]), 1)) * np.hstack([ones_metrix, np.sin(Vars[:, range(M - 2, -1, -1)]**alpha * np.pi / 2)]) * np.tile(1 + g, (1, M))
         # 计算可行度矩阵的值
-        CV = 1 - ObjV**2 / 4 - np.tile(np.array([np.sum(ObjV**2, 1)]).T, (1, M)) + ObjV**2
+        CV = 1 + 3/4 * ObjV**2 - np.array([np.sum(ObjV**2, 1)]).T
         
         return ObjV, CV
     

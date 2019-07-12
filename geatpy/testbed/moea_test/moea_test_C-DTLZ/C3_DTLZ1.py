@@ -22,7 +22,7 @@ class C3_DTLZ1(ea.Problem): # 继承Problem父类
         ones_metrix = np.ones((Vars.shape[0], 1))
         ObjV = 0.5 * np.fliplr(np.cumprod(np.hstack([ones_metrix, Vars[:,:self.M-1]]), 1)) * np.hstack([ones_metrix, 1 - Vars[:, range(self.M - 2, -1, -1)]]) * np.tile(1 + g, (1, self.M))
         # 计算可行度矩阵的值
-        CV = 1 - np.tile(np.array([np.sum(3 * ObjV, 1)]).T, (1, self.M)) + 2 * ObjV
+        CV = 1 - (self.M - 3) * ObjV - np.array([np.sum(2 * ObjV, 1)]).T
         
         return ObjV, CV
     

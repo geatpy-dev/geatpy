@@ -2,7 +2,7 @@
 import geatpy as ea # import geatpy
 
 """==================================实例化问题对象================================"""
-problemName = 'C3_DTLZ1' # 目标函数名
+problemName = 'C3_DTLZ4' # 目标函数名
 M = 3 # 设置目标维数
 fileName = problemName # 这里因为目标函数写在与之同名的文件里，所以文件名也是目标函数名
 MyProblem = getattr(__import__(fileName), problemName) # 获得自定义问题类
