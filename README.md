@@ -55,7 +55,7 @@ Quick start
 
 Here is the UML of Geatpy2.0.
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/structure.svg)
+![image](https://github.com/geatpy-dev/geatpy/blob/master/structure.png)
 
 For solving a multi-objective optimization problem, you can use **Geatpy** mainly in two steps:
 
