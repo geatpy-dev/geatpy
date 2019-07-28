@@ -1,0 +1,2 @@
+recursive-include geatpy *
+recursive-include _core *
