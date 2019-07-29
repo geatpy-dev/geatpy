@@ -4,6 +4,10 @@ python:
 
   - "3.5"
 
+install:
+
+    pip install cython
+
 script:
 
     pip install geatpy==2.1.0rc1
