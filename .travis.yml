@@ -8,16 +8,10 @@ python:
 
 install:
 
-  pip install cython
-  
-  pip install numpy==1.16.0
-  
-  pip install matplotlib==3.0.0
+  pip install geatpy
   
 # command to run tests, we have done other tests so that we do nothing here.
 
 script:
     
-    python setup.py install
-
     python installation_test.py
