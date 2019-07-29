@@ -4,15 +4,11 @@ python:
 
   - "3.5"
 
-# command to install dependencies
-
-install:
-
-  pip install geatpy==2.1.0rc1
-  
-# command to run tests
-
 script:
+
+    # test the installation from pip
+
+    pip install geatpy==2.1.0rc1
     
     python test/installation_test.py
     
