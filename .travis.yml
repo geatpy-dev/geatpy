@@ -10,10 +10,16 @@ install:
 
   pip install geatpy==2.1.0rc1
   
-# command to run tests, we have done other tests so that we do nothing here.
+# command to run tests
 
 script:
-
-    cd geatpy
     
-    python installation_test.py
+    python test/installation_test.py
+    
+    pip uninstall geatpy
+    
+    # test the installation from source codes
+    
+    python setup.py install
+    
+    python test/installation_test.py
