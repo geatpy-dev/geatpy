@@ -14,6 +14,6 @@ install:
 
 script:
 
-    lsb_release =a
+    lsb_release -a
 
     python installation_test.py
