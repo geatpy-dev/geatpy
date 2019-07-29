@@ -13,10 +13,6 @@ install:
 # command to run tests, we have done other tests so that we do nothing here.
 
 script:
-
-    lsb_release -a
-    
-    gcc --version
     
     python setup.py install
 
