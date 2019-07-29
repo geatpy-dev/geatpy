@@ -15,5 +15,7 @@ install:
 script:
 
     lsb_release -a
+    
+    gcc --version
 
     python installation_test.py
