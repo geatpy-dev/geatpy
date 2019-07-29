@@ -10,7 +10,7 @@ script:
     
     python test/installation_test.py
     
-    pip uninstall geatpy
+    pip uninstall geatpy -y
     
     python setup.py install
     
