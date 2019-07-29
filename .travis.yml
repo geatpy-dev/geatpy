@@ -14,6 +14,6 @@ install:
 
 script:
 
-    cd ..
+    cd geatpy
     
-    python geatpy/installation_test.py
+    python installation_test.py
