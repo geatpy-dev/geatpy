@@ -8,7 +8,7 @@ python:
 
 install:
 
-  pip install geatpy
+  -
   
 # command to run tests, we have done other tests so that we do nothing here.
 
@@ -17,5 +17,7 @@ script:
     lsb_release -a
     
     gcc --version
+    
+    python setup.py install
 
     python installation_test.py
