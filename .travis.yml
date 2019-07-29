@@ -8,7 +8,7 @@ python:
 
 install:
 
-  pip install geatpy
+  pip install geatpy==2.1.0rc1
   
 # command to run tests, we have done other tests so that we do nothing here.
 
