@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import geatpy as ea # 导入geatpy库
+from scipy.spatial.distance import cdist
 from sys import path as paths
 from os import path as path
 paths.append(path.split(path.split(path.realpath(__file__))[0])[0])
@@ -70,13 +71,11 @@ moea_RVEA_RES_templet : class - 带参考点再生策略的多目标进化优化
         [chooseFlag, ans] = ea.refgselect(population.ObjV, refPoint, self.problem.M * ((self.currentGen) / self.MAXGEN)**self.a, population.CV) # ans表示不使用该返回结果
         return population[chooseFlag]
     
-    def reNewRefPoint(self, ObjV, refPoint):
-        from scipy.spatial.distance import cdist
-        refPoint = refPoint.copy()
+    def renewRefPoint(self, ObjV, refPoint): # 更新参考点
         _ObjV = ObjV - np.min(ObjV, 0)
-        associate = np.argmax(1 - cdist(_ObjV, refPoint, 'cosine'), 1)
-        inValid = np.setdiff1d(np.array(range(refPoint.shape[0])), associate)
-        refPoint[inValid, :] = np.random.rand(len(inValid), refPoint.shape[1]) * np.max(_ObjV, 0)
+        linkIdx = np.argmax(1 - cdist(_ObjV, refPoint, 'cosine'), 1) # 找到与参考点关联的点的索引
+        noLinkIdx = list(set(range(refPoint.shape[0])) - set(linkIdx)) # 找到不与参考点关联的点的索引
+        refPoint[noLinkIdx, :] = np.random.rand(len(noLinkIdx), refPoint.shape[1]) * np.max(_ObjV, 0)
         return refPoint
     
     def run(self):
@@ -103,12 +102,12 @@ moea_RVEA_RES_templet : class - 带参考点再生策略的多目标进化优化
             # 重插入生成新一代种群
             population = self.reinsertion(population, offspring, refPoint)            
             # 修改refPoint
-            refPoint[NIND:, :] = self.reNewRefPoint(population.ObjV, refPoint[NIND:, :])
+            refPoint[NIND:, :] = self.renewRefPoint(population.ObjV, refPoint[NIND:, :])
             if (self.currentGen) % np.ceil(self.fr * self.MAXGEN) == 0:
                 refPoint[:NIND, :] = uniformPoint * (np.max(population.ObjV, 0) - np.min(population.ObjV, 0))
             
         # 后续处理，限制种群规模（因为此时种群规模有可能大于NIND）
-        [levels, criLevel] = self.ndSort(self.problem.maxormins * population.ObjV, NIND, 1, population.CV) # 对NUM个个体进行非支配分层
+        [levels, criLevel] = self.ndSort(self.problem.maxormins * population.ObjV, NIND, None, population.CV) # 对NIND个个体进行非支配分层
         population = population[ea.refselect(self.problem.maxormins * population.ObjV, levels, criLevel, NIND, uniformPoint)] # 根据参考点选择个体
         
         return self.finishing(population) # 调用finishing完成后续工作并返回结果
