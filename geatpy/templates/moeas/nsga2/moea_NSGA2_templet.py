@@ -81,6 +81,8 @@ moea_NSGA2_templet : class - 多目标进化NSGA-II算法模板
             population.initChrom() # 初始化种群染色体矩阵（内含解码，详见Population类的源码）
         self.problem.aimFunc(population) # 计算种群的目标函数值
         self.evalsNum = population.sizes # 记录评价次数
+        [levels, criLevel] = self.ndSort(self.problem.maxormins * population.ObjV, NIND, None, population.CV) # 对NIND个个体进行非支配分层
+        population.FitnV[:, 0] = 1 / levels # 直接根据levels来计算初代个体的适应度
         #===========================开始进化============================
         while self.terminated(population) == False:
             # 选择基个体
