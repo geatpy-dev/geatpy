@@ -22,7 +22,7 @@ Algorithm : class - 算法模板顶级父类
     
     MAXTIME         : float    - 时间限制（单位：秒）。
     
-    timeSlot        : flot     - 时间戳（单位：秒）。
+    timeSlot        : float    - 时间戳（单位：秒）。
     
     passTime        : float    - 已用时间（单位：秒）。
     
@@ -140,7 +140,10 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
         self.passTime += time.time() - self.timeSlot # 更新用时记录
         # 绘图
         if self.drawing != 0:
-            ea.moeaplot(NDSet.ObjV, 'Pareto Front', True)
+            if NDSet.ObjV.shape[1] == 2 or NDSet.ObjV.shape[1] == 3:
+                ea.moeaplot(NDSet.ObjV, 'Pareto Front', True)
+            else:
+                ea.moeaplot(NDSet.ObjV, 'Value Path', True)
         # 返回帕累托最优集
         return NDSet
 
