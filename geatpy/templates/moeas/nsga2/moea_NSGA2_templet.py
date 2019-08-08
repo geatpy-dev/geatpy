@@ -39,7 +39,7 @@ moea_NSGA2_templet : class - 多目标进化NSGA-II算法模板
         self.selFunc = 'tour' # 选择方式，采用锦标赛选择
         if population.Encoding == 'P':
             self.recFunc = 'xovpmx' # 部分匹配交叉
-            self.mutFunc = 'mutinv' # 染色体片段互换变异
+            self.mutFunc = 'mutinv' # 染色体片段逆转变异
         elif population.Encoding == 'BG':
             self.recFunc = 'xovud' # 均匀交叉
             self.mutFunc = 'mutbin' # 二进制变异
@@ -85,7 +85,7 @@ moea_NSGA2_templet : class - 多目标进化NSGA-II算法模板
         population.FitnV[:, 0] = 1 / levels # 直接根据levels来计算初代个体的适应度
         #===========================开始进化============================
         while self.terminated(population) == False:
-            # 选择基个体
+            # 选择个体参与进化
             offspring = population[ea.selecting(self.selFunc, population.FitnV, NIND)]
             # 对选出的个体进行进化操作
             offspring.Chrom = ea.recombin(self.recFunc, offspring.Chrom, self.pc) #重组

@@ -39,7 +39,7 @@ soea_SGA_templet : class - Simple GA templet(最简单、最经典的遗传算�
         self.selFunc = 'rws' # 轮盘赌选择算子
         if population.Encoding == 'P':
             self.recFunc = 'xovpmx' # 部分匹配交叉
-            self.mutFunc = 'mutinv' # 染色体片段互换变异
+            self.mutFunc = 'mutinv' # 染色体片段逆转变异
         else:
             self.recFunc = 'xovdp' # 两点交叉
             if population.Encoding == 'BG':

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import numpy as np
 import geatpy as ea # 导入geatpy库
 from sys import path as paths
 from os import path as path
@@ -40,7 +39,7 @@ moea_NSGA3_templet : class - 多目标进化优化NSGA-III算法模板
         self.selFunc = 'tour' # 选择方式，采用锦标赛选择
         if population.Encoding == 'P':
             self.recFunc = 'xovpmx' # 部分匹配交叉
-            self.mutFunc = 'mutinv' # 染色体片段互换变异
+            self.mutFunc = 'mutinv' # 染色体片段逆转变异
         elif population.Encoding == 'BG':
             self.recFunc = 'xovud' # 均匀交叉
             self.mutFunc = 'mutbin' # 二进制变异

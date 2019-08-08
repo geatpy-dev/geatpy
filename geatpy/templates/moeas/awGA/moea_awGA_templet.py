@@ -39,7 +39,7 @@ moea_awGA_templet : class - 多目标进化优化awGA算法模板
         self.selFunc = 'tour' # 选择方式，采用锦标赛选择
         if population.Encoding == 'P':
             self.recFunc = 'xovpmx' # 部分匹配交叉
-            self.mutFunc = 'mutinv' # 染色体片段互换变异
+            self.mutFunc = 'mutinv' # 染色体片段逆转变异
         elif population.Encoding == 'BG':
             self.recFunc = 'xovud' # 均匀交叉
             self.mutFunc = 'mutbin' # 二进制变异
@@ -90,6 +90,6 @@ moea_awGA_templet : class - 多目标进化优化awGA算法模板
         #=========================绘图及输出结果=========================
         if self.drawing != 0:
             ea.moeaplot(NDSet.ObjV, 'Pareto Front', True)
-        # 返回帕累托最优集以及执行时间
+        # 返回帕累托最优集
         return NDSet
     

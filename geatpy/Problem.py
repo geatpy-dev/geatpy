@@ -40,7 +40,7 @@ Problem : Class - 问题类
     
     calBest()   : 计算理论最优值的函数，需要在继承类中实现，或是传入已实现的函数。
     
-    getBest()   : 获取全局最优解。
+    getBest()   : 获取理论全局最优解。
 
 """
 
@@ -77,7 +77,7 @@ Problem : Class - 问题类
             # 尝试读取数据
             if os.path.exists('Real_Best/' + self.name + '_M' + str(self.M) + '_D' + str(self.Dim) + '.csv'):
                 return np.loadtxt('Real_Best/' + self.name + '_M' + str(self.M) + '_D' + str(self.Dim) + '.csv', delimiter=',')
-        # 若找不到数据，则调用calBest()计算全局最优数据
+        # 若找不到数据，则调用calBest()计算理论全局最优数据
         golobalBestObjV = self.calBest()
         if golobalBestObjV is not None:
             # 保存数据

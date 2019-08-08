@@ -86,8 +86,7 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
         self.problem = problem
         self.population = population
         self.drawing = 1 # 绘图
-        self.ax1 = None # 用于存储目标空间动态图
-        self.ax2 = None # 用于存储决策空间动态图
+        self.ax = None # 用于存储动态图
         self.forgetCount = None # “遗忘策略”计数器，用于记录连续若干代出现种群所有个体都不是可行个体的次数
         self.maxForgetCount = None # “遗忘策略”计数器最大上限值
         self.pop_trace = None # 种群记录器
@@ -98,8 +97,7 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
         该函数需要在执行算法模板的run()方法的一开始被调用，同时开始计时，
         以确保所有这些参数能够被正确初始化。
         """
-        self.ax1 = None # 重置ax1
-        self.ax2 = None # 重置ax2
+        self.ax = None # 重置ax
         self.passTime = 0 # 初始化计时器
         self.forgetCount = 0 # 初始化“遗忘策略”计数器
         self.maxForgetCount = 1000 # 初始化“遗忘策略”计数器最大上限值
@@ -115,9 +113,10 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
             self.passTime += time.time() - self.timeSlot # 更新用时记录
             if self.drawing == 2:
                 # 绘制目标空间动态图
-                self.ax1 = ea.moeaplot(pop.ObjV, 'objective values', False, self.ax1, self.currentGen)
+                self.ax = ea.moeaplot(pop.ObjV, 'objective values', False, self.ax, self.currentGen)
+            elif self.drawing == 3:
                 # 绘制决策空间动态图
-                self.ax2 = ea.varplot(pop.Phen, 'decision variables', False, self.ax2, self.currentGen)
+                self.ax = ea.varplot(pop.Phen, 'decision variables', False, self.ax, self.currentGen)
             self.timeSlot = time.time() # 更新时间戳
         else:
             self.currentGen -= 1 # 忽略这一代
@@ -171,7 +170,7 @@ class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
         该函数需要在执行算法模板的run()方法的一开始被调用，同时开始计时，
         以确保所有这些参数能够被正确初始化。
         """
-        self.ax = None # 设ax为None，确保初始化
+        self.ax = None # 重置ax
         self.passTime = 0 # 记录用时
         self.forgetCount = 0 # “遗忘策略”计数器，用于记录连续若干代出现种群所有个体都不是可行个体的次数
         self.obj_trace = np.zeros((self.MAXGEN, 2)) * np.nan # 定义目标函数值记录器，初始值为nan
@@ -192,6 +191,8 @@ class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
             self.passTime += time.time() - self.timeSlot # 更新用时记录
             if self.drawing == 2:
                 self.ax = ea.soeaplot(self.obj_trace[:,[1]], None , False, self.ax, self.currentGen) # 绘制动态图
+            elif self.drawing == 3:
+                self.ax = ea.varplot(tempPop.Phen, 'decision variables', False, self.ax, self.currentGen)
             self.timeSlot = time.time() # 更新时间戳
         else:
             self.currentGen -= 1 # 忽略这一代

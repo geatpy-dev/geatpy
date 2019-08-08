@@ -4,7 +4,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
 [![Download](https://img.shields.io/pypi/dm/geatpy.svg)](https://pypi.python.org/pypi/geatpy)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
-![Pypi](https://img.shields.io/badge/pypi-2.1.0-blue.svg)
+![Pypi](https://img.shields.io/badge/pypi-2.1.1-blue.svg)
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com
@@ -55,7 +55,7 @@ If something wrong happened, such as decoding error about 'utf8' of pip, run thi
 Quick start
 -----------
 
-Here is the UML of Geatpy2.
+Here is the UML figure of Geatpy2.
 
 ![image](https://github.com/geatpy-dev/geatpy/blob/master/structure.png)
 

@@ -42,7 +42,7 @@ soea_SEGA_templet : class - Strengthen Elitist GA templet(增强精英保留的�
         self.selFunc = 'etour' # 锦标赛选择算子
         if population.Encoding == 'P':
             self.recFunc = 'xovpmx' # 部分匹配交叉
-            self.mutFunc = 'mutinv' # 染色体片段互换变异
+            self.mutFunc = 'mutinv' # 染色体片段逆转变异
         else:
             self.recFunc = 'xovdp' # 两点交叉
             if population.Encoding == 'BG':

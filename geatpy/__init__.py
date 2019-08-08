@@ -7,7 +7,7 @@ geatpy  -  import all libs of geatpy
 import sys
 
 __author__ = "Geatpy Team"
-__version__ = "2.1.0"
+__version__ = "2.1.1"
 
 # import Classes and mathods
 lib_path = __file__[:-11]
@@ -24,6 +24,8 @@ from templates.soeas.DE.DE_best_1_bin.soea_DE_best_1_bin_templet import soea_DE_
 from templates.soeas.DE.DE_best_1_L.soea_DE_best_1_L_templet import soea_DE_best_1_L_templet
 from templates.soeas.DE.DE_rand_1_bin.soea_DE_rand_1_bin_templet import soea_DE_rand_1_bin_templet
 from templates.soeas.DE.DE_rand_1_L.soea_DE_rand_1_L_templet import soea_DE_rand_1_L_templet
+from templates.soeas.DE.DE_targetToBest_1_bin.soea_DE_targetToBest_1_bin_templet import soea_DE_targetToBest_1_bin_templet
+from templates.soeas.DE.DE_targetToBest_1_L.soea_DE_targetToBest_1_L_templet import soea_DE_targetToBest_1_L_templet
 from templates.soeas.ES.ES_1_plus_1_templet.soea_ES_1_plus_1_templet import soea_ES_1_plus_1_templet
 from templates.soeas.GA.EGA.soea_EGA_templet import soea_EGA_templet
 from templates.soeas.GA.SEGA.soea_SEGA_templet import soea_SEGA_templet
@@ -33,6 +35,7 @@ from templates.soeas.GA.studGA.soea_studGA_templet import soea_studGA_templet
 from templates.moeas.awGA.moea_awGA_templet import moea_awGA_templet
 from templates.moeas.nsga2.moea_NSGA2_DE_templet import moea_NSGA2_DE_templet
 from templates.moeas.nsga2.moea_NSGA2_templet import moea_NSGA2_templet
+from templates.moeas.nsga2.moea_NSGA2_archive_templet import moea_NSGA2_archive_templet
 from templates.moeas.nsga3.moea_NSGA3_DE_templet import moea_NSGA3_DE_templet
 from templates.moeas.nsga3.moea_NSGA3_templet import moea_NSGA3_templet
 from templates.moeas.rvea.moea_RVEA_templet import moea_RVEA_templet
@@ -48,7 +51,9 @@ from bs2int import bs2int
 from bs2real import bs2real
 from bs2ri import bs2ri
 from crowdis import crowdis
+from crtbp import crtbp
 from crtfld import crtfld
+from crtgp import crtgp
 from crtip import crtip
 from crtpc import crtpc
 from crtpp import crtpp

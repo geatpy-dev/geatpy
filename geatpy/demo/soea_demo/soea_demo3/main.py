@@ -34,6 +34,7 @@ print('最优的一代是第 %s 代'%(best_gen + 1))
 print('评价次数：%s'%(myAlgorithm.evalsNum))
 print('时间已过 %s 秒'%(myAlgorithm.passTime))
 # 绘图
+plt.figure()
 plt.plot(problem.place[best_journey.astype(int), 0], problem.place[best_journey.astype(int), 1], c = 'black')
 for i in range(len(best_journey) - 1):
     plt.annotate('', xy=(problem.place[int(best_journey[i+1]), 0], problem.place[int(best_journey[i+1]), 1]), xytext=(problem.place[int(best_journey[i]), 0], problem.place[int(best_journey[i]), 1]),arrowprops=dict(facecolor='black', width=1, headwidth = 5, shrink=0.01))

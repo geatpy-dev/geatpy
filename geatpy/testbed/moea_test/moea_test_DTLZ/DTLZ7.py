@@ -27,7 +27,20 @@ class DTLZ7(ea.Problem): # 继承Problem父类
         pop.ObjV = ObjV # 把求得的目标函数值赋值给种群pop的ObjV
     
     def calBest(self): # 计算全局最优解
-        print('暂无DTLZ-7的真实前沿数据。')
-        globalBestObjV = None
+        N = 1000 # 欲生成10000个全局帕累托最优解
+        # 参数a,b,c为求解方程得到，详见DTLZ7的参考文献
+        a = 0.2514118360889171
+        b = 0.6316265307000614
+        c = 0.8594008566447239
+        Vars, Sizes = ea.crtgp(self.M - 1, N) # 生成单位超空间内均匀的网格点集
+        middle = 0.5
+        left = Vars <= middle
+        right = Vars > middle
+        maxs_Left = np.max(Vars[left])
+        if maxs_Left > 0:
+            Vars[left] = Vars[left] / maxs_Left * a
+        Vars[right] = (Vars[right] - middle) / (np.max(Vars[right]) - middle) * (c - b) + b
+        P = np.hstack([Vars, (2 * self.M - np.sum(Vars * (1 + np.sin(3 * np.pi * Vars)), 1, keepdims = True))])
+        globalBestObjV = P
         return globalBestObjV
     
