@@ -41,7 +41,7 @@ moea_psy_NSGA2_templet : class - 多染色体的多目标进化NSGA-II算法模�
         self.name = 'psy-NSGA2'
         self.ndSort = ea.ndsortESS # 设置非支配排序算子
         self.selFunc = 'tour' # 选择方式，采用锦标赛选择
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []

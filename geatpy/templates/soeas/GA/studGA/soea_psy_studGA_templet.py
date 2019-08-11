@@ -43,7 +43,7 @@ soea_psy_studGA_templet.py - Polysomy Stud GA templet(多染色体种马遗传�
         self.problem = problem
         self.population = population
         self.selFunc = 'tour' # 锦标赛选择算子
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []

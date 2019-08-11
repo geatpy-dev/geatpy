@@ -43,7 +43,7 @@ soea_psy_SGA_templet : class - Polysomy Simple GA templet(最简单、最经典�
             raise RuntimeError('传入的种群对象必须为PsyPopulation类型')
         self.name = 'psy-SGA'
         self.selFunc = 'rws' # 轮盘赌选择算子
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []

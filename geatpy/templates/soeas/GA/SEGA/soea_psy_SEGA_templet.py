@@ -46,7 +46,7 @@ soea_psy_SEGA_templet : class - Polysomy Strengthen Elitist GA templet(增强精
             raise RuntimeError('传入的种群对象必须为PsyPopulation类型')
         self.name = 'psy-SEGA'
         self.selFunc = 'etour' # 锦标赛选择算子
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []

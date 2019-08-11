@@ -41,7 +41,7 @@ moea_psy_awGA_templet : class - 多染色体的多目标进化优化awGA算法�
             raise RuntimeError('传入的种群对象必须为PsyPopulation类型')
         self.name = 'psy-awGA'
         self.selFunc = 'tour' # 选择方式，采用锦标赛选择
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []

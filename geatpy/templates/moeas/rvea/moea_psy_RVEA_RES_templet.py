@@ -43,7 +43,7 @@ moea_psy_RVEA_RES_templet : class - 带参考点再生策略的多染色体多�
         self.name = 'psy-RVEA-RES'
         self.ndSort = ea.ndsortESS # 设置非支配排序算子
         self.selFunc = 'urs' # 选择方式，采用无约束随机选择
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []

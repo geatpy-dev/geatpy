@@ -40,7 +40,7 @@ moea_psy_RVEA_templet : class - 多染色体多目标进化优化RVEA算法模�
             raise RuntimeError('传入的种群对象必须为PsyPopulation类型')
         self.name = 'psy-RVEA'
         self.selFunc = 'urs' # 选择方式，采用无约束随机选择
-        # 由于有多个染色体，因此需要用多个重组和交叉算子，于是对应有多个重组和交叉概率
+        # 由于有多个染色体，因此需要用多个重组和变异算子，于是对应有多个重组和变异概率
         self.recFuncs = []
         self.mutFuncs = []
         self.pcs = []
