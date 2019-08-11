@@ -19,3 +19,4 @@ script:
     python setup.py install
     
     python test/installation_test.py
+
