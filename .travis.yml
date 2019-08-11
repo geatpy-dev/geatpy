@@ -10,7 +10,7 @@ install:
 
 script:
 
-    pip install geatpy==2.1.0
+    pip install geatpy
     
     python test/installation_test.py
     
