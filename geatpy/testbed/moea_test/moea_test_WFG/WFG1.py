@@ -39,8 +39,9 @@ class WFG1(ea.Problem): # 继承Problem父类
         t2[:, K:] = b_flat(t1[:, K:], 0.8, 0.75, 0.85)
         t3 = b_poly(t2, 0.02)
         t4 = np.zeros((N, M))
+        K_divide_M_sub_1 = int(K/(M-1))
         for i in range(1, M):
-            t4[:, i - 1] = r_sum(t3[:, list(range((i-1)*int(K/(M-1)), i*int(K/(M-1))))], list(range(2*int((i-1)*K/(M-1)+1), 2*i*int(K/(M-1)) + 1, 2)))
+            t4[:, i - 1] = r_sum(t3[:, list(range((i-1)*K_divide_M_sub_1, i*K_divide_M_sub_1))], list(range(2*(i-1)*K_divide_M_sub_1+1, 2*i*K_divide_M_sub_1 + 1, 2)))
         t4[:, M - 1] = r_sum(t3[:, K: K + L], list(range(2 * (K + 1), 2 * (K + L) + 1, 2)))
         x = np.zeros((N, M))
         for i in range(1, M):
@@ -86,7 +87,7 @@ def b_flat(x, A, B, C):
     return np.round(Output, 6)
 
 def b_poly(x, a):
-    return x**a
+    return np.sign(x) * np.abs(x)**a
     
 def r_sum(x, w):
     Output = np.sum(x * np.tile(w, (x.shape[0], 1)), 1) / np.sum(w)
