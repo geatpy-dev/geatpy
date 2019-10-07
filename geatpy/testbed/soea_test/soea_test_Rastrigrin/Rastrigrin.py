@@ -17,7 +17,7 @@ class Rastrigrin(ea.Problem): # 继承Problem父类
     
     def aimFunc(self, pop): # 目标函数
         x = pop.Phen # 得到决策变量矩阵
-        pop.ObjV = np.sum((x ** 2 - 10 * np.cos(10 * np.pi * x) + 10), 1, keepdims = True) # 调整f使之符合Geatpy的目标函数的数据结构
+        pop.ObjV = np.sum((x ** 2 - 10 * np.cos(2 * np.pi * x) + 10), 1, keepdims = True) # 调整f使之符合Geatpy的目标函数的数据结构
     
     def calBest(self): # 计算全局最优解
         globalBestObjV = np.array([[0]])
