@@ -32,7 +32,7 @@ Geatpy provides:
 
 * Added a new evolutionary termination control method.
 
-* Added a new demo of GA-SVM.
+* Added a new demo of EA-SVM.
 
 * Improved plotting function.
 
