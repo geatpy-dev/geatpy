@@ -100,7 +100,7 @@ class MyProblem(ea.Problem): # Inherited from Problem class.
         g = np.array([100 * (self.Dim - self.M + 1 + np.sum(((XM - 0.5)**2 - np.cos(20 * np.pi * (XM - 0.5))), 1))]).T
         ones_metrix = np.ones((Vars.shape[0], 1))
         pop.ObjV = 0.5 * np.fliplr(np.cumprod(np.hstack([ones_metrix, Vars[:,:self.M-1]]), 1)) * np.hstack([ones_metrix, 1 - Vars[:, range(self.M - 2, -1, -1)]]) * np.tile(1 + g, (1, self.M))
-    def calBest(self): # Calculate the theoretic global optimal solution here.
+    def calReferObjV(self): # Calculate the theoretic global optimal solution here.
         uniformPoint, ans = ea.crtup(self.M, 10000) # create 10000 uniform points.
         realBestObjV = uniformPoint / 2
         return realBestObjV
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     """===============================Start evolution=============================="""
     NDSet = myAlgorithm.run() # Run the algorithm templet.
     """=============================Analyze the result============================="""
-    PF = problem.calBest() # Get the global pareto front.
+    PF = problem.getReferObjV() # Get the global pareto front.
     GD = ea.indicator.GD(NDSet.ObjV, PF) # Calculate GD
     IGD = ea.indicator.IGD(NDSet.ObjV, PF) # Calculate IGD
     HV = ea.indicator.HV(NDSet.ObjV, PF) # Calculate HV
@@ -178,7 +178,7 @@ class Ackley(ea.Problem): # Inherited from Problem class.
         n = self.Dim
         f = np.array([-20 * np.exp(-0.2*np.sqrt(1/n*np.sum(x**2, 1))) - np.exp(1/n * np.sum(np.cos(2 * np.pi * x), 1)) + np.e + 20]).T
         return f, CV
-    def calBest(self): # Calculate the global optimal solution here.
+    def calReferObjV(self): # Calculate the global optimal solution here.
         realBestObjV = np.array([[0]])
         return realBestObjV
 ```
