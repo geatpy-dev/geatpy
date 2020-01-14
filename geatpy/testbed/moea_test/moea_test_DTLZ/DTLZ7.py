@@ -10,8 +10,8 @@ class DTLZ7(ea.Problem): # 继承Problem父类
         varTypes = [0] * Dim # 初始化varTypes（决策变量的类型，0：实数；1：整数）
         lb = [0] * Dim # 决策变量下界
         ub = [1] * Dim # 决策变量上界
-        lbin = [1] * Dim # 决策变量下边界
-        ubin = [1] * Dim # 决策变量上边界
+        lbin = [1] * Dim # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
+        ubin = [1] * Dim # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
     
@@ -26,7 +26,7 @@ class DTLZ7(ea.Problem): # 继承Problem父类
         ObjV[:, [self.M-1]] = (1 + g) * (self.M - np.sum(ObjV_tmp / (1 + np.tile(g, (1, self.M - 1))) * (1 + np.sin(3 * np.pi * ObjV_tmp)), 1, keepdims = True))
         pop.ObjV = ObjV # 把求得的目标函数值赋值给种群pop的ObjV
     
-    def calBest(self): # 计算全局最优解
+    def calReferObjV(self): # 设定目标数参考值（本问题目标函数参考值设定为理论最优值，即“真实帕累托前沿点”）
         N = 1000 # 欲生成10000个全局帕累托最优解
         # 参数a,b,c为求解方程得到，详见DTLZ7的参考文献
         a = 0.2514118360889171
@@ -41,6 +41,6 @@ class DTLZ7(ea.Problem): # 继承Problem父类
             Vars[left] = Vars[left] / maxs_Left * a
         Vars[right] = (Vars[right] - middle) / (np.max(Vars[right]) - middle) * (c - b) + b
         P = np.hstack([Vars, (2 * self.M - np.sum(Vars * (1 + np.sin(3 * np.pi * Vars)), 1, keepdims = True))])
-        globalBestObjV = P
-        return globalBestObjV
+        referenceObjV = P
+        return referenceObjV
     

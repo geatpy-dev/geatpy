@@ -10,8 +10,8 @@ class WFG1(ea.Problem): # 继承Problem父类
         varTypes = [0] * Dim # 初始化varTypes（决策变量的类型，0：实数；1：整数）
         lb = [0] * Dim # 决策变量下界
         ub = list(range(2, 2 * Dim + 1, 2)) # 决策变量上界
-        lbin = [1] * Dim # 决策变量下边界
-        ubin = [1] * Dim # 决策变量上边界
+        lbin = [1] * Dim # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
+        ubin = [1] * Dim # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
         # 目标函数中用到的一些参数设置
@@ -52,7 +52,7 @@ class WFG1(ea.Problem): # 继承Problem父类
         f = np.tile(D * x[: ,[M - 1]], (1, M)) + np.tile(S, (N, 1)) * h
         pop.ObjV = f # 把求得的目标函数值赋值给种群pop的ObjV
     
-    def calBest(self): # 计算全局最优解
+    def calReferObjV(self): # 设定目标数参考值（本问题目标函数参考值设定为理论最优值，即“真实帕累托前沿点”）
         N = 10000 # 设置所要生成的全局最优解的个数
         Point, num = ea.crtup(self.M, N) # 生成N个在各目标的单位维度上均匀分布的参考点
         M = self.M
@@ -70,8 +70,8 @@ class WFG1(ea.Problem): # 继承Problem父类
             x[i, 0] = a[np.min(rank[0: 10])]
         Point = convex(x)
         Point[:, [M - 1]] = mixed(x)
-        globalBestObjV = np.tile(np.array([list(range(2, 2 * self.M + 1, 2))]), (num, 1)) * Point
-        return globalBestObjV
+        referenceObjV = np.tile(np.array([list(range(2, 2 * self.M + 1, 2))]), (num, 1)) * Point
+        return referenceObjV
 
 def convex(x):
     return np.fliplr(np.cumprod(np.hstack([np.ones((x.shape[0], 1)), 1 - np.cos(x[:,:-1] * np.pi / 2)]), 1)) * np.hstack([np.ones((x.shape[0], 1)), 1 - np.sin(x[:, list(range(x.shape[1] - 1 - 1, -1, -1))] * np.pi / 2)])

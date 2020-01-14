@@ -73,11 +73,25 @@ Population : class - 种群类
         if NIND is not None:
             self.sizes = NIND # 重新设置种群规模
         self.Chrom = ea.crtpc(self.Encoding, self.sizes, self.Field) # 生成染色体矩阵
+        self.Lind = self.Chrom.shape[1] # 计算染色体的长度
         self.ObjV = None
         self.FitnV = np.ones((self.sizes, 1))
         self.CV = np.zeros((self.sizes, 1))
         self.Phen = self.decoding() # 解码
     
+    def setChrom(self, Chrom):
+        """
+        描述: 该函数用于插入种群染色体矩阵。
+        当想要插入一些染色体时，可以调用该函数（例如想要插入一些已知的较优解对应的染色体）。
+        调用该函数之前，种群染色体必须已经被初始化。
+        该函数会简单地把现有的种群染色体全部或部分替换成待插入的染色体，不会择劣替换。
+        """
+        
+        if self.Chrom is None:
+            raise RuntimeError('error in Population.setChrom: Chrom is None. (种群染色体矩阵未初始化。)')
+        NewChrom = np.vstack([Chrom, self.Chrom])
+        self.Chrom = NewChrom[:self.sizes, :]
+        
     def decoding(self):
         """
         描述: 种群染色体解码。

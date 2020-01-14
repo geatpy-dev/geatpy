@@ -11,12 +11,12 @@ soea_DE_targetToBest_1_L_templet : class - 差分进化DE/target-to-best/1/L算�
 
 算法描述:
     本模板实现的是经典的DE/target-to-best/1/L单目标差分进化算法。
-    算法流程如下：
+    为了实现矩阵化计算，本模板采用打乱个体顺序来代替随机选择差分向量。算法流程如下：
     1) 初始化候选解种群。
     2) 若满足停止条件则停止，否则继续执行。
     3) 对当前种群进行统计分析，比如记录其最优个体、平均适应度等等。
     4) 采用target-to-best的方法选择差分变异的基向量，对当前种群进行差分变异，得到变异个体。
-    5) 将当前种群和变异个体合并，采用指数交叉方法得到试验种群。
+    5) 将当前种群和变异个体合并，采用二项式分布交叉方法得到试验种群。
     6) 在当前种群和实验种群之间采用一对一生存者选择方法得到新一代种群。
     7) 回到第2步。
 
@@ -69,7 +69,7 @@ soea_DE_targetToBest_1_L_templet : class - 差分进化DE/target-to-best/1/L算�
             r0 = ea.selecting('ecs', population.FitnV, NIND)
             Xr0 = population.Chrom + self.k * (population.Chrom[r0, :] - population.Chrom) # 根据target-to-best的方法得到基向量矩阵
             experimentPop = population.copy() # 存储试验个体
-            experimentPop.Chrom = self.mutOper.do(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, Xr0) # 变异
+            experimentPop.Chrom = self.mutOper.do(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, [Xr0]) # 变异
             tempPop = population + experimentPop # 当代种群个体与变异个体进行合并（为的是后面用于重组）
             experimentPop.Chrom = self.recOper.do(tempPop.Chrom) # 重组
             # 求进化后个体的目标函数值

@@ -82,10 +82,27 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
         # 遍历各染色体矩阵进行初始化
         for i in range(self.ChromNum):
             self.Chroms[i] = ea.crtpc(self.Encodings[i], self.sizes, self.Fields[i]) # 生成染色体矩阵
+            self.Linds.append(self.Chroms[i].shape[1]) # 计算染色体的长度
         self.ObjV = None
         self.FitnV = np.ones((self.sizes, 1))
         self.CV = np.zeros((self.sizes, 1))
         self.Phen = self.decoding() # 解码
+    
+    def setChrom(self, Chroms):
+        """
+        描述: 该函数用于插入种群染色体。
+        当想要插入一些染色体时，可以调用该函数（例如想要插入一些已知的较优解对应的染色体）。
+        调用该函数之前，种群染色体必须已经被初始化。
+        该函数会简单地把现有的种群染色体全部或部分替换成待插入的染色体，不会择劣替换。
+        """
+        
+        if self.Chroms is None:
+            raise RuntimeError('error in Population.setChrom: Chroms is None. (种群染色体矩阵列表未初始化。)')
+        for i in range(self.ChromNum):
+            if self.Chroms[i] is None:
+                raise RuntimeError('error in PsyPopulation: Chrom[i] is None. (种群染色体矩阵未初始化。)')
+            NewChrom = np.vstack([Chroms[i], self.Chroms[i]])
+            self.Chroms[i] = NewChrom[:self.sizes, :]
     
     def decoding(self):
         """
@@ -129,6 +146,8 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
         """
         
         NewChroms = []
+        if self.Chroms is None:
+            raise RuntimeError('error in Population.setChrom: Chroms is None. (种群染色体矩阵列表未初始化。)')
         for i in range(self.ChromNum):
             if self.Chroms[i] is None:
                 raise RuntimeError('error in PsyPopulation: Chrom[i] is None. (种群染色体矩阵未初始化。)')

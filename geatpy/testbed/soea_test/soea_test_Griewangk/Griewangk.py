@@ -11,8 +11,8 @@ class Griewangk(ea.Problem): # 继承Problem父类
         # 初始化varTypes（决策变量的类型）
         lb = [-600] * Dim # 决策变量下界
         ub = [600] * Dim # 决策变量上界
-        lbin = [1] * Dim
-        ubin = [1] * Dim
+        lbin = [1] * Dim # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
+        ubin = [1] * Dim # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
     
@@ -22,7 +22,7 @@ class Griewangk(ea.Problem): # 继承Problem父类
         nummer = np.tile(np.array(range(1, self.Dim + 1)), (Nind, 1))
         pop.ObjV = np.array([np.sum(((Vars**2) / 4000).T, 0) - np.prod(np.cos(Vars / np.sqrt(nummer)).T, 0) + 1]).T
     
-    def calBest(self): # 计算全局最优解
-        globalBestObjV = np.array([[0]])
-        return globalBestObjV
+    def calReferObjV(self): # 设定目标数参考值（本问题目标函数参考值设定为理论最优值）
+        referenceObjV = np.array([[0]])
+        return referenceObjV
     

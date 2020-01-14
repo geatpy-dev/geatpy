@@ -43,9 +43,9 @@ soea_studGA_templet.py - Stud GA templet(种马遗传算法模板)
         else:
             self.recOper = ea.Xovdp(XOVR = 1) # 生成两点交叉算子对象
             if population.Encoding == 'BG':
-                self.mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+                self.mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
             elif population.Encoding == 'RI':
-                self.mutOper = ea.Mutbga(Pm = 1, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
+                self.mutOper = ea.Mutbga(Pm = 1/self.problem.Dim, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
             else:
                 raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
         

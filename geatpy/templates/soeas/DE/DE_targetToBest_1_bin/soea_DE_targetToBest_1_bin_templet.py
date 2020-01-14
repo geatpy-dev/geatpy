@@ -69,7 +69,7 @@ soea_DE_targetToBest_1_bin_templet : class - 差分进化DE/target-to-best/1/bin
             r0 = ea.selecting('ecs', population.FitnV, NIND)
             Xr0 = population.Chrom + self.k * (population.Chrom[r0, :] - population.Chrom) # 根据target-to-best的方法得到基向量矩阵
             experimentPop = population.copy() # 存储试验个体
-            experimentPop.Chrom = self.mutOper.do(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, Xr0) # 变异
+            experimentPop.Chrom = self.mutOper.do(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, [Xr0]) # 变异
             tempPop = population + experimentPop # 当代种群个体与变异个体进行合并（为的是后面用于重组）
             experimentPop.Chrom = self.recOper.do(tempPop.Chrom) # 重组
             # 求进化后个体的目标函数值

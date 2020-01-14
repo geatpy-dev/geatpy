@@ -8,8 +8,8 @@ class Mutuni(Mutation):
                      该类的各成员属性与内核中的对应函数的同名参数含义一致，
                      可利用help(mutuni)查看各参数的详细含义及用法。
     """
-    def __init__(self, Pm = 1, Alpha = False, MutShrink = 1, Middle = False, Loop = False):
-        self.Pm = Pm # 每条染色体发生变异的概率
+    def __init__(self, Pm = None, Alpha = False, MutShrink = 1, Middle = False, Loop = False):
+        self.Pm = Pm # 表示染色体上变异算子所发生作用的最小片段发生变异的概率
         self.Alpha = Alpha # 表示均匀变异的变异半径
         self.MutShrink = MutShrink # 压缩率，用于压缩变异的范围
         self.Middle = Middle # 表示变异中心是否为搜索域的中央

@@ -11,8 +11,8 @@ class ZDT6(ea.Problem): # 继承Problem父类
         varTypes = [0] * Dim # 初始化varTypes（决策变量的类型，0：实数；1：整数）
         lb = [0] * Dim # 决策变量下界
         ub = [1] * Dim # 决策变量上界
-        lbin = [1] * Dim # 决策变量下边界
-        ubin = [1] * Dim # 决策变量上边界
+        lbin = [1] * Dim # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
+        ubin = [1] * Dim # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
     
@@ -24,11 +24,10 @@ class ZDT6(ea.Problem): # 继承Problem父类
         ObjV2 = gx * hx
         pop.ObjV = np.array([ObjV1, ObjV2]).T # 把结果赋值给ObjV
     
-    def calBest(self): # 计算全局最优解
+    def calReferObjV(self): # 设定目标数参考值（本问题目标函数参考值设定为理论最优值，即“真实帕累托前沿点”）
         N = 10000 # 生成10000个参考点
         ObjV1 = np.linspace(0.280775, 1, N)
         ObjV2 = 1 - ObjV1 ** 2;
-        globalBestObjV = np.array([ObjV1, ObjV2]).T
-        
-        return globalBestObjV
+        referenceObjV = np.array([ObjV1, ObjV2]).T
+        return referenceObjV
     

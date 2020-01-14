@@ -55,9 +55,9 @@ soea_psy_steadyGA_templet : class - Polysomy Steady State GA templet(多染色�
             else:
                 recOper = ea.Xovdp(XOVR = 1) # 生成两点交叉算子对象
                 if population.Encodings[i] == 'BG':
-                    mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+                    mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
                 elif population.Encodings[i] == 'RI':
-                    mutOper = ea.Mutbga(Pm = 1, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
+                    mutOper = ea.Mutbga(Pm = 1/self.problem.Dim, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
                 else:
                     raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
             self.recOpers.append(recOper)

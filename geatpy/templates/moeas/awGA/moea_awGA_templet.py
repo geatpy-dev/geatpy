@@ -44,11 +44,11 @@ moea_awGA_templet : class - 多目标进化优化awGA算法模板
             self.mutOper = ea.Mutinv(Pm = 1) # 生成逆转变异算子对象
         elif population.Encoding == 'BG':
             self.recOper = ea.Xovud(XOVR = 1) # 生成部均匀交叉算子对象
-            self.mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+            self.mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
         elif population.Encoding == 'RI':
             self.recOper = ea.Xovud(XOVR = 1) # 生成部均匀交叉算子对象
-            self.mutOper = ea.Mutuni(Pm = 1, Alpha = False, MutShrink = 1, Middle = False) # 生成均匀变异算子对象
-            self.extraMutOper = ea.Mutgau(Pm = 1, Sigma = False, MutShrink = 3, Middle = False) # 额外生成一个高斯变异算子对象，对标准差放大3倍
+            self.mutOper = ea.Mutuni(Pm = 1/self.problem.Dim, Alpha = False, MutShrink = 1, Middle = False) # 生成均匀变异算子对象
+            self.extraMutOper = ea.Mutgau(Pm = 1/self.problem.Dim, Sigma3 = False, MutShrink = 3, Middle = False) # 额外生成一个高斯变异算子对象，对标准差放大3倍
         else:
             raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
             
@@ -93,7 +93,7 @@ moea_awGA_templet : class - 多目标进化优化awGA算法模板
         self.passTime += time.time() - self.timeSlot # 更新用时记录
         #=========================绘图及输出结果=========================
         if self.drawing != 0:
-            ea.moeaplot(NDSet.ObjV, 'Pareto Front', True)
+            ea.moeaplot(NDSet.ObjV, Label = 'Pareto Front', saveFlag = True, gridFlag = True)
         # 返回帕累托最优集
         return NDSet
     

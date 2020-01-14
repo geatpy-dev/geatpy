@@ -90,7 +90,7 @@ moea_NSGA2_DE_templet : class - 基于NSGA-II-DE算法的多目标进化算法�
             # 进行差分进化操作
             r0 = ea.selecting(self.selFunc, population.FitnV, NIND) # 得到基向量索引
             offspring = population.copy() # 存储子代种群
-            offspring.Chrom = self.mutOper.do(offspring.Encoding, offspring.Chrom, offspring.Field, r0) # 变异
+            offspring.Chrom = self.mutOper.do(offspring.Encoding, offspring.Chrom, offspring.Field, [r0]) # 变异
             tempPop = population + offspring # 当代种群个体与变异个体进行合并（为的是后面用于重组）
             offspring.Chrom = self.recOper.do(tempPop.Chrom) # 重组
             # 求进化后个体的目标函数值

@@ -43,10 +43,10 @@ moea_NSGA2_archive_templet : class - 带全局存档的多目标进化NSGA-II算
             self.mutOper = ea.Mutinv(Pm = 1) # 生成逆转变异算子对象
         elif population.Encoding == 'BG':
             self.recOper = ea.Xovud(XOVR = 1) # 生成均匀交叉算子对象
-            self.mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+            self.mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
         elif population.Encoding == 'RI':
             self.recOper = ea.Recsbx(XOVR = 1, n = 20) # 生成模拟二进制交叉算子对象
-            self.mutOper = ea.Mutpolyn(Pm = 1, DisI = 20) # 生成多项式变异算子对象
+            self.mutOper = ea.Mutpolyn(Pm = 1/self.problem.Dim, DisI = 20) # 生成多项式变异算子对象
         else:
             raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
         self.MAXSIZE = 10 * population.sizes # 全局非支配解存档的大小限制，默认为10倍的种群个体数

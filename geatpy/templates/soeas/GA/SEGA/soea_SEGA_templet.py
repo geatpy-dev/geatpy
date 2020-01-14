@@ -44,13 +44,13 @@ soea_SEGA_templet : class - Strengthen Elitist GA templet(增强精英保留的�
         self.selFunc = 'tour' # 锦标赛选择算子
         if population.Encoding == 'P':
             self.recOper = ea.Xovpmx(XOVR = 1) # 生成部分匹配交叉算子对象
-            self.mutOper = ea.Mutinv(Pm = 1) # 生成逆转变异算子对象
+            self.mutOper = ea.Mutinv(Pm = None) # 生成逆转变异算子对象
         else:
             self.recOper = ea.Xovdp(XOVR = 1) # 生成两点交叉算子对象
             if population.Encoding == 'BG':
-                self.mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+                self.mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
             elif population.Encoding == 'RI':
-                self.mutOper = ea.Mutbga(Pm = 1, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
+                self.mutOper = ea.Mutbga(Pm = 1/self.problem.Dim, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
             else:
                 raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
         

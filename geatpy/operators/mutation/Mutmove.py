@@ -8,8 +8,8 @@ class Mutmove(Mutation):
                       该类的各成员属性与内核中的对应函数的同名参数含义一致，
                       可利用help(mutmove)查看各参数的详细含义及用法。
     """
-    def __init__(self, Pm = 1, MoveLen = None, Pr = 0):
-        self.Pm = Pm # 每条染色体发生变异的概率
+    def __init__(self, Pm = None, MoveLen = None, Pr = 0):
+        self.Pm = Pm # 表示染色体上变异算子所发生作用的最小片段发生变异的概率
         self.MoveLen = MoveLen # 发生移位的片段长度
         self.Pr = Pr # 表示移位片段在移位后发生逆转的概率
     

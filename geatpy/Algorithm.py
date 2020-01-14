@@ -95,30 +95,30 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
         self.ax = None # 重置ax
         self.passTime = 0 # 初始化计时器
         self.forgetCount = 0 # 初始化“遗忘策略”计数器
-        self.maxForgetCount = 1000 # 初始化“遗忘策略”计数器最大上限值
+        self.maxForgetCount = 1000 # 初始化“遗忘策略”计数器最大上限值，当超过这个上限时将终止进化
         self.pop_trace = [] # 初始化种群记录器
         self.currentGen = 0 # 设置初始为第0代
         self.timeSlot = time.time() # 开始计时
     
-    def stat(self, pop): # 分析记录，更新进化记录器，pop为当代种群对象，NDSet为当代的种群中的非支配个体集
-        feasible = np.where(np.all(pop.CV <= 0, 1))[0] # 找到可行解个体的下标
+    def stat(self, population): # 分析记录，更新进化记录器，population为传入的种群对象，NDSet为当代的种群中的非支配个体集
+        feasible = np.where(np.all(population.CV <= 0, 1))[0] # 找到可行解个体的下标
         if len(feasible) > 0:
-            self.pop_trace.append(pop) # 添加记录
+            self.pop_trace.append(population) # 添加记录
             self.forgetCount = 0 # “遗忘策略”计数器清零
             self.passTime += time.time() - self.timeSlot # 更新用时记录
             if self.drawing == 2:
                 # 绘制目标空间动态图
-                self.ax = ea.moeaplot(pop.ObjV, 'objective values', False, self.ax, self.currentGen)
+                self.ax = ea.moeaplot(population.ObjV, 'objective values', False, self.ax, self.currentGen)
             elif self.drawing == 3:
                 # 绘制决策空间动态图
-                self.ax = ea.varplot(pop.Phen, 'decision variables', False, self.ax, self.currentGen)
+                self.ax = ea.varplot(population.Phen, 'decision variables', False, self.ax, self.currentGen)
             self.timeSlot = time.time() # 更新时间戳
         else:
             self.currentGen -= 1 # 忽略这一代
             self.forgetCount += 1 # “遗忘策略”计数器加1
         
-    def terminated(self, pop): # 判断是终止进化，pop为当代种群对象
-        self.stat(pop) # 进行统计分析，更新进化记录器
+    def terminated(self, population): # 判断是终止进化，population为传入的种群对象
+        self.stat(population) # 进行统计分析，更新进化记录器
         # 判断是否终止进化，由于代数是从0数起，因此在比较currentGen和MAXGEN时需要对currentGen加1
         if self.currentGen + 1 >= self.MAXGEN or self.forgetCount >= self.maxForgetCount:
             return True
@@ -135,9 +135,9 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
         # 绘图
         if self.drawing != 0:
             if NDSet.ObjV.shape[1] == 2 or NDSet.ObjV.shape[1] == 3:
-                ea.moeaplot(NDSet.ObjV, 'Pareto Front', True)
+                ea.moeaplot(NDSet.ObjV, 'Pareto Front', saveFlag = True, gridFlag = True)
             else:
-                ea.moeaplot(NDSet.ObjV, 'Value Path', True)
+                ea.moeaplot(NDSet.ObjV, 'Value Path', saveFlag = True, gridFlag = False)
         # 返回帕累托最优集
         return NDSet
 
@@ -155,8 +155,12 @@ class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
         self.problem = problem
         self.population = population
         self.drawing = 1 # 绘图
-        self.maxForgetCount = 1000 # “遗忘策略”计数器最大上限值
         self.forgetCount = None # “遗忘策略”计数器，用于记录连续若干代出现种群所有个体都不是可行个体的次数
+        self.maxForgetCount = 1000 # “遗忘策略”计数器最大上限值，当超过这个上限时将终止进化
+        self.trappedCount = 0 # “进化停滞”计数器
+        self.trappedValue = 0 # 进化算法陷入停滞的判断阈值，当abs(最优目标函数值-上代的目标函数值) < trappedValue时，对trappedCount加1
+        self.maxTrappedCount = 1000 # 进化停滞计数器最大上限值，当超过这个上限时将终止进化
+        self.preObjV = np.nan # “前代最优目标函数值记录器”，用于记录上一代的最优目标函数值
         self.ax = None # 存储上一桢动画
     
     def initialization(self):
@@ -168,26 +172,32 @@ class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
         self.ax = None # 重置ax
         self.passTime = 0 # 记录用时
         self.forgetCount = 0 # “遗忘策略”计数器，用于记录连续若干代出现种群所有个体都不是可行个体的次数
+        self.preObjV = np.nan # 重置“前代最优目标函数值记录器”
+        self.trappedCount = 0 # 重置“进化停滞”计数器
         self.obj_trace = np.zeros((self.MAXGEN, 2)) * np.nan # 定义目标函数值记录器，初始值为nan
         self.var_trace = np.zeros((self.MAXGEN, self.problem.Dim)) * np.nan # 定义变量记录器，记录决策变量值，初始值为nan
         self.currentGen = 0 # 设置初始为第0代
         self.timeSlot = time.time() # 开始计时
 
-    def stat(self, pop): # 分析记录，更新进化记录器
+    def stat(self, population): # 分析记录，更新进化记录器
         # 进行进化记录
-        feasible = np.where(np.all(pop.CV <= 0, 1))[0] # 找到可行解个体的下标
+        feasible = np.where(np.all(population.CV <= 0, 1))[0] # 找到可行解个体的下标
         if len(feasible) > 0:
-            tempPop = pop[feasible]
+            tempPop = population[feasible]
             bestIdx = np.argmax(tempPop.FitnV) # 获取最优个体的下标
-            self.obj_trace[self.currentGen,0] = np.sum(tempPop.ObjV) / tempPop.sizes # 记录种群个体平均目标函数值
-            self.obj_trace[self.currentGen,1] = tempPop.ObjV[bestIdx] # 记录当代目标函数的最优值
-            self.var_trace[self.currentGen,:] = tempPop.Phen[bestIdx, :] # 记录当代最优的决策变量值
+            self.obj_trace[self.currentGen, 0] = np.sum(tempPop.ObjV) / tempPop.sizes # 记录种群个体平均目标函数值
+            self.obj_trace[self.currentGen, 1] = tempPop.ObjV[bestIdx] # 记录当代目标函数的最优值
+            self.var_trace[self.currentGen, :] = tempPop.Phen[bestIdx, :] # 记录当代最优的决策变量值
             self.forgetCount = 0 # “遗忘策略”计数器清零
+            if np.abs(self.preObjV - self.obj_trace[self.currentGen, 1]) < self.trappedValue:
+                self.trappedCount += 1
+            else:
+                self.trappedCount = 0 # 重置进化停滞计数器
             self.passTime += time.time() - self.timeSlot # 更新用时记录
             if self.drawing == 2:
-                self.ax = ea.soeaplot(self.obj_trace[:,[1]], None , False, self.ax, self.currentGen) # 绘制动态图
+                self.ax = ea.soeaplot(self.obj_trace[:,[1]], Label = 'Objective Value' , saveFlag = False, ax = self.ax, gen = self.currentGen, gridFlag = False) # 绘制动态图
             elif self.drawing == 3:
-                self.ax = ea.varplot(tempPop.Phen, 'decision variables', False, self.ax, self.currentGen)
+                self.ax = ea.varplot(tempPop.Phen, Label = 'decision variables', saveFlag = False, ax = self.ax, gen = self.currentGen, gridFlag = False)
             self.timeSlot = time.time() # 更新时间戳
         else:
             self.currentGen -= 1 # 忽略这一代
@@ -197,14 +207,15 @@ class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
         
         """
         描述:
-            该函数用于判断是否应该终止进化，population为传入的种群，
+            该函数用于判断是否应该终止进化，population为传入的种群
         """
         
         self.stat(population) # 分析记录当代种群的数据
         # 判断是否终止进化，由于代数是从0数起，因此在比较currentGen和MAXGEN时需要对currentGen加1
-        if self.currentGen + 1 >= self.MAXGEN or self.forgetCount >= self.maxForgetCount:
+        if self.currentGen + 1 >= self.MAXGEN or self.forgetCount >= self.maxForgetCount or self.trappedCount >= self.maxTrappedCount:
             return True
         else:
+            self.preObjV = self.obj_trace[self.currentGen, 1] # 更新“前代最优目标函数值记录器”
             self.currentGen += 1 # 进化代数+1
             return False
 
@@ -218,7 +229,7 @@ class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
         self.passTime += time.time() - self.timeSlot # 更新用时记录
         # 绘图
         if self.drawing != 0:
-            ea.trcplot(self.obj_trace, [['种群个体平均目标函数值', '种群最优个体目标函数值']])
+            ea.trcplot(self.obj_trace, [['种群个体平均目标函数值', '种群最优个体目标函数值']], xlabels = [['Number of Generation']], ylabels = [['Value']], gridFlags = [[False]])
         # 返回最后一代种群、进化记录器、变量记录器以及执行时间
         return [population, self.obj_trace, self.var_trace]
     

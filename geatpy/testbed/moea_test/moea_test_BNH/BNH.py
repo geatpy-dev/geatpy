@@ -11,8 +11,8 @@ class BNH(ea.Problem): # 继承Problem父类
         varTypes = [0] * Dim # 初始化varTypes（决策变量的类型，0：实数；1：整数）
         lb = [0] * Dim # 决策变量下界
         ub = [5, 3] # 决策变量上界
-        lbin = [1] * Dim # 决策变量下边界
-        ubin = [1] * Dim # 决策变量上边界
+        lbin = [1] * Dim # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
+        ubin = [1] * Dim # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
     
@@ -36,10 +36,9 @@ class BNH(ea.Problem): # 继承Problem父类
         
         pop.ObjV = np.hstack([f1, f2]) # 把求得的目标函数值赋值给种群pop的ObjV
     
-    def calBest(self): # 计算全局最优解
+    def calReferObjV(self): # 设定目标数参考值（本问题目标函数参考值设定为理论最优值，即“真实帕累托前沿点”）
         N = 10000 # 欲得到10000个真实前沿点
         x1 = np.linspace(0, 5, N)
         x2 = x1.copy()
         x2[x1 >= 3] = 3
         return np.vstack((4 * x1**2 + 4 * x2**2, (x1 - 5)**2 + (x2 - 5)**2)).T
-    

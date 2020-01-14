@@ -47,10 +47,10 @@ moea_NSGA3_templet : class - 多目标进化优化NSGA-III算法模板
             self.mutOper = ea.Mutinv(Pm = 1) # 生成逆转变异算子对象
         elif population.Encoding == 'BG':
             self.recOper = ea.Xovud(XOVR = 1) # 生成均匀交叉算子对象
-            self.mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+            self.mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
         elif population.Encoding == 'RI':
             self.recOper = ea.Recsbx(XOVR = 1, n = 20) # 生成模拟二进制交叉算子对象
-            self.mutOper = ea.Mutpolyn(Pm = 1, DisI = 20) # 生成多项式变异算子对象
+            self.mutOper = ea.Mutpolyn(Pm = 1/self.problem.Dim, DisI = 20) # 生成多项式变异算子对象
         else:
             raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
     

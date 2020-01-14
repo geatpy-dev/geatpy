@@ -5,7 +5,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 [![Package Status](https://img.shields.io/pypi/status/geatpy.svg)](https://pypi.org/project/geatpy/)
 [![License](https://img.shields.io/pypi/l/geatpy.svg)](https://github.com/geatpy-dev/geatpy/blob/master/LICENSE)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
-![Pypi](https://img.shields.io/badge/pypi-2.2.3-blue.svg)
+![Pypi](https://img.shields.io/badge/pypi-2.3.0-blue.svg)
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com
@@ -22,13 +22,19 @@ Geatpy provides:
 
 * a great many of **evolutionary operators**, so that you can deal with **single, multiple and many objective optimization** problems.
 
-## Improvement of Geatpy 2.2.3
+## Improvement of Geatpy 2.3.0
 
-* Improve the performance of crtpp and ranking.
+* Standardized the concept of the mutation probability of all mutation operators.
 
-* Rebuild the core of NSGA-II, NSGA-III and RVEA to get higher performances.
+* Rebuilt the core of mutbga, mutde and mutgau.
 
-* Add new multi-objective optimization test problem: TNK.
+* Added new multi-objective optimization test problem: CF1 and CF2.
+
+* Added a new evolutionary termination control method.
+
+* Added a new demo of GA-SVM.
+
+* Improved plotting function.
 
 ## Installation
 1.Installing online:
@@ -47,7 +53,7 @@ or
 
 ## Versions
 
-**Geatpy** must run under **Python**3.5, 3.6 or 3.7 in Windows x32/x64, Linux x64 or Mac OS x64.
+**Geatpy** must run under **Python**3.5, 3.6, 3.7 or 3.8 in Windows x32/x64, Linux x64 or Mac OS x64.
 
 There are different versions for **Windows**, **Linux** and **Mac**, you can download them from http://geatpy.com/
 
@@ -106,30 +112,31 @@ class MyProblem(ea.Problem): # Inherited from Problem class.
 """main.py"""
 import geatpy as ea # Import geatpy
 from MyProblem import MyProblem # Import MyProblem class
-"""=========================Instantiate your problem=========================="""
-M = 3                      # Set the number of objects.
-problem = MyProblem(M)     # Instantiate MyProblem class
-"""===============================Population set=============================="""
-Encoding = 'RI'            # Encoding type.
-NIND = 100                 # Set the number of individuals.
-Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) # Create the field descriptor.
-population = ea.Population(Encoding, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
-"""================================Algorithm set==============================="""
-myAlgorithm = ea.moea_NSGA3_templet(problem, population) # Instantiate a algorithm class.
-myAlgorithm.MAXGEN = 500 # Set the max times of iteration.
-"""===============================Start evolution=============================="""
-NDSet = myAlgorithm.run() # Run the algorithm templet.
-"""=============================Analyze the result============================="""
-PF = problem.calBest() # Get the global pareto front.
-GD = ea.indicator.GD(NDSet.ObjV, PF) # Calculate GD
-IGD = ea.indicator.IGD(NDSet.ObjV, PF) # Calculate IGD
-HV = ea.indicator.HV(NDSet.ObjV, PF) # Calculate HV
-Space = ea.indicator.spacing(NDSet.ObjV) # Calculate Space
-print('The number of non-dominated result: %s'%(NDSet.sizes))
-print('GD: ',GD)
-print('IGD: ',IGD)
-print('HV: ', HV)
-print('Space: ', Space)
+if __name__ == '__main__':
+    """=========================Instantiate your problem=========================="""
+    M = 3                      # Set the number of objects.
+    problem = MyProblem(M)     # Instantiate MyProblem class
+    """===============================Population set=============================="""
+    Encoding = 'RI'            # Encoding type.
+    NIND = 100                 # Set the number of individuals.
+    Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) # Create the field descriptor.
+    population = ea.Population(Encoding, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
+    """================================Algorithm set==============================="""
+    myAlgorithm = ea.moea_NSGA3_templet(problem, population) # Instantiate a algorithm class.
+    myAlgorithm.MAXGEN = 500 # Set the max times of iteration.
+    """===============================Start evolution=============================="""
+    NDSet = myAlgorithm.run() # Run the algorithm templet.
+    """=============================Analyze the result============================="""
+    PF = problem.calBest() # Get the global pareto front.
+    GD = ea.indicator.GD(NDSet.ObjV, PF) # Calculate GD
+    IGD = ea.indicator.IGD(NDSet.ObjV, PF) # Calculate IGD
+    HV = ea.indicator.HV(NDSet.ObjV, PF) # Calculate HV
+    Space = ea.indicator.spacing(NDSet.ObjV) # Calculate Space
+    print('The number of non-dominated result: %s'%(NDSet.sizes))
+    print('GD: ',GD)
+    print('IGD: ',IGD)
+    print('HV: ', HV)
+    print('Space: ', Space)
 ```
 
 Run the "main.py" and the result is:
@@ -182,28 +189,29 @@ class Ackley(ea.Problem): # Inherited from Problem class.
 import geatpy as ea # import geatpy
 import numpy as np
 from MyProblem import Ackley
-"""=========================Instantiate your problem=========================="""
-problem = Ackley(30) # Instantiate MyProblem class.
-"""===============================Population set=============================="""
-Encoding = 'RI'                # Encoding type.
-NIND = 20                      # Set the number of individuals.
-Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) # Create the field descriptor.
-population = ea.Population(Encoding, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
-"""================================Algorithm set==============================="""
-myAlgorithm = ea.soea_DE_rand_1_bin_templet(problem, population) # Instantiate a algorithm class.
-myAlgorithm.MAXGEN = 1000      # Set the max times of iteration.
-myAlgorithm.mutOper.F = 0.5    # Set the F of DE
-myAlgorithm.recOper.XOVR = 0.2 # Set the Cr of DE (Here it is marked as XOVR)
-myAlgorithm.drawing = 1 # 1 means draw the figure of the result
-"""===============================Start evolution=============================="""
-[population, obj_trace, var_trace] = myAlgorithm.run() # Run the algorithm templet.
-"""=============================Analyze the result============================="""
-best_gen = np.argmin(obj_trace[:, 1]) # Get the best generation.
-best_ObjV = np.min(obj_trace[:, 1])
-print('The objective value of the best solution is: %s'%(best_ObjV))
-print('Effective iteration times: %s'%(obj_trace.shape[0]))
-print('The best generation is: %s'%(best_gen + 1))
-print('The number of evolution is: %s'%(myAlgorithm.evalsNum))
+if __name__ == '__main__':
+    """=========================Instantiate your problem=========================="""
+    problem = Ackley(30) # Instantiate MyProblem class.
+    """===============================Population set=============================="""
+    Encoding = 'RI'                # Encoding type.
+    NIND = 20                      # Set the number of individuals.
+    Field = ea.crtfld(Encoding, problem.varTypes, problem.ranges, problem.borders) # Create the field descriptor.
+    population = ea.Population(Encoding, Field, NIND) # Instantiate Population class(Just instantiate, not initialize the population yet.)
+    """================================Algorithm set==============================="""
+    myAlgorithm = ea.soea_DE_rand_1_bin_templet(problem, population) # Instantiate a algorithm class.
+    myAlgorithm.MAXGEN = 1000      # Set the max times of iteration.
+    myAlgorithm.mutOper.F = 0.5    # Set the F of DE
+    myAlgorithm.recOper.XOVR = 0.2 # Set the Cr of DE (Here it is marked as XOVR)
+    myAlgorithm.drawing = 1 # 1 means draw the figure of the result
+    """===============================Start evolution=============================="""
+    [population, obj_trace, var_trace] = myAlgorithm.run() # Run the algorithm templet.
+    """=============================Analyze the result============================="""
+    best_gen = np.argmin(obj_trace[:, 1]) # Get the best generation.
+    best_ObjV = np.min(obj_trace[:, 1])
+    print('The objective value of the best solution is: %s'%(best_ObjV))
+    print('Effective iteration times: %s'%(obj_trace.shape[0]))
+    print('The best generation is: %s'%(best_gen + 1))
+    print('The number of evolution is: %s'%(myAlgorithm.evalsNum))
 ```
 
 The result is:

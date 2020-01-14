@@ -10,8 +10,8 @@ class C3_DTLZ1(ea.Problem): # 继承Problem父类
         varTypes = [0] * Dim # 初始化varTypes（决策变量的类型，0：实数；1：整数）
         lb = [0] * Dim # 决策变量下界
         ub = [1] * Dim # 决策变量上界
-        lbin = [1] * Dim # 决策变量下边界
-        ubin = [1] * Dim # 决策变量上边界
+        lbin = [1] * Dim # 决策变量下边界（0表示不包含该变量的下边界，1表示包含）
+        ubin = [1] * Dim # 决策变量上边界（0表示不包含该变量的上边界，1表示包含）
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
     
@@ -26,8 +26,8 @@ class C3_DTLZ1(ea.Problem): # 继承Problem父类
         pop.ObjV = f # 把求得的目标函数值赋值给种群pop的ObjV
         pop.CV = CV # 把求得的违反约束程度矩阵赋值给种群pop的CV
     
-    def calBest(self): # 计算全局最优解
-        globalBestObjV, ans = ea.crtup(self.M, 10000) # 生成10000个在各目标的单位维度上均匀分布的参考点
-        globalBestObjV /= np.sum(2 * globalBestObjV, 1, keepdims = True) + (self.M - 3) * np.max(globalBestObjV, 1, keepdims = True)
-        return globalBestObjV
+    def calReferObjV(self): # 设定目标数参考值（本问题目标函数参考值设定为理论最优值，即“真实帕累托前沿点”）
+        referenceObjV, ans = ea.crtup(self.M, 10000) # 生成10000个在各目标的单位维度上均匀分布的参考点
+        referenceObjV /= np.sum(2 * referenceObjV, 1, keepdims = True) + (self.M - 3) * np.max(referenceObjV, 1, keepdims = True)
+        return referenceObjV
     

@@ -7,7 +7,7 @@ geatpy  -  import all libs of geatpy
 import sys
 
 __author__ = "Geatpy Team"
-__version__ = "2.2.3"
+__version__ = "2.3.0"
 
 # import the core
 lib_path = __file__[:-11] + 'core/'

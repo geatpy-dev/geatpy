@@ -47,9 +47,9 @@ soea_GGAP_SGA_templet : class - Generational Gap Simple GA templet(带代沟的�
         else:
             self.recOper = ea.Xovdp(XOVR = 1) # 生成两点交叉算子对象
             if population.Encoding == 'BG':
-                self.mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+                self.mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
             elif population.Encoding == 'RI':
-                self.mutOper = ea.Mutbga(Pm = 1, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
+                self.mutOper = ea.Mutbga(Pm = 1/self.problem.Dim, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
             else:
                 raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
         self.GGAP = 0.9 # 代沟，表示使用多少个子代替换父代来形成新一代种群

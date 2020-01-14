@@ -50,15 +50,15 @@ moea_psy_awGA_templet : class - 多染色体的多目标进化优化awGA算法�
                 mutOper = ea.Mutinv(Pm = 1) # 生成逆转变异算子对象
             elif population.Encodings[i] == 'BG':
                 recOper = ea.Xovud(XOVR = 1) # 生成部均匀交叉算子对象
-                mutOper = ea.Mutbin(Pm = 1) # 生成二进制变异算子对象
+                mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
             elif population.Encodings[i] == 'RI':
                 recOper = ea.Xovud(XOVR = 1) # 生成部均匀交叉算子对象
-                mutOper = ea.Mutuni(Pm = 1, Alpha = False, MutShrink = 1, Middle = False) # 生成均匀变异算子对象
+                mutOper = ea.Mutuni(Pm = 1/self.problem.Dim, Alpha = False, MutShrink = 1, Middle = False) # 生成均匀变异算子对象
             else:
                 raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
             self.recOpers.append(recOper)
             self.mutOpers.append(mutOper)
-        self.extraMutOper = ea.Mutgau(Pm = 1, Sigma = False, MutShrink = 3, Middle = False) # 额外生成一个高斯变异算子对象，对标准差放大3倍
+        self.extraMutOper = ea.Mutgau(Pm = 1/self.problem.Dim, Sigma = False, MutShrink = 3, Middle = False) # 额外生成一个高斯变异算子对象，对标准差放大3倍
         self.MAXSIZE = population.sizes # 非支配解集大小限制
 
     def run(self):

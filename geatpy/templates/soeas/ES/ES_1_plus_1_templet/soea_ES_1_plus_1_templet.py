@@ -61,12 +61,12 @@ soea_ES_1_plus_1_templet : class - (1+1)进化策略模板
         self.problem.aimFunc(population) # 计算种群的目标函数值
         population.FitnV = ea.scaling(self.problem.maxormins * population.ObjV, population.CV) # 计算适应度
         self.evalsNum = population.sizes # 记录评价次数
-        Sigma = 0.5 * (population.Field[1,:] - population.Field[0,:]) / 3 # 初始化高斯变异的Sigma
+        Sigma3 = 0.5 * (population.Field[1,:] - population.Field[0,:]) # 初始化高斯变异算子的Sigma3
         #===========================开始进化============================
         while self.terminated(population) == False:
             # 进行进化操作
             experimentPop = population.copy() # 存储试验种群
-            experimentPop.Chrom = ea.mutgau(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, experimentPop.Lind, Sigma) # 高斯变异（这里变异概率设为染色体长度）
+            experimentPop.Chrom = ea.mutgau(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, 1, Sigma3) # 高斯变异
             # 求进化后个体的目标函数值
             experimentPop.Phen = experimentPop.decoding() # 染色体解码
             self.problem.aimFunc(experimentPop) # 计算目标函数值
@@ -78,8 +78,8 @@ soea_ES_1_plus_1_templet : class - (1+1)进化策略模板
             # 利用1/5规则调整变异压缩概率（实质上是通过变异压缩概率来调整高斯变异的标准差，详见mutgau帮助文档）
             successfulRate = len(np.where(chooseIdx >= NIND)[0]) / (2 * NIND)
             if successfulRate < 1/5:
-                Sigma *= 0.817
+                Sigma3 *= 0.817
             elif successfulRate > 1/5:
-                Sigma /= 0.817
+                Sigma3 /= 0.817
         
         return self.finishing(population) # 调用finishing完成后续工作并返回结果

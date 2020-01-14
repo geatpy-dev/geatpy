@@ -70,7 +70,7 @@ soea_DE_rand_1_L_templet : class - 差分进化DE/rand/1/L算法模板
             # 进行差分进化操作
             r0 = ea.selecting(self.selFunc, population.FitnV, NIND) # 得到基向量索引
             experimentPop = population.copy() # 存储试验个体
-            experimentPop.Chrom = self.mutOper.do(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, r0) # 变异
+            experimentPop.Chrom = self.mutOper.do(experimentPop.Encoding, experimentPop.Chrom, experimentPop.Field, [r0]) # 变异
             tempPop = population + experimentPop # 当代种群个体与变异个体进行合并（为的是后面用于重组）
             experimentPop.Chrom = self.recOper.do(tempPop.Chrom) # 重组
             # 求进化后个体的目标函数值
