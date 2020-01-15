@@ -30,3 +30,5 @@ if __name__ == '__main__':
     print('最优的一代是第 %s 代'%(best_gen + 1))
     print('评价次数：%s'%(myAlgorithm.evalsNum))
     print('时间已过 %s 秒'%(myAlgorithm.passTime))
+    """=================================检验结果==============================="""
+    problem.test(C = var_trace[best_gen, 0], G = var_trace[best_gen, 1])

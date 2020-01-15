@@ -2,13 +2,15 @@
 import numpy as np
 import geatpy as ea
 from sklearn import svm
+from sklearn import preprocessing
 from sklearn.model_selection import cross_val_score
 from multiprocessing.dummy import Pool as ThreadPool
 
 """
 该案例展示了如何利用进化算法优化SVM中的两个参数：C和Gamma。
 在执行本案例前，需要确保正确安装sklearn，以保证SVM部分的代码能够正常执行。
-本函数需要用到一个外部数据集，存放在同目录下的iris.data中。
+本函数需要用到一个外部数据集，存放在同目录下的iris.data中，
+并且把iris.data按3:2划分为训练集数据iris_train.data和测试集数据iris_test.data。
 有关该数据集的详细描述详见http://archive.ics.uci.edu/ml/datasets/Iris
 """
 
@@ -26,7 +28,7 @@ class MyProblem(ea.Problem): # 继承Problem父类
         # 调用父类构造方法完成实例化
         ea.Problem.__init__(self, name, M, maxormins, Dim, varTypes, lb, ub, lbin, ubin)
         # 目标函数计算中用到的一些数据
-        fp = open('iris.data')
+        fp = open('iris_train.data')
         datas = []
         data_targets = []
         for line in fp.readlines():
@@ -34,11 +36,11 @@ class MyProblem(ea.Problem): # 继承Problem父类
             data = []
             for i in line_data[0:4]:
                 data.append(float(i))
-            data_targets.append(line_data[4])
             datas.append(data)
-        self.dataTarget = np.array(data_targets)
-        self.data = np.array(datas)
+            data_targets.append(line_data[4])
         fp.close()
+        self.data = preprocessing.scale(np.array(datas)) # 训练集的特征数据（归一化）
+        self.dataTarget = np.array(data_targets)
     
     def aimFunc(self, pop): # 目标函数，采用多线程加速计算
         Vars = pop.Phen # 得到决策变量矩阵
@@ -46,9 +48,27 @@ class MyProblem(ea.Problem): # 继承Problem父类
         def subAimFunc(i):
             C = Vars[i, 0]
             G = Vars[i, 1]
-            svc = svm.SVC(C=C, kernel='rbf', gamma=G).fit(self.data, self.dataTarget)
+            svc = svm.SVC(C=C, kernel='rbf', gamma=G).fit(self.data, self.dataTarget) # 创建分类器对象并用训练集的数据拟合分类器模型
             scores = cross_val_score(svc, self.data, self.dataTarget, cv=10) # 计算交叉验证的得分
             pop.ObjV[i] = scores.mean() # 把交叉验证的平均得分作为目标函数值
         pool = ThreadPool(2) # 设置池的大小
         pool.map(subAimFunc, list(range(pop.sizes)))
     
+    def test(self, C, G): # 代入优化后的C、Gamma对测试集进行检验
+        # 读取测试集数据
+        fp = open('iris_test.data')
+        datas = []
+        data_targets = []
+        for line in fp.readlines():
+            line_data = line.strip('\n').split(',')
+            data = []
+            for i in line_data[0:4]:
+                data.append(float(i))
+            datas.append(data)
+            data_targets.append(line_data[4])
+        fp.close()
+        data_test = preprocessing.scale(np.array(datas)) # 测试集的特征数据（归一化）
+        dataTarget_test = np.array(data_targets) # 测试集的标签数据
+        svc = svm.SVC(C=C, kernel='rbf', gamma=G).fit(self.data, self.dataTarget) # 创建分类器对象并用训练集的数据拟合分类器模型
+        dataTarget_predict = svc.predict(data_test) # 采用训练好的分类器对象对测试集数据进行预测
+        print("测试集数据分类正确率 = %s%%"%(len(np.where(dataTarget_predict == dataTarget_test)[0]) / len(dataTarget_test) * 100))

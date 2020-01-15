@@ -1,6 +1,7 @@
 该案例展示了如何利用进化算法优化SVM中的两个参数：C和Gamma。
 在执行本案例前，需要确保正确安装sklearn，以保证SVM部分的代码能够正常执行。
-本函数需要用到一个外部数据集，存放在同目录下的iris.data中。
+本函数需要用到一个外部数据集，存放在同目录下的iris.data中，
+并且把iris.data按3:2划分为训练集数据iris_train.data和测试集数据iris_test.data。
 
 关于iris数据集的详细描述（摘自http://archive.ics.uci.edu/ml/datasets/Iris）：
 Data Set Information:
