@@ -28,7 +28,7 @@ kwargs = dict(name = "geatpy",
     packages=setuptools.find_packages(),
     include_package_data = True,    # Enabled list file: MANIFEST.in
     install_requires=[
-        'numpy>=1.16.0',
+        'numpy>=1.17.0',
         'matplotlib>=3.0.0',
         'scipy>=1.0.0',
     ],
