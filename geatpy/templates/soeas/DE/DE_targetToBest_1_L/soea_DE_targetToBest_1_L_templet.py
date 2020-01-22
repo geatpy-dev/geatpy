@@ -45,7 +45,7 @@ soea_DE_targetToBest_1_L_templet : class - 差分进化DE/target-to-best/1/L算�
         self.name = 'DE/rand/1/bin'
         if population.Encoding == 'RI':
             self.mutOper = ea.Mutde(F = 0.5) # 生成差分变异算子对象
-            self.recOper = ea.Xovbd(XOVR = 0.5, Half = True) # 生成二项式分布交叉算子对象，这里的XOVR即为DE中的Cr
+            self.recOper = ea.Xovexp(XOVR = 0.5, Half = True) # 生成指数交叉算子对象，这里的XOVR即为DE中的Cr
         else:
             raise RuntimeError('编码方式必须为''RI''.')
         self.k = 0.5 # target-to-best中的参数k

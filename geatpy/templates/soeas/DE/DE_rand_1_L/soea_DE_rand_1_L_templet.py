@@ -48,7 +48,7 @@ soea_DE_rand_1_L_templet : class - 差分进化DE/rand/1/L算法模板
         self.selFunc = 'rws' # 基向量的选择方式，采用轮盘赌选择
         if population.Encoding == 'RI':
             self.mutOper = ea.Mutde(F = 0.5) # 生成差分变异算子对象
-            self.recOper = ea.Xovbd(XOVR = 0.5, Half = True) # 生成二项式分布交叉算子对象，这里的XOVR即为DE中的Cr
+            self.recOper = ea.Xovexp(XOVR = 0.5, Half = True) # 生成指数交叉算子对象，这里的XOVR即为DE中的Cr
         else:
             raise RuntimeError('编码方式必须为''RI''.')
         
