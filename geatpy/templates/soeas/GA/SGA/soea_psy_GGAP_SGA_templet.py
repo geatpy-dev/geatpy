@@ -62,7 +62,7 @@ soea_psy_GGAP_SGA_templet : class - Polysomy Generational Gap Simple GA templet(
                     raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
             self.recOpers.append(recOper)
             self.mutOpers.append(mutOper)
-        self.GGAP = 0.9 # 代沟，表示使用多少个子代替换父代来形成新一代种群
+        self.GGAP = 0.9 # 代沟，表示使用多少比例的子代替换父代来形成新一代种群
     
     def reinsertion(self, population, offspring, GGAP_NUM):
         """ 重插入 """
