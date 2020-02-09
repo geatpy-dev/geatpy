@@ -109,7 +109,7 @@ soea_multi_SEGA_templet : class - Multi-population Strengthen Elitist GA templet
         #===========================准备进化============================
         for i in range(self.PopNum): # 遍历每个种群，初始化每个种群的染色体矩阵
             NindAll += population[i].sizes
-            population[i].initChrom(population[i].sizes) # 初始化种群染色体矩阵（内含染色体解码，详见PsyPopulation类的源码）
+            population[i].initChrom(population[i].sizes) # 初始化种群染色体矩阵（内含染色体解码，详见Population类的源码）
             self.problem.aimFunc(population[i]) # 计算种群的目标函数值
             self.evalsNum += population[i].sizes # 记录评价次数
             # 插入先验知识（注意：这里不会对先知种群列表prophetPops的合法性进行检查）
