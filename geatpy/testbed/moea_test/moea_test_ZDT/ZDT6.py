@@ -19,7 +19,7 @@ class ZDT6(ea.Problem): # 继承Problem父类
     def aimFunc(self, pop): # 目标函数
         Vars = pop.Phen # 得到决策变量矩阵
         ObjV1 = 1 - np.exp(-4 * Vars[:, 0]) * (np.sin(6 * np.pi * Vars[:, 0])) ** 6
-        gx = 1 + 9 * (np.sum(Vars[:, 1:10], 1) / 9) ** 0.25
+        gx = 1 + 9 * (np.sum(Vars[:, 1:Vars.shape[1]], 1) / (self.Dim - 1)) ** 0.25
         hx = 1 - (ObjV1 / gx) ** 2
         ObjV2 = gx * hx
         pop.ObjV = np.array([ObjV1, ObjV2]).T # 把结果赋值给ObjV
