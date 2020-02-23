@@ -2,6 +2,17 @@
 """MyProblem.py"""
 import numpy as np
 import geatpy as ea
+"""
+    该案例展示了一个带等式约束的连续型决策变量最大化目标的单目标优化问题。
+    该函数存在多个欺骗性很强的局部最优点。
+    max f = 4*x1 + 2*x2 + x3
+    s.t.
+    2*x1 + x2 - 1 <= 0
+    x1 + 2*x3 - 2 <= 0
+    x1 + x2 + x3 - 1 == 0
+    0 <= x1,x2 <= 1
+    0 < x3 < 2
+"""
 class MyProblem(ea.Problem): # 继承Problem父类
     def __init__(self):
         name = 'MyProblem' # 初始化name（函数名称，可以随意设置）
