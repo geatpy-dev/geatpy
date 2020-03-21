@@ -140,7 +140,7 @@ class MoeaAlgorithm(Algorithm): # 多目标优化算法模板父类
             else:
                 ea.moeaplot(NDSet.ObjV, 'Value Path', saveFlag = True, gridFlag = False)
         # 返回帕累托最优集
-        return population
+        return NDSet
 
 class SoeaAlgorithm(Algorithm): # 单目标优化算法模板父类
     
