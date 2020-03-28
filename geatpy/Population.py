@@ -38,7 +38,7 @@ Population : class - 种群类
     FitnV    : array - 种群个体适应度列向量，每个元素对应一个个体的适应度，最小适应度为0。
     
     CV       : array - CV(Constraint Violation Value)是用来定量描述违反约束条件程度的矩阵，每行对应一个个体，每列对应一个约束。
-                       注意：当没有用到约束条件时，种群也会携带一个只有一列的、元素全为0的CV。
+                       注意：当没有设置约束条件时，CV设置为None。
     
     Phen     : array - 种群表现型矩阵（即种群各染色体解码后所代表的决策变量所组成的矩阵）。
     
@@ -73,7 +73,7 @@ Population : class - 种群类
         self.Lind = Chrom.shape[1] if Chrom is not None else 0
         self.ObjV = ObjV.copy() if ObjV is not None else ObjV
         self.FitnV = FitnV.copy() if FitnV is not None else np.ones((self.sizes, 1))
-        self.CV = CV.copy() if CV is not None else np.zeros((self.sizes, 1))
+        self.CV = CV.copy() if CV is not None else CV
         self.Phen = Phen.copy() if Phen is not None else Phen
     
     def initChrom(self, NIND = None):
@@ -88,25 +88,8 @@ Population : class - 种群类
         self.Lind = self.Chrom.shape[1] # 计算染色体的长度
         self.ObjV = None
         self.FitnV = np.ones((self.sizes, 1))
-        self.CV = np.zeros((self.sizes, 1))
+        self.CV = None
         self.Phen = self.decoding() # 解码
-    
-    def setChrom(self, Chrom = None):
-        """
-        描述: 该函数用于插入种群染色体矩阵。
-        当想要插入一些染色体时，可以调用该函数（例如想要插入一些已知的较优解对应的染色体）。
-        调用该函数之前，种群染色体必须已经被初始化。
-        该函数会简单地把现有的种群染色体全部或部分替换成待插入的染色体，不会择劣替换。
-        """
-        
-        print('Warning: Population.setChrom() will be removed in the next version. (警告：Population.setChrom()函数将会在后面的版本中被移除。若想要在进化前插入先验知识，请使用Algorithm类新增的“先知种群”。)')
-        
-        if Chrom is None: # 如果Chrom是None，表示不需要插入，直接退出
-            return
-        if self.Chrom is None:
-            raise RuntimeError('error in Population.setChrom: Chrom is None. (种群染色体矩阵未初始化。)')
-        NewChrom = np.vstack([Chrom, self.Chrom])
-        self.Chrom = NewChrom[:self.sizes, :]
         
     def decoding(self):
         """
@@ -159,7 +142,7 @@ Population : class - 种群类
                           NewChrom, 
                           self.ObjV[index] if self.ObjV is not None else self.ObjV, 
                           NewFitnV, 
-                          self.CV[index], 
+                          self.CV[index] if self.CV is not None else self.CV, 
                           self.Phen[index])
     
     def shuffle(self):
@@ -177,7 +160,7 @@ Population : class - 种群类
             self.Chrom = self.Chrom[shuff, :]
         self.ObjV = self.ObjV[shuff, :] if self.ObjV is not None else self.ObjV
         self.FitnV = self.FitnV[shuff]
-        self.CV = self.CV[shuff, :]
+        self.CV = self.CV[shuff, :] if self.CV is not None else self.CV
         self.Phen = self.Phen[shuff, :]
     
     def __setitem__(self, index, pop): # 种群个体赋值（种群个体替换）
@@ -199,10 +182,13 @@ Population : class - 种群类
                 raise RuntimeError('error in Population: Sizes disagree. (index的长度和待插入的种群规模必须一致。)')
             if self.Chrom is None:
                 raise RuntimeError('error in Population: Chrom is None. (种群染色体矩阵未初始化。)')
+            if (self.CV is None) ^ (pop.CV is None):
+                raise RuntimeError('error in Population: CV disagree. (两者的违反约束程度矩阵必须要么同时为None要么同时不为None。)')
             self.Chrom[index] = pop.Chrom
         self.ObjV[index] = pop.ObjV
         self.FitnV[index] = pop.FitnV
-        self.CV[index] = pop.CV
+        if self.CV is not None:
+            self.CV[index] = pop.CV
         self.Phen[index] = pop.Phen
         self.sizes = self.Phen.shape[0] # 更新种群规模
     
@@ -225,6 +211,8 @@ Population : class - 种群类
                 raise RuntimeError('error in Population: Field disagree. (两者的译码矩阵必须一致。)')
             if self.Chrom is None or pop.Chrom is None:
                 raise RuntimeError('error in Population: Chrom is None. (种群染色体矩阵未初始化。)')
+            if (self.CV is None) ^ (pop.CV is None):
+                raise RuntimeError('error in Population: CV disagree. (两者的违反约束程度矩阵必须要么同时为None要么同时不为None。)')
             NewChrom = np.vstack([self.Chrom, pop.Chrom])
         NIND = self.sizes + pop.sizes # 得到合并种群的个体数
         return Population(self.Encoding, 
@@ -233,7 +221,7 @@ Population : class - 种群类
                           NewChrom, 
                           np.vstack([self.ObjV, pop.ObjV]), 
                           np.vstack([self.FitnV, pop.FitnV]),
-                          np.vstack([self.CV, pop.CV]),
+                          np.vstack([self.CV, pop.CV]) if self.CV is not None else self.CV,
                           np.vstack([self.Phen, pop.Phen]))
 
     def __len__(self):
@@ -268,7 +256,11 @@ Population : class - 种群类
             np.savetxt('Result/Chrom.csv', self.Chrom, delimiter=',')
         np.savetxt('Result/ObjV.csv', self.ObjV, delimiter=',')
         np.savetxt('Result/FitnV.csv', self.FitnV, delimiter=',')
-        np.savetxt('Result/CV.csv', self.CV, delimiter=',')
+        if self.CV is not None:
+            np.savetxt('Result/CV.csv', self.CV, delimiter=',')
+        else:
+            with open('Result/CV.csv','w') as file:
+                file.write(str(self.CV))
         np.savetxt('Result/Phen.csv', self.Phen, delimiter=',')
         print('种群信息导出完毕。')
     
