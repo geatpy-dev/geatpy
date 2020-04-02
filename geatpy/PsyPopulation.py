@@ -30,7 +30,7 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
     FitnV     : array - 种群个体适应度列向量，每个元素对应一个个体的适应度，最小适应度为0。
     
     CV        : array - CV(Constraint Violation Value)是用来定量描述违反约束条件程度的矩阵，每行对应一个个体，每列对应一个约束。
-                        注意：当没有设置约束条件时，CV设置为None。
+                        注意：当没有用到约束条件时，种群也会携带一个只有一列的、元素全为0的CV。
     
     Phen      : array - 种群表现型矩阵（即染色体解码后所代表的决策变量所组成的矩阵）。
     
@@ -71,7 +71,7 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
                     self.Linds.append(0)
         self.ObjV = ObjV.copy() if ObjV is not None else ObjV
         self.FitnV = FitnV.copy() if FitnV is not None else np.ones((self.sizes, 1))
-        self.CV = CV.copy() if CV is not None else CV
+        self.CV = CV.copy() if CV is not None else np.zeros((self.sizes, 1))
         self.Phen = Phen.copy() if Phen is not None else Phen
     
     def initChrom(self, NIND = None):
@@ -88,8 +88,28 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
             self.Linds.append(self.Chroms[i].shape[1]) # 计算染色体的长度
         self.ObjV = None
         self.FitnV = np.ones((self.sizes, 1))
-        self.CV = None
+        self.CV = np.zeros((self.sizes, 1))
         self.Phen = self.decoding() # 解码
+    
+    def setChrom(self, Chroms = None):
+        """
+        描述: 该函数用于插入种群染色体。
+        当想要插入一些染色体时，可以调用该函数（例如想要插入一些已知的较优解对应的染色体）。
+        调用该函数之前，种群染色体必须已经被初始化。
+        该函数会简单地把现有的种群染色体全部或部分替换成待插入的染色体，不会择劣替换。
+        """
+        
+        print('Warning: PsyPopulation.setChrom() will be removed in the next version. (警告：PsyPopulation.setChrom()函数将会在后面的版本中被移除。若想要在进化前插入先验知识，请使用Algorithm类新增的“先知种群”。)')
+        
+        if Chroms is None: # 如果Chroms是None，表示不需要插入，直接退出
+            return
+        if self.Chroms is None:
+            raise RuntimeError('error in Population.setChrom: Chroms is None. (种群染色体矩阵列表未初始化。)')
+        for i in range(self.ChromNum):
+            if self.Chroms[i] is None:
+                raise RuntimeError('error in PsyPopulation: Chrom[i] is None. (种群染色体矩阵未初始化。)')
+            NewChrom = np.vstack([Chroms[i], self.Chroms[i]])
+            self.Chroms[i] = NewChrom[:self.sizes, :]
     
     def decoding(self):
         """
@@ -146,7 +166,7 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
                              NewChroms, 
                              self.ObjV[index] if self.ObjV is not None else self.ObjV, 
                              self.FitnV[index], 
-                             self.CV[index] if self.CV is not None else self.CV, 
+                             self.CV[index], 
                              self.Phen[index])
     
     def shuffle(self):
@@ -162,7 +182,7 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
             self.Chroms[i] = self.Chroms[i][shuff, :]
         self.ObjV = self.ObjV[shuff, :] if self.ObjV is not None else self.ObjV
         self.FitnV = self.FitnV[shuff]
-        self.CV = self.CV[shuff, :] if self.CV is not None else self.CV
+        self.CV = self.CV[shuff, :]
         self.Phen = self.Phen[shuff, :]
     
     def __setitem__(self, index, pop): # 种群个体赋值（种群个体替换）
@@ -184,15 +204,12 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
                 raise RuntimeError('error in PsyPopulation: Field disagree. (两者的译码矩阵必须一致。)')
             if self.Chroms[i] is None:
                 raise RuntimeError('error in PsyPopulation: Chrom[i] is None. (种群染色体矩阵未初始化。)')
-            if (self.CV is None) ^ (pop.CV is None):
-                raise RuntimeError('error in PsyPopulation: CV disagree. (两者的违反约束程度矩阵必须要么同时为None要么同时不为None。)')
             self.Chroms[i][index] = pop.Chroms[i]
+        self.sizes = self.Chroms[0].shape[0] # 更新种群规模
         self.ObjV[index] = pop.ObjV
         self.FitnV[index] = pop.FitnV
-        if self.CV is not None:
-            self.CV[index] = pop.CV
+        self.CV[index] = pop.CV
         self.Phen[index] = pop.Phen
-        self.sizes = self.Phen.shape[0] # 更新种群规模
     
     def __add__(self, pop):
         """
@@ -213,8 +230,6 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
                 raise RuntimeError('error in PsyPopulation: Field disagree. (两者的译码矩阵必须一致。)')
             if self.Chroms[i] is None or pop.Chroms[i] is None:
                 raise RuntimeError('error in PsyPopulation: Chrom is None. (种群染色体矩阵未初始化。)')
-            if (self.CV is None) ^ (pop.CV is None):
-                raise RuntimeError('error in PsyPopulation: CV disagree. (两者的违反约束程度矩阵必须要么同时为None要么同时不为None。)')
             NewChroms[i] = np.vstack([NewChroms[i], pop.Chroms[i]])
         return PsyPopulation(self.Encodings, 
                              self.Fields, 
@@ -222,7 +237,7 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
                              NewChroms, 
                              np.vstack([self.ObjV, pop.ObjV]), 
                              np.vstack([self.FitnV, pop.FitnV]),
-                             np.vstack([self.CV, pop.CV]) if self.CV is not None else self.CV, 
+                             np.vstack([self.CV, pop.CV]), 
                              np.vstack([self.Phen, pop.Phen]))
     
     def __len__(self):
@@ -257,10 +272,6 @@ PsyPopulation : class - 多染色体种群类(Popysomy Population)
             np.savetxt('Result/Chroms' + str(i) + '.csv', self.Chroms[i], delimiter=',')
         np.savetxt('Result/ObjV.csv', self.ObjV, delimiter=',')
         np.savetxt('Result/FitnV.csv', self.FitnV, delimiter=',')
-        if self.CV is not None:
-            np.savetxt('Result/CV.csv', self.CV, delimiter=',')
-        else:
-            with open('Result/CV.csv','w') as file:
-                file.write(str(self.CV))
+        np.savetxt('Result/CV.csv', self.CV, delimiter=',')
         np.savetxt('Result/Phen.csv', self.Phen, delimiter=',')
         print('种群信息导出完毕。')
