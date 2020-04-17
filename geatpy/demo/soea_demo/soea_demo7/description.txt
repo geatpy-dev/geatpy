@@ -1,0 +1,12 @@
+该案例展示了如何利用SCOOP库进行分布式加速计算Geatpy进化算法程序，
+本案例和soea_demo6类似，同样是用进化算法来优化SVM的参数C和Gamma，
+不同的是，本案例选用更庞大的数据集，使得每次训练SVM模型时耗时更高，从而更适合采用分布式加速计算。
+该数据集存放在同目录下的Data_User_Modeling_Dataset_Hamdi Tolga KAHRAMAN.xls中，
+有关该数据集的详细描述详见http://archive.ics.uci.edu/ml/datasets/User+Knowledge+Modeling。
+在执行本案例前，需要确保正确安装sklearn以及SCOOP，以保证SVM和SCOOP部分的代码能够正常执行。
+SCOOP安装方法：控制台执行命令pip install scoop
+分布式加速计算注意事项：
+1.当aimFunc()函数十分耗时，比如无法矩阵化计算、或者是计算单个个体的目标函数值就需要很长时间时，
+  适合采用分布式计算，否则贸然采用分布式计算反而会大大降低性能。
+2.分布式执行方法：python -m scoop -n 10 main.py 其中10表示把计算任务分发给10个workers。
+  非分布式执行方法：python main.py
