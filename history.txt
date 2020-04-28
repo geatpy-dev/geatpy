@@ -1,0 +1,43 @@
+Version History
+
+2020.4.18 : v2.5.0 - A revolutionary update.
+    ||
+2020.2.09 : v2.4.0 - A more feature-rich version.
+    ||
+2020.1.14 : v2.3.0 - A more improved version.
+    ||
+2019.10.01 : v2.2.3 -  A cumulative performance update.
+    ||
+2019.8.29 : v2.2.2 -  Added T_ENS and oop recombination & mutation operators.
+    ||
+2019.8.20 : v2.2.1 -  Sped up the core and add new templates.
+    ||
+2019.8.10 : v2.2.0 -  Support evoluating with hybrid encodings.
+    ||
+2019.8.08 : v2.1.1 -  Sped up the core and fixed some BUGs
+    ||
+2019.7.28 : v2.1.0 -  An update of Geatpy2, which is simpler and multifunction.
+    ||
+2019.6.25 : v2.0.0 -  A new design of Geatpy, which is simpler, faster and stronger.
+    ||
+2018.11.15 : v1.1.5 -  Updated the kernel and performed better.
+    ||
+2018.11.03 : v1.1.4 -  Fixed BUGs and added new tutorials.
+    ||
+2018.10.25 : v1.1.3 -  Updated algorithm templets.
+    ||
+2018.10.21 : v1.1.2 -  Fixed BUGs and rebuilded mut* functions.
+    ||
+2018.10.18 : v1.1.0 -  A revolutionary Update! Added new design of a new data structure : 'LegV' and refactored the kernel.
+    ||
+2018.10.03 : v1.0.7 - Essential Updates! Porforming better in solving constrained optimization problems.
+    ||
+2018.9.21 : v1.0.6 - Dealed with copyright issues.
+    ||
+2018.8.26 : v1.0.4 - Updated algorithm templets.
+    ||
+2018.8.23 : v1.0.3 - Updated some algorithms of multi-objective optimization.
+    ||
+2018.8.23 : v1.0.2 - Debugged some BUGs.
+    ||
+2018.8.21 : v1.0.1 - Original version.
