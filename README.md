@@ -7,6 +7,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 ![Pypi](https://img.shields.io/badge/pypi-2.5.1-blue.svg)
 [![Download](https://img.shields.io/pypi/dm/geatpy.svg)](https://pypi.python.org/pypi/geatpy)
 [![License](https://img.shields.io/pypi/l/geatpy.svg)](https://github.com/geatpy-dev/geatpy/blob/master/LICENSE)
+[![Gitter](https://badges.gitter.im/geatpy2/community.svg)](https://gitter.im/geatpy2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com
