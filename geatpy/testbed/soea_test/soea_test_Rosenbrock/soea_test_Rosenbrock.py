@@ -17,7 +17,7 @@ if __name__ == '__main__':
     """================================算法参数设置============================"""
     myAlgorithm = ea.soea_DE_targetToBest_1_bin_templet(problem, population) # 实例化一个算法模板对象
     myAlgorithm.MAXGEN = 2000 # 最大进化代数
-    myAlgorithm.mutOper.F = 0.5 # 差分进化中的参数F
+    myAlgorithm.mutOper.F = 0.7 # 差分进化中的参数F
     myAlgorithm.recOper.XOVR = 0.9 # 重组概率
     myAlgorithm.drawing = 1 # 设置绘图方式（0：不绘图；1：绘制结果图；2：绘制目标空间过程动画；3：绘制决策空间过程动画）
     """===========================调用算法模板进行种群进化======================"""
