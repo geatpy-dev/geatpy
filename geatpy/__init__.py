@@ -55,6 +55,7 @@ from otos import otos
 from pbi import pbi
 from powing import powing
 from ranking import ranking
+from rcs import rcs
 from recdis import recdis
 from recint import recint
 from reclin import reclin
