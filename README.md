@@ -147,7 +147,7 @@ if __name__ == '__main__':
     GD = ea.indicator.GD(NDSet.ObjV, PF) # Calculate GD
     IGD = ea.indicator.IGD(NDSet.ObjV, PF) # Calculate IGD
     HV = ea.indicator.HV(NDSet.ObjV, PF) # Calculate HV
-    Space = ea.indicator.spacing(NDSet.ObjV) # Calculate Space
+    Space = ea.indicator.Spacing(NDSet.ObjV) # Calculate Space
     print('The number of non-dominated result: %s'%(NDSet.sizes))
     print('GD: ',GD)
     print('IGD: ',IGD)
