@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import numpy as np
-import geatpy as ea # 导入geatpy库
+import geatpy as ea  # 导入geatpy库
 from sys import path as paths
 from os import path
+
 paths.append(path.split(path.split(path.realpath(__file__))[0])[0])
 
+
 class soea_psy_studGA_templet(ea.SoeaAlgorithm):
-    
     """
 soea_psy_studGA_templet.py - Polysomy Stud GA templet(多染色体种马遗传算法模板)
 
@@ -34,60 +35,59 @@ soea_psy_studGA_templet.py - Polysomy Stud GA templet(多染色体种马遗传�
     Conference on Parallel Problem Solving from Nature. Springer, Berlin, Heidelberg, 1998.
     
 """
-    
+
     def __init__(self, problem, population):
-        ea.SoeaAlgorithm.__init__(self, problem, population) # 先调用父类构造方法
+        ea.SoeaAlgorithm.__init__(self, problem, population)  # 先调用父类构造方法
         if population.ChromNum == 1:
             raise RuntimeError('传入的种群对象必须是多染色体的种群类型。')
         self.name = 'psy-studGA'
         self.problem = problem
         self.population = population
-        self.selFunc = 'tour' # 锦标赛选择算子
+        self.selFunc = 'tour'  # 锦标赛选择算子
         # 由于有多个染色体，因此需要用多个重组和变异算子
         self.recOpers = []
         self.mutOpers = []
         for i in range(population.ChromNum):
             if population.Encodings[i] == 'P':
-                recOper = ea.Xovpmx(XOVR = 0.7) # 生成部分匹配交叉算子对象
-                mutOper = ea.Mutinv(Pm = 0.5) # 生成逆转变异算子对象
+                recOper = ea.Xovpmx(XOVR=0.7)  # 生成部分匹配交叉算子对象
+                mutOper = ea.Mutinv(Pm=0.5)  # 生成逆转变异算子对象
             else:
-                recOper = ea.Xovdp(XOVR = 0.7) # 生成两点交叉算子对象
+                recOper = ea.Xovdp(XOVR=0.7)  # 生成两点交叉算子对象
                 if population.Encodings[i] == 'BG':
-                    mutOper = ea.Mutbin(Pm = None) # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
+                    mutOper = ea.Mutbin(Pm=None)  # 生成二进制变异算子对象，Pm设置为None时，具体数值取变异算子中Pm的默认值
                 elif population.Encodings[i] == 'RI':
-                    mutOper = ea.Mutbga(Pm = 1/self.problem.Dim, MutShrink = 0.5, Gradient = 20) # 生成breeder GA变异算子对象
+                    mutOper = ea.Mutbga(Pm=1 / self.problem.Dim, MutShrink=0.5, Gradient=20)  # 生成breeder GA变异算子对象
                 else:
                     raise RuntimeError('编码方式必须为''BG''、''RI''或''P''.')
             self.recOpers.append(recOper)
             self.mutOpers.append(mutOper)
-        
-    def run(self, prophetPop = None): # prophetPop为先知种群（即包含先验知识的种群）
-        #==========================初始化配置===========================
+
+    def run(self, prophetPop=None):  # prophetPop为先知种群（即包含先验知识的种群）
+        # ==========================初始化配置===========================
         population = self.population
         NIND = population.sizes
-        self.initialization() # 初始化算法模板的一些动态参数
-        #===========================准备进化============================
-        population.initChrom(NIND) # 初始化种群染色体矩阵
-        self.call_aimFunc(population) # 计算种群的目标函数值
+        self.initialization()  # 初始化算法模板的一些动态参数
+        # ===========================准备进化============================
+        population.initChrom(NIND)  # 初始化种群染色体矩阵
+        self.call_aimFunc(population)  # 计算种群的目标函数值
         # 插入先验知识（注意：这里不会对先知种群prophetPop的合法性进行检查，故应确保prophetPop是一个种群类且拥有合法的Chrom、ObjV、Phen等属性）
         if prophetPop is not None:
-            population = (prophetPop + population)[:NIND] # 插入先知种群
-        population.FitnV = ea.scaling(population.ObjV, population.CV, self.problem.maxormins) # 计算适应度
-        #===========================开始进化============================
+            population = (prophetPop + population)[:NIND]  # 插入先知种群
+        population.FitnV = ea.scaling(population.ObjV, population.CV, self.problem.maxormins)  # 计算适应度
+        # ===========================开始进化============================
         while self.terminated(population) == False:
-            bestIdx = np.argmax(population.FitnV, axis = 0) # 得到当代的最优个体的索引, 设置axis=0可使得返回一个向量
-            studPop = population[np.tile(bestIdx, (NIND//2))] # 复制最优个体NIND//2份，组成一个“种马种群”
-            restPop = population[np.where(np.arange(NIND) != bestIdx)[0]] # 得到除去精英个体外其它个体组成的种群
+            bestIdx = np.argmax(population.FitnV, axis=0)  # 得到当代的最优个体的索引, 设置axis=0可使得返回一个向量
+            studPop = population[np.tile(bestIdx, (NIND // 2))]  # 复制最优个体NIND//2份，组成一个“种马种群”
+            restPop = population[np.where(np.arange(NIND) != bestIdx)[0]]  # 得到除去精英个体外其它个体组成的种群
             # 选择个体，以便后面与种马种群进行交配
             tempPop = restPop[ea.selecting(self.selFunc, restPop.FitnV, (NIND - studPop.sizes))]
             # 将种马种群与选择出来的个体进行合并
             population = studPop + tempPop
             # 进行进化操作，分别对各种编码的染色体进行重组和变异
             for i in range(population.ChromNum):
-                population.Chroms[i] = self.recOpers[i].do(population.Chroms[i]) # 重组
-                population.Chroms[i] = self.mutOpers[i].do(population.Encodings[i], population.Chroms[i], population.Fields[i]) # 变异
+                population.Chroms[i] = self.recOpers[i].do(population.Chroms[i])  # 重组
+                population.Chroms[i] = self.mutOpers[i].do(population.Encodings[i], population.Chroms[i],
+                                                           population.Fields[i])  # 变异
             self.call_aimFunc(population)
-            population.FitnV = ea.scaling(population.ObjV, population.CV, self.problem.maxormins) # 计算适应度
-        
-        return self.finishing(population) # 调用finishing完成后续工作并返回结果
-    
+            population.FitnV = ea.scaling(population.ObjV, population.CV, self.problem.maxormins)  # 计算适应度
+        return self.finishing(population)  # 调用finishing完成后续工作并返回结果

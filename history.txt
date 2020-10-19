@@ -1,5 +1,7 @@
 Version History
 
+2020.10.18 : v2.6.0 - An enhanced version.
+    ||
 2020.5.30 : v2.5.1 - A cumulative update.
     ||
 2020.4.18 : v2.5.0 - A revolutionary update.

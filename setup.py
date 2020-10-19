@@ -20,7 +20,7 @@ from setuptools import setup
 LONG_DESCRIPTION = "Geatpy--The Genetic and Evolutionary Algorithms Toolbox for Python. http://www.geatpy.com"
 
 kwargs = dict(name = "geatpy",
-    version = "2.5.1",
+    version = "2.6.0",
     description = "Geatpy is a high-performance Genetic and Evolutionary Algorithms toolbox for Python.",
     author = "Geatpy Team",
     author_email = "geatpy@163.com",
