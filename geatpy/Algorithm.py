@@ -771,7 +771,7 @@ class SoeaAlgorithm(Algorithm):  # 单目标优化算法类父类
         self.passTime += time.time() - self.timeSlot  # 更新耗时
         # 调用outFunc()
         if self.outFunc is not None:
-            if type(self.outFunc) != 'function':
+            if not callable(self.outFunc):
                 raise RuntimeError('outFunc must be a function. (如果定义了outFunc，那么它必须是一个函数。)')
             self.outFunc(self, pop)
         self.timeSlot = time.time()  # 更新时间戳
