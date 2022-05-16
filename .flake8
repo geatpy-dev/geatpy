@@ -1,0 +1,5 @@
+[flake8]
+extend-ignore = D1, D204, W292, W293
+docstring-convention = numpy
+max-complexity = 10
+max-line-length = 119

@@ -738,7 +738,10 @@ class SoeaAlgorithm(Algorithm):  # 单目标优化算法类父类
                 delta = (self.BestIndi.ObjV - bestIndi.ObjV) * self.problem.maxormins if \
                     self.problem.maxormins is not None else self.BestIndi.ObjV - bestIndi.ObjV
                 # 更新“进化停滞”计数器
-                self.trappedCount += 1 if np.abs(delta) < self.trappedValue else 0
+                if np.abs(delta) < self.trappedValue:
+                    self.trappedCount += 1
+                else:
+                    self.trappedCount = 0
                 # 更新global best individual
                 if delta > 0:
                     self.BestIndi = bestIndi
