@@ -1,0 +1,15 @@
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "2.7.0"
+tag_format = "v$version"
+version_files = ["pyproject.toml:version","setup.py:version","geatpy/__init__.py:version"]
+
+[tool.yapf]
+based_on_style = "pep8"
+split_before_arithmetic_operator = true
+split_before_named_assigns = false
+indent_dictionary_value = true
+split_all_top_level_comma_separated_values = true
+
+[tool.isort]
+profile = "google"
