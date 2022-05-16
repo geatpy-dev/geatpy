@@ -11,12 +11,11 @@ install:
 script:
 
     pip install geatpy
-    
-    python test/installation_test.py
-    
-    pip uninstall geatpy -y
-    
-    python setup.py install
-    
-    python test/installation_test.py
 
+    python -m geatpy --version
+
+    pip uninstall geatpy -y
+
+    python setup.py install
+
+    python -m geatpy --version
