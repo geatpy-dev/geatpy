@@ -20,6 +20,12 @@ def test_Problem_single():
     assert np.array_equal(obj, [[6], [15]])
     assert np.array_equal(cv, [[1, 2, 3], [4, 5, 6]])
 
+def test_Problem_single_with_single_indiv():
+    indivs = [1, 2, 3]
+    assert np.array_equal(eval_function(indivs), [[6]])
+    obj, cv = eval_function_with_cv(indivs)
+    assert np.array_equal(obj, [[6]])
+    assert np.array_equal(cv, [[1, 2, 3]])
 
 @pytest.fixture
 def population_only_with_Phen():
