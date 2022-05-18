@@ -33,7 +33,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
       - name: Build
-        run: pip setup.py install
+        run: python setup.py install
       - name: Test with pytest
         run: |
           python -m geatpy --version
