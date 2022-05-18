@@ -1,4 +1,4 @@
-# **Geatpy2** 
+# **Geatpy2**
 The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 
 ![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
@@ -11,7 +11,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 
 ## Introduction
 * **Website (including documentation)**: http://www.geatpy.com
-* **Demo** : https://github.com/geatpy-dev/geatpy/tree/master/geatpy/demo
+* **Demo** : https://github.com/geatpy-dev/geatpy/tree/master/demo
 * **Pypi page** : https://pypi.org/project/geatpy/
 * **Contact us**: http://geatpy.com/index.php/about/
 * **Bug reports**: https://github.com/geatpy-dev/geatpy/issues
@@ -145,7 +145,7 @@ if __name__ == '__main__':
 
 Run the "main.py" and the part of the result is:
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/moea_test/result/Pareto%20Front%20Plot.svg)
+![image](https://github.com/geatpy-dev/geatpy/blob/master/testbed/moea_test/result/Pareto%20Front%20Plot.svg)
 
 Execution time: 0.3650233745574951 s
 
@@ -213,7 +213,7 @@ if __name__ == '__main__':
 
 Part of the result is:
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/geatpy/testbed/soea_test/result/Trace%20Plot.svg)
+![image](https://github.com/geatpy-dev/geatpy/blob/master/testbed/soea_test/result/Trace%20Plot.svg)
 
 Execution time: 0.256328821182251 s
 
