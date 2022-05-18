@@ -1,7 +1,7 @@
 # **Geatpy2**
 The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 
-![Travis](https://travis-ci.org/geatpy-dev/geatpy.svg?branch=master)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/geatpy-dev/geatpy/build-and-test)](https://github.com/geatpy-dev/geatpy/actions)
 [![Package Status](https://img.shields.io/pypi/status/geatpy.svg)](https://pypi.org/project/geatpy/)
 ![Python](https://img.shields.io/badge/python->=3.5-green.svg)
 ![Pypi](https://img.shields.io/badge/pypi-2.7.0-blue.svg)
