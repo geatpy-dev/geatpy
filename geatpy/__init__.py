@@ -6,9 +6,13 @@ __author__ = "Geatpy Team"
 __version__ = "2.7.0"
 
 # import classes and mathods
-from geatpy.Algorithm import Algorithm
-from geatpy.Algorithm import MoeaAlgorithm
-from geatpy.Algorithm import SoeaAlgorithm
+from geatpy.Algorithm import Algorithm  # isort:skip
+from geatpy.Algorithm import MoeaAlgorithm  # isort:skip
+from geatpy.Algorithm import SoeaAlgorithm  # isort:skip
+from geatpy.optimize import optimize  # isort:skip
+from geatpy.Population import Population  # isort:skip
+from geatpy.Problem import Problem  # isort:skip
+from geatpy.PsyPopulation import PsyPopulation  # isort:skip
 # import moea algorithms
 from geatpy.algorithms.moeas.awGA.moea_awGA_templet import moea_awGA_templet
 from geatpy.algorithms.moeas.awGA.moea_psy_awGA_templet import \
@@ -202,11 +206,6 @@ from geatpy.operators.recombination.Xovsec import Xovsec
 from geatpy.operators.recombination.Xovsh import Xovsh
 from geatpy.operators.recombination.Xovsp import Xovsp
 from geatpy.operators.recombination.Xovud import Xovud
-# import classes and mathods
-from geatpy.optimize import optimize
-from geatpy.Population import Population
-from geatpy.Problem import Problem
-from geatpy.PsyPopulation import PsyPopulation
 # import visualization
 from geatpy.visualization.ParCoordPlotter import ParCoordPlotter
 from geatpy.visualization.PointScatter import PointScatter
