@@ -1,13 +1,81 @@
 # -*- coding: utf-8 -*-
-"""
-import all libs of geatpy
-
-"""
+# flake8: noqa
+"""import all libs of geatpy."""
 
 __author__ = "Geatpy Team"
 __version__ = "2.7.0"
 
+# import classes and mathods
+from geatpy.Algorithm import Algorithm
+from geatpy.Algorithm import MoeaAlgorithm
+from geatpy.Algorithm import SoeaAlgorithm
+# import moea algorithms
+from geatpy.algorithms.moeas.awGA.moea_awGA_templet import moea_awGA_templet
+from geatpy.algorithms.moeas.awGA.moea_psy_awGA_templet import \
+    moea_psy_awGA_templet
+from geatpy.algorithms.moeas.moead.moea_MOEAD_archive_templet import \
+    moea_MOEAD_archive_templet
+from geatpy.algorithms.moeas.moead.moea_MOEAD_DE_templet import \
+    moea_MOEAD_DE_templet
+from geatpy.algorithms.moeas.moead.moea_MOEAD_templet import moea_MOEAD_templet
+from geatpy.algorithms.moeas.nsga2.moea_NSGA2_archive_templet import \
+    moea_NSGA2_archive_templet
+from geatpy.algorithms.moeas.nsga2.moea_NSGA2_DE_templet import \
+    moea_NSGA2_DE_templet
+from geatpy.algorithms.moeas.nsga2.moea_NSGA2_templet import moea_NSGA2_templet
+from geatpy.algorithms.moeas.nsga2.moea_psy_NSGA2_archive_templet import \
+    moea_psy_NSGA2_archive_templet
+from geatpy.algorithms.moeas.nsga2.moea_psy_NSGA2_templet import \
+    moea_psy_NSGA2_templet
+from geatpy.algorithms.moeas.nsga3.moea_NSGA3_DE_templet import \
+    moea_NSGA3_DE_templet
+from geatpy.algorithms.moeas.nsga3.moea_NSGA3_templet import moea_NSGA3_templet
+from geatpy.algorithms.moeas.nsga3.moea_psy_NSGA3_templet import \
+    moea_psy_NSGA3_templet
+from geatpy.algorithms.moeas.pps.moea_PPS_MOEAD_DE_archive_templet import \
+    moea_PPS_MOEAD_DE_archive_templet
+from geatpy.algorithms.moeas.rvea.moea_psy_RVEA_RES_templet import \
+    moea_psy_RVEA_RES_templet
+from geatpy.algorithms.moeas.rvea.moea_psy_RVEA_templet import \
+    moea_psy_RVEA_templet
+from geatpy.algorithms.moeas.rvea.moea_RVEA_RES_templet import \
+    moea_RVEA_RES_templet
+from geatpy.algorithms.moeas.rvea.moea_RVEA_templet import moea_RVEA_templet
+# import soea algorithms
+from geatpy.algorithms.soeas.DE.soea_DE_best_1_bin_templet import \
+    soea_DE_best_1_bin_templet
+from geatpy.algorithms.soeas.DE.soea_DE_best_1_L_templet import \
+    soea_DE_best_1_L_templet
+from geatpy.algorithms.soeas.DE.soea_DE_currentToBest_1_bin_templet import \
+    soea_DE_currentToBest_1_bin_templet
+from geatpy.algorithms.soeas.DE.soea_DE_currentToBest_1_L_templet import \
+    soea_DE_currentToBest_1_L_templet
+from geatpy.algorithms.soeas.DE.soea_DE_currentToRand_1_templet import \
+    soea_DE_currentToRand_1_templet
+from geatpy.algorithms.soeas.DE.soea_DE_rand_1_bin_templet import \
+    soea_DE_rand_1_bin_templet
+from geatpy.algorithms.soeas.DE.soea_DE_rand_1_L_templet import \
+    soea_DE_rand_1_L_templet
+from geatpy.algorithms.soeas.DE.soea_DE_targetToBest_1_bin_templet import \
+    soea_DE_targetToBest_1_bin_templet
+from geatpy.algorithms.soeas.DE.soea_DE_targetToBest_1_L_templet import \
+    soea_DE_targetToBest_1_L_templet
+from geatpy.algorithms.soeas.ES.soea_ES_1_plus_1_templet import \
+    soea_ES_1_plus_1_templet
+from geatpy.algorithms.soeas.ES.soea_ES_miu_plus_lambda_templet import \
+    soea_ES_miu_plus_lambda_templet
+from geatpy.algorithms.soeas.GA.soea_psy_EGA_templet import \
+    soea_psy_EGA_templet
+from geatpy.algorithms.soeas.GA.soea_psy_GGAP_SGA_templet import \
+    soea_psy_GGAP_SGA_templet
+from geatpy.algorithms.soeas.GA.soea_psy_steadyGA_templet import \
+    soea_psy_steadyGA_templet
+from geatpy.algorithms.soeas.GA.soea_SEGA_templet import soea_SEGA_templet
+from geatpy.algorithms.soeas.GA.soea_studGA_templet import soea_studGA_templet
+# import benchmarks
+import geatpy.benchmarks
 # import the core
+from geatpy.core import indicator
 from geatpy.core.awGA import awGA
 from geatpy.core.boundfix import boundfix
 from geatpy.core.bs2int import bs2int
@@ -83,24 +151,6 @@ from geatpy.core.xovsec import xovsec
 from geatpy.core.xovsh import xovsh
 from geatpy.core.xovsp import xovsp
 from geatpy.core.xovud import xovud
-
-# import classes and mathods
-from geatpy.Algorithm import Algorithm
-from geatpy.Algorithm import MoeaAlgorithm
-from geatpy.Algorithm import SoeaAlgorithm
-from geatpy.optimize import optimize
-from geatpy.Population import Population
-from geatpy.Problem import Problem
-from geatpy.PsyPopulation import PsyPopulation
-from geatpy.core import indicator
-
-# import visualization
-from geatpy.visualization.PointScatter import PointScatter
-from geatpy.visualization.ParCoordPlotter import ParCoordPlotter
-
-# import benchmarks
-import geatpy.benchmarks
-
 # import operators
 from geatpy.operators.migration.Migrate import Migrate
 from geatpy.operators.mutation.Mutation import Mutation
@@ -129,52 +179,11 @@ from geatpy.operators.recombination.Xovsec import Xovsec
 from geatpy.operators.recombination.Xovsh import Xovsh
 from geatpy.operators.recombination.Xovsp import Xovsp
 from geatpy.operators.recombination.Xovud import Xovud
-# import moea algorithms
-from geatpy.algorithms.moeas.awGA.moea_awGA_templet import moea_awGA_templet
-from geatpy.algorithms.moeas.awGA.moea_psy_awGA_templet import moea_psy_awGA_templet
-from geatpy.algorithms.moeas.moead.moea_MOEAD_DE_templet import moea_MOEAD_DE_templet
-from geatpy.algorithms.moeas.moead.moea_MOEAD_archive_templet import moea_MOEAD_archive_templet
-from geatpy.algorithms.moeas.moead.moea_MOEAD_templet import moea_MOEAD_templet
-from geatpy.algorithms.moeas.nsga2.moea_NSGA2_DE_templet import moea_NSGA2_DE_templet
-from geatpy.algorithms.moeas.nsga2.moea_NSGA2_archive_templet import moea_NSGA2_archive_templet
-from geatpy.algorithms.moeas.nsga2.moea_NSGA2_templet import moea_NSGA2_templet
-from geatpy.algorithms.moeas.nsga2.moea_psy_NSGA2_archive_templet import moea_psy_NSGA2_archive_templet
-from geatpy.algorithms.moeas.nsga2.moea_psy_NSGA2_templet import moea_psy_NSGA2_templet
-from geatpy.algorithms.moeas.nsga3.moea_NSGA3_DE_templet import moea_NSGA3_DE_templet
-from geatpy.algorithms.moeas.nsga3.moea_NSGA3_templet import moea_NSGA3_templet
-from geatpy.algorithms.moeas.nsga3.moea_psy_NSGA3_templet import moea_psy_NSGA3_templet
-from geatpy.algorithms.moeas.pps.moea_PPS_MOEAD_DE_archive_templet import moea_PPS_MOEAD_DE_archive_templet
-from geatpy.algorithms.moeas.rvea.moea_RVEA_RES_templet import moea_RVEA_RES_templet
-from geatpy.algorithms.moeas.rvea.moea_RVEA_templet import moea_RVEA_templet
-from geatpy.algorithms.moeas.rvea.moea_psy_RVEA_RES_templet import moea_psy_RVEA_RES_templet
-from geatpy.algorithms.moeas.rvea.moea_psy_RVEA_templet import moea_psy_RVEA_templet
-from geatpy.algorithms.soeas.DE.DE_best_1_L.soea_DE_best_1_L_templet import soea_DE_best_1_L_templet
-# import soea algorithms
-from geatpy.algorithms.soeas.DE.DE_best_1_bin.soea_DE_best_1_bin_templet import soea_DE_best_1_bin_templet
-from geatpy.algorithms.soeas.DE.DE_currentToBest_1_L.soea_DE_currentToBest_1_L_templet import \
-    soea_DE_currentToBest_1_L_templet
-from geatpy.algorithms.soeas.DE.DE_currentToBest_1_bin.soea_DE_currentToBest_1_bin_templet import \
-    soea_DE_currentToBest_1_bin_templet
-from geatpy.algorithms.soeas.DE.DE_currentToRand_1.soea_DE_currentToRand_1_templet import soea_DE_currentToRand_1_templet
-from geatpy.algorithms.soeas.DE.DE_rand_1_L.soea_DE_rand_1_L_templet import soea_DE_rand_1_L_templet
-from geatpy.algorithms.soeas.DE.DE_rand_1_bin.soea_DE_rand_1_bin_templet import soea_DE_rand_1_bin_templet
-from geatpy.algorithms.soeas.DE.DE_targetToBest_1_L.soea_DE_targetToBest_1_L_templet import \
-    soea_DE_targetToBest_1_L_templet
-from geatpy.algorithms.soeas.DE.DE_targetToBest_1_bin.soea_DE_targetToBest_1_bin_templet import \
-    soea_DE_targetToBest_1_bin_templet
-from geatpy.algorithms.soeas.ES.ES_1_plus_1.soea_ES_1_plus_1_templet import soea_ES_1_plus_1_templet
-from geatpy.algorithms.soeas.ES.ES_miu_plus_lambda.soea_ES_miu_plus_lambda_templet import \
-    soea_ES_miu_plus_lambda_templet
-from geatpy.algorithms.soeas.GA.EGA.soea_EGA_templet import soea_EGA_templet
-from geatpy.algorithms.soeas.GA.EGA.soea_psy_EGA_templet import soea_psy_EGA_templet
-from geatpy.algorithms.soeas.GA.SEGA.soea_SEGA_templet import soea_SEGA_templet
-from geatpy.algorithms.soeas.GA.SEGA.soea_multi_SEGA_templet import soea_multi_SEGA_templet
-from geatpy.algorithms.soeas.GA.SEGA.soea_psy_SEGA_templet import soea_psy_SEGA_templet
-from geatpy.algorithms.soeas.GA.SGA.soea_GGAP_SGA_templet import soea_GGAP_SGA_templet
-from geatpy.algorithms.soeas.GA.SGA.soea_SGA_templet import soea_SGA_templet
-from geatpy.algorithms.soeas.GA.SGA.soea_psy_GGAP_SGA_templet import soea_psy_GGAP_SGA_templet
-from geatpy.algorithms.soeas.GA.SGA.soea_psy_SGA_templet import soea_psy_SGA_templet
-from geatpy.algorithms.soeas.GA.steadyGA.soea_psy_steadyGA_templet import soea_psy_steadyGA_templet
-from geatpy.algorithms.soeas.GA.steadyGA.soea_steadyGA_templet import soea_steadyGA_templet
-from geatpy.algorithms.soeas.GA.studGA.soea_psy_studGA_templet import soea_psy_studGA_templet
-from geatpy.algorithms.soeas.GA.studGA.soea_studGA_templet import soea_studGA_templet
+# import classes and mathods
+from geatpy.optimize import optimize
+from geatpy.Population import Population
+from geatpy.Problem import Problem
+from geatpy.PsyPopulation import PsyPopulation
+# import visualization
+from geatpy.visualization.ParCoordPlotter import ParCoordPlotter
+from geatpy.visualization.PointScatter import PointScatter
