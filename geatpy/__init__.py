@@ -68,39 +68,30 @@ from geatpy.algorithms.soeas.ES.soea_ES_1_plus_1_templet import \
     soea_ES_1_plus_1_templet
 from geatpy.algorithms.soeas.ES.soea_ES_miu_plus_lambda_templet import \
     soea_ES_miu_plus_lambda_templet
+from geatpy.algorithms.soeas.GA.soea_EGA_templet import soea_EGA_templet
+from geatpy.algorithms.soeas.GA.soea_GGAP_SGA_templet import \
+    soea_GGAP_SGA_templet
+from geatpy.algorithms.soeas.GA.soea_multi_SEGA_templet import \
+    soea_multi_SEGA_templet
 from geatpy.algorithms.soeas.GA.soea_psy_EGA_templet import \
     soea_psy_EGA_templet
 from geatpy.algorithms.soeas.GA.soea_psy_GGAP_SGA_templet import \
     soea_psy_GGAP_SGA_templet
+from geatpy.algorithms.soeas.GA.soea_psy_SEGA_templet import \
+    soea_psy_SEGA_templet
+from geatpy.algorithms.soeas.GA.soea_psy_SGA_templet import \
+    soea_psy_SGA_templet
 from geatpy.algorithms.soeas.GA.soea_psy_steadyGA_templet import \
     soea_psy_steadyGA_templet
+from geatpy.algorithms.soeas.GA.soea_psy_studGA_templet import \
+    soea_psy_studGA_templet
 from geatpy.algorithms.soeas.GA.soea_SEGA_templet import soea_SEGA_templet
+from geatpy.algorithms.soeas.GA.soea_SGA_templet import soea_SGA_templet
+from geatpy.algorithms.soeas.GA.soea_steadyGA_templet import \
+    soea_steadyGA_templet
 from geatpy.algorithms.soeas.GA.soea_studGA_templet import soea_studGA_templet
 # import benchmarks
-from geatpy.benchmarks.mops.BNH import BNH
-from geatpy.benchmarks.mops.C1_DTLZ1 import C1_DTLZ1
-from geatpy.benchmarks.mops.CF1 import CF1
-from geatpy.benchmarks.mops.Conp import CON
-from geatpy.benchmarks.mops.DTLZ4 import DTLZ4
-from geatpy.benchmarks.mops.Fonseca import Fonseca
-from geatpy.benchmarks.mops.IMOP1 import IMOP1
-from geatpy.benchmarks.mops.OSY import OSY
-from geatpy.benchmarks.mops.SRN import SRN
-from geatpy.benchmarks.mops.TNK import TNK
-from geatpy.benchmarks.mops.UF1 import UF1
-from geatpy.benchmarks.mops.WFG1 import WFG1
-from geatpy.benchmarks.mops.ZDT2 import ZDT2
-from geatpy.benchmarks.sops.Ackley import Ackley
-from geatpy.benchmarks.sops.Beale import Beale
-from geatpy.benchmarks.sops.Goldstein import Goldstein
-from geatpy.benchmarks.sops.Griewangk import Griewangk
-from geatpy.benchmarks.sops.Pathological import Pathological
-from geatpy.benchmarks.sops.Rastrigrin import Rastrigrin
-from geatpy.benchmarks.sops.Rosenbrock import Rosenbrock
-from geatpy.benchmarks.sops.Schwefel import Schwefel
-from geatpy.benchmarks.sops.Shubert import Shubert
-from geatpy.benchmarks.sops.Sphere import Sphere
-from geatpy.benchmarks.tsps.TSP import TSP
+import geatpy.benchmarks
 # import the core
 from geatpy.core import indicator
 from geatpy.core.awGA import awGA
