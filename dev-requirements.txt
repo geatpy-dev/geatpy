@@ -1,0 +1,7 @@
+-r requirements.txt
+yapf>=0.32,<1.0
+flake8>=4.0
+isort>=5.10
+commitizen>=2.26
+pre-commit>=2.17
+toml>=0.10,<1.0
