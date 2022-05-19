@@ -36,7 +36,7 @@ setup(
     author="Geatpy Team",
     author_email="geatpy@163.com",
     url="http://www.geatpy.com",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=['tests']),
     include_package_data=True,  # Enabled list file: MANIFEST.in
     python_requires='>=3.5, <3.11',
     install_requires=[
