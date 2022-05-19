@@ -115,7 +115,6 @@ from geatpy.core.dup import dup
 from geatpy.core.ecs import ecs
 from geatpy.core.etour import etour
 from geatpy.core.indexing import indexing
-import geatpy.core.indicator
 from geatpy.core.mergecv import mergecv
 from geatpy.core.migrate import migrate
 from geatpy.core.moeaplot import moeaplot
