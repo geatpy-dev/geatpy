@@ -1,96 +1,102 @@
 # **Geatpy2**
+
 The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/geatpy-dev/geatpy/build-and-test)](https://github.com/geatpy-dev/geatpy/actions)
-[![Package Status](https://img.shields.io/pypi/status/geatpy.svg)](https://pypi.org/project/geatpy/)
-![Python](https://img.shields.io/badge/python->=3.5-green.svg)
-![Pypi](https://img.shields.io/badge/pypi-2.7.0-blue.svg)
-[![Download](https://img.shields.io/pypi/dm/geatpy.svg)](https://pypi.python.org/pypi/geatpy)
-[![License](https://img.shields.io/pypi/l/geatpy.svg)](https://github.com/geatpy-dev/geatpy/blob/master/LICENSE)
-[![Gitter](https://badges.gitter.im/geatpy2/community.svg)](https://gitter.im/geatpy2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Package Status](https://img.shields.io/pypi/status/geatpy)](https://pypi.org/project/geatpy/)
+[![PyPI](https://img.shields.io/pypi/v/geatpy)](https://pypi.org/project/geatpy/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/geatpy)](https://pypi.org/project/geatpy/)
+[![Download](https://img.shields.io/pypi/dm/geatpy)](https://pypi.python.org/pypi/geatpy)
+[![License](https://img.shields.io/pypi/l/geatpy)](https://github.com/geatpy-dev/geatpy/blob/master/LICENSE)
+[![Gitter](https://img.shields.io/gitter/room/geatpy2/community)](https://gitter.im/geatpy2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Introduction
-* **Website (including documentation)**: http://www.geatpy.com
-* **Demo** : https://github.com/geatpy-dev/geatpy/tree/master/demo
-* **Pypi page** : https://pypi.org/project/geatpy/
-* **Contact us**: http://geatpy.com/index.php/about/
-* **Bug reports**: https://github.com/geatpy-dev/geatpy/issues
-* **Notice**: http://geatpy.com/index.php/notice/
-* **FAQ**: http://geatpy.com/index.php/faq/
+
+* **Website (including documentation)**: <http://www.geatpy.com>
+* **Demo** : <https://github.com/geatpy-dev/geatpy/tree/master/demo>
+* **Pypi page** : <https://pypi.org/project/geatpy/>
+* **Contact us**: <http://geatpy.com/index.php/about/>
+* **Bug reports**: <https://github.com/geatpy-dev/geatpy/issues>
+* **Notice**: <http://geatpy.com/index.php/notice/>
+* **FAQ**: <http://geatpy.com/index.php/faq/>
 
 The features of Geatpy:
 
 * Capability of solving single-objective, multi-objectives, many-objectives and combinatorial optimization problems fast.
-
 * A huge number of operators with high performance of evolutionary algorithms (selection, recombination, mutation, migration...).
-
 * Support numerous encodings for the chromosome of the population.
-
 * Many evolutionary algorithm templates, including GA, DE, ES for single/multi-objective(s) evolution.
-
 * Multiple population evolution.
-
 * Support polysomy evolution.
-
 * Parallelization and distribution of evaluations.
-
 * Testbeds containing most common benchmarks functions.
-
 * Support tracking analysis of the evolution iteration.
-
 * Many evaluation metrics of algorithms.
 
 ## Improvement of Geatpy 2.7.0
 
 * Add a new way to define the aim function of the problem.
-
 * Support calculating objectives and constraints for the variables of only one individual.
-
 * Add a optimize function to do the optimization more convenient.
-
 * Add new open-source plotting functions.
-
 * Remove the dependency on scipy.
-
 * A new and faster core.
 
 ## Installation
-1.Installing online:
 
-    pip install geatpy
+### From PyPI
 
-2.From source:
+```bash
+pip install geatpy
+```
 
-    python setup.py install
+This is the recommended installation method.
 
-or
+### From source
 
-    pip install <filename>.whl
+Download or clone the project from the repository and run the following commands:
 
-**Attention**: Geatpy requires numpy>=1.17.0 and matplotlib>=3.0.0, the installation program won't help you install them so that you have to install both of them by yourselves.
+```bash
+pip install -r requirement.txt
+python setup.py install
+```
+
+**Note**: Since the only binary requirements of Python 3.6 of Windows x64 and Linux x64 are included in the repository,
+the following installation method is only appliable for these Python version and platforms.
+
+### From wheel
+
+Download the wheel file for your Python version and platform from <https://github.com/geatpy-dev/geatpy/releases>.
+
+```bash
+pip install <filename>.whl
+```
 
 ## Versions
 
-**Geatpy** must run under **Python**3.5, 3.6, 3.7, 3.8, 3.9, or 3.10 in Windows x32/x64, Linux x64 or MacOS x64.
+**Geatpy** must run under **Python** 3.5, 3.6, 3.7, 3.8, 3.9, or 3.10 in Windows x32/x64, Linux x64 or MacOS x64.
 
-There are different versions for **Windows**, **Linux** and **Mac**, you can download them from http://geatpy.com/
+There are different versions for **Windows**, **Linux** and **Mac**, you can download them from <http://geatpy.com/>
 
 The version of **Geatpy** on github is the latest version suitable for **Python** >= 3.5
 
 You can also **update** Geatpy by executing the command:
 
-    pip install --upgrade geatpy
+```bash
+pip install --upgrade geatpy
+```
 
 If something wrong happened, such as decoding error about 'utf8' of pip, run this command instead or execute it as an administrator:
 
-    pip install --upgrade --user geatpy
+```bash
+pip install --upgrade --user geatpy
+```
 
-Quick start
------------
+## Quick start
 
 Here is the UML figure of Geatpy2.
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/structure.png)
+![image](structure.png)
 
 For solving a multi-objective optimization problem, you can use **Geatpy** mainly in two steps:
 
@@ -145,7 +151,7 @@ if __name__ == '__main__':
 
 Run the "main.py" and the part of the result is:
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/testbed/moea_test/result/Pareto%20Front%20Plot.svg)
+![image](testbed/moea_test/result/Pareto%20Front%20Plot.svg)
 
 Execution time: 0.3650233745574951 s
 
@@ -213,7 +219,7 @@ if __name__ == '__main__':
 
 Part of the result is:
 
-![image](https://github.com/geatpy-dev/geatpy/blob/master/testbed/soea_test/result/Trace%20Plot.svg)
+![image](testbed/soea_test/result/Trace%20Plot.svg)
 
 Execution time: 0.256328821182251 s
 
@@ -221,4 +227,32 @@ Evaluation number: 20000
 
 The best objective value is: 3.209895993450118e-08
 
-To get more tutorials, please link to http://www.geatpy.com.
+To get more tutorials, please link to <http://www.geatpy.com>.
+
+## Contributing
+
+Welcome to submit issues, pull requests to this project.
+The required binary `pyd` files are included in the repository only for Python 3.6 in Windows/Linux x64 platform.
+The binary files of other Python version and platforms will be published in the future.
+Therefore, you need to develop in Python 3.6 in Windows/Linux x64.
+
+Clone the reposity and run the following commands:
+
+```bash
+pip install -r dev-requirements.txt
+python setup.py build
+```
+
+These commands install the required dependencies and automatically copy the required binary files to the package folder.
+
+To ensure the code quality, please install the pre-commit hooks:
+
+```bash
+pre-commit install -t pre-commit -t commit-msg
+```
+
+We recommand you to
+
+* Use [pre-commit](https://github.com/commitizen-tools/commitizen) and [commitizen](https://github.com/commitizen-tools/commitizen) to submit commits.
+* Use [flake8](https://github.com/PyCQA/flake8), [yapf](https://github.com/google/yapf), and [isort](https://github.com/PyCQA/isort) to format your codes.
+* Follow [gitflow](https://github.com/petervanderdoes/gitflow-avh) branch manage strategies.
