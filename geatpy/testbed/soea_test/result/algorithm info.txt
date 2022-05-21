@@ -1,1 +1,0 @@
-{'Algorithm Name': 'DE/rand/1/bin', 'Algorithm MAXGEN': 1000, 'Algorithm MAXTIME': None, 'Algorithm MAXEVALS': None, 'Algorithm trappedValue': 0, 'Algorithm maxTrappedCount': 1000}

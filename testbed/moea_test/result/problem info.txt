@@ -1,0 +1,2 @@
+{'name': 'DTLZ1', 'M': 3, 'maxormins': array([1, 1, 1]), 'Dim': 7, 'varTypes': array([0, 0, 0, 0, 0, 0, 0]), 'lb': array([0, 0, 0, 0, 0, 0, 0]), 'ub': array([1, 1, 1, 1, 1, 1, 1]), 'borders': array([[1, 1, 1, 1, 1, 1, 1],
+       [1, 1, 1, 1, 1, 1, 1]])}
