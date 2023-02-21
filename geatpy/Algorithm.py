@@ -357,7 +357,7 @@ class MoeaAlgorithm(Algorithm):  # 多目标优化算法类的父类
         if self.problem.ReferObjV is not None:
             self.log['gd'].append(ea.indicator.GD(NDSet.ObjV, self.problem.ReferObjV))  # 计算GD指标
             self.log['igd'].append(ea.indicator.IGD(NDSet.ObjV, self.problem.ReferObjV))  # 计算IGD指标
-            self.log['hv'].append(ea.indicator.HV(NDSet.ObjV), )  # 计算HV指标
+            self.log['hv'].append(ea.indicator.HV(NDSet.ObjV, self.problem.ReferObjV))  # 计算HV指标
         else:
             self.log['gd'].append(None)
             self.log['igd'].append(None)
