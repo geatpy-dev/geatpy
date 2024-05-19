@@ -10,8 +10,7 @@ The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 [![Gitter](https://badges.gitter.im/geatpy2/community.svg)](https://gitter.im/geatpy2/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Introduction
-* **Website (including documentation)**: http://www.geatpy.com
-* **New Website**: https://geatpy.github.io/
+* **Website (including documentation)**: https://geatpy.github.io/
 * **Demo** : https://github.com/geatpy-dev/geatpy/tree/master/demo
 * **Pypi page** : https://pypi.org/project/geatpy/
 * **Contact us**: http://geatpy.com/index.php/about/
