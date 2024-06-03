@@ -87,7 +87,7 @@ class PointScatter:
         elif self.Dimension == 3:
             if self.fig is None and self.ax is None:
                 self.fig = plt.figure()  # 生成一块画布
-                self.ax = Axes3D(self.fig)  # 创建绘图区域
+                self.ax = self.fig.add_subplot(111, projection='3d')  # 创建绘图区域
                 self.ax.view_init(elev=30, azim=45)  # 旋转
             for idx, data in enumerate(self.data_set):
                 params = self.params_set[idx]
