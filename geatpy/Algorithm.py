@@ -512,6 +512,8 @@ class MoeaAlgorithm(Algorithm):  # 多目标优化算法类的父类
             NDSet = pop[np.where(levels == 1)[0]]  # 只保留种群中的非支配个体，形成一个非支配种群
             if NDSet.CV is not None:  # CV不为None说明有设置约束条件
                 NDSet = NDSet[np.where(np.all(NDSet.CV <= 0, 1))[0]]  # 最后要彻底排除非可行解
+            # 排除重复解
+            NDSet = NDSet[np.unique(NDSet.ObjV,return_index=True,axis=0)[1]]
         else:
             NDSet = globalNDSet
         if self.logTras != 0 and NDSet.sizes != 0 and (
