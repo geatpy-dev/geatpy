@@ -13,10 +13,10 @@ The Genetic and Evolutionary Algorithm Toolbox for Python with high performance.
 * **Quickstart**: https://github.com/geatpy-dev/geatpy/blob/master/docs/quickstart.html        
 * **Demo** : https://github.com/geatpy-dev/geatpy/tree/master/demo
 * **Pypi page** : https://pypi.org/project/geatpy/
-* **Contact us**: http://geatpy.com/index.php/about/
 * **Bug reports**: https://github.com/geatpy-dev/geatpy/issues
-* **Notice**: http://geatpy.com/index.php/notice/
-* **FAQ**: http://geatpy.com/index.php/faq/
+
+## How to Cite
+Jazzbin, J. "Geatpy: the genetic and evolutionary algorithm toolbox with high performance in python." https://github.com/geatpy-dev/geatpy/ (accessed 2020) (2020).
 
 The features of Geatpy:
 
@@ -221,4 +221,4 @@ Evaluation number: 20000
 
 The best objective value is: 3.209895993450118e-08
 
-To get more tutorials, please link to http://www.geatpy.com.
+To get more tutorials, please link to [http://www.geatpy.com](https://github.com/geatpy-dev/geatpy/tree/master/docs).
