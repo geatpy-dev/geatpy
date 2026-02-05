@@ -26,12 +26,20 @@ jobs:
       - name: Prepare tools (Linux)
         if: runner.os == 'Linux'
         shell: bash
+        env:
+          DEBIAN_FRONTEND: noninteractive
+          TZ: Etc/UTC
         run: |
           apt-get update
+          apt-get install -y tzdata
+          ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+          dpkg-reconfigure -f noninteractive tzdata
+      
           apt-get install -y git ca-certificates curl gnupg software-properties-common
           add-apt-repository ppa:deadsnakes/ppa -y
           apt-get update
           apt-get install -y python3.6 python3.6-dev python3.6-distutils
+      
           curl -sSL https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3.6
           python3.6 -m pip install --upgrade pip
 
