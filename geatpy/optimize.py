@@ -93,7 +93,7 @@ def optimize(algorithm,
                 prophetPop = ea.Population(algorithm.population.Encoding, algorithm.population.Field, 1, ea.ri2bs(prophet, algorithm.population.Field))
             else:
                 raise RuntimeError('error in optimize: The encoding should be ''RI'', ''P'' or ''BG''. (种群编码必须为''RI'', ''P'' 或 ''BG''。)')
-        elif type(prophet) == ea.Population:
+        elif isinstance(prophet, ea.Population):
             prophetPop = prophet.copy()
         else:
             raise RuntimeError('error in optimize: The type of prophet must be Numpy ndarray or Population. (prophet的类型必须为Numpy ndarray数组或种群类。)')
