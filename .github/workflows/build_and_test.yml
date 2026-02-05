@@ -23,35 +23,27 @@ jobs:
     container: ${{ matrix.os == 'ubuntu-latest' && 'ubuntu:20.04' || '' }}
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Fetch core files from open_dev branch (Linux)
-        if: runner.os == 'Linux'
-        shell: bash
-        run: |
-          git fetch origin open_dev
-          git checkout origin/open_dev -- _core
-
-      - name: Fetch core files from open_dev branch (Windows)
-        if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          git fetch origin open_dev
-          git checkout origin/open_dev -- _core
-
-      - name: Install Python 3.6 (Linux)
+      - name: Prepare tools (Linux)
         if: runner.os == 'Linux'
         shell: bash
         run: |
           apt-get update
-          apt-get install -y python3.6 python3.6-dev python3.6-distutils python3.6-venv python3-pip git curl
-          curl https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3.6
+          apt-get install -y git ca-certificates curl python3.6 python3.6-dev python3-pip
+          curl -sSL https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3.6
           python3.6 -m pip install --upgrade pip
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Fetch core files from open_dev branch
+        shell: bash
+        run: |
+          git fetch origin open_dev
+          git checkout origin/open_dev -- _core
 
       - name: Set up Python 3.6 (Windows)
         if: runner.os == 'Windows'
-        # Python 3.6 is required for compatibility with existing core libraries.
-        # Use setup-python@v2 because v3+ no longer supports installing Python 3.6.
         uses: actions/setup-python@v2
         with:
           python-version: "3.6"
