@@ -14,47 +14,113 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-20.04, windows-latest]
+        os: [ubuntu-latest, windows-latest]
         python-version: ["3.6"]
-    defaults:
-      run:
-        shell: bash
+
     runs-on: ${{ matrix.os }}
     timeout-minutes: 30
+
+    container: ${{ matrix.os == 'ubuntu-latest' && 'ubuntu:20.04' || '' }}
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Prepare tools (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          DEBIAN_FRONTEND: noninteractive
+          TZ: Etc/UTC
+        run: |
+          apt-get update
+          apt-get install -y tzdata
+          ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+          dpkg-reconfigure -f noninteractive tzdata
       
+          apt-get install -y git ca-certificates curl build-essential wget \
+            libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+            libffi-dev libncursesw5-dev xz-utils tk-dev liblzma-dev uuid-dev
+      
+          git config --global --add safe.directory /__w/geatpy/geatpy
+      
+          wget -q https://www.python.org/ftp/python/3.6.15/Python-3.6.15.tgz
+          tar -xzf Python-3.6.15.tgz
+          cd Python-3.6.15
+          ./configure --prefix=/opt/python36 --enable-shared --with-ensurepip=install
+          make -j$(nproc)
+          make install
+          cd ..
+      
+          echo "/opt/python36/lib" > /etc/ld.so.conf.d/python36.conf
+          ldconfig
+      
+          ln -sf /opt/python36/bin/python3.6 /usr/local/bin/python3.6
+          python3.6 -m pip install --upgrade pip
+
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Fetch core files from open_dev branch
+        shell: bash
         run: |
           git fetch origin open_dev
           git checkout origin/open_dev -- _core
-          
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
+
+      - name: Set up Python 3.6 (Windows)
+        if: runner.os == 'Windows'
+        uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
-          
-      - name: Install dependencies
+          python-version: "3.6"
+
+      - name: Install dependencies (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
         run: |
-          pip install cython setuptools
-          pip install -r requirements.txt
-          pip install pytest
-          
-      - name: Copy core files to geatpy/core
+          python3.6 -m pip install cython setuptools
+          python3.6 -m pip install -r requirements.txt
+          python3.6 -m pip install pytest
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
         run: |
-          if [[ "$RUNNER_OS" == "Windows" ]]; then
-            OS_DIR="Windows"
-          else
-            OS_DIR="Linux"
-          fi
-          PY_VERSION="v${{ matrix.python-version }}"
+          python -m pip install cython setuptools
+          python -m pip install -r requirements.txt
+          python -m pip install pytest
+
+      - name: Copy core files to geatpy/core (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
           mkdir -p geatpy/core
-          cp -r "_core/${OS_DIR}/lib64/${PY_VERSION}/"* geatpy/core/
-          
-      - name: Build
+          cp -r "_core/Linux/lib64/v3.6/"* geatpy/core/
+
+      - name: Copy core files to geatpy/core (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path geatpy/core | Out-Null
+          Copy-Item -Recurse -Force "_core\Windows\lib64\v3.6\*" "geatpy\core\"
+
+      - name: Build (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: python3.6 setup.py install
+
+      - name: Build (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
         run: python setup.py install
-        
-      - name: Test with pytest
+
+      - name: Test with pytest (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          python3.6 -m geatpy --version
+          python3.6 -m pytest
+
+      - name: Test with pytest (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
         run: |
           python -m geatpy --version
-          pytest
+          python -m pytest
