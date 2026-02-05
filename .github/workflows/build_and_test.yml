@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-20.04, windows-latest]
         python-version: ["3.6"]
     defaults:
       run:
@@ -23,17 +23,37 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Fetch core files from open_dev branch
+        run: |
+          git fetch origin open_dev
+          git checkout origin/open_dev -- _core
+          
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+          
       - name: Install dependencies
         run: |
           pip install cython setuptools
           pip install -r requirements.txt
           pip install pytest
+          
+      - name: Copy core files to geatpy/core
+        run: |
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            OS_DIR="Windows"
+          else
+            OS_DIR="Linux"
+          fi
+          PY_VERSION="v${{ matrix.python-version }}"
+          mkdir -p geatpy/core
+          cp -r "_core/${OS_DIR}/lib64/${PY_VERSION}/"* geatpy/core/
+          
       - name: Build
         run: python setup.py install
+        
       - name: Test with pytest
         run: |
           python -m geatpy --version
