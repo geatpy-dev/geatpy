@@ -49,7 +49,9 @@ jobs:
 
       - name: Set up Python 3.6 (Windows)
         if: runner.os == 'Windows'
-        uses: actions/setup-python@v3
+        # Python 3.6 is required for compatibility with existing core libraries.
+        # Use setup-python@v2 because v3+ no longer supports installing Python 3.6.
+        uses: actions/setup-python@v2
         with:
           python-version: "3.6"
 
