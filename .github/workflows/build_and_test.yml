@@ -107,4 +107,4 @@ jobs:
         shell: pwsh
         run: |
           python -m geatpy --version
-          pytest
+          python -m pytest
