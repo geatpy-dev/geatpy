@@ -34,13 +34,23 @@ jobs:
           apt-get install -y tzdata
           ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
           dpkg-reconfigure -f noninteractive tzdata
-      
-          apt-get install -y git ca-certificates curl gnupg software-properties-common
-          add-apt-repository ppa:deadsnakes/ppa -y
-          apt-get update
-          apt-get install -y python3.6 python3.6-dev python3.6-distutils
-      
-          curl -sSL https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3.6
+
+          apt-get install -y git ca-certificates curl build-essential wget \
+            libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+            libffi-dev libncursesw5-dev xz-utils tk-dev liblzma-dev uuid-dev
+
+          wget -q https://www.python.org/ftp/python/3.6.15/Python-3.6.15.tgz
+          tar -xzf Python-3.6.15.tgz
+          cd Python-3.6.15
+          ./configure --prefix=/opt/python36 --enable-shared --with-ensurepip=install
+          make -j$(nproc)
+          make install
+          cd ..
+
+          echo "/opt/python36/lib" > /etc/ld.so.conf.d/python36.conf
+          ldconfig
+
+          ln -sf /opt/python36/bin/python3.6 /usr/local/bin/python3.6
           python3.6 -m pip install --upgrade pip
 
       - uses: actions/checkout@v3
