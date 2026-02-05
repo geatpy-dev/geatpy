@@ -44,7 +44,8 @@ jobs:
         shell: bash
         run: |
           apt-get update
-          apt-get install -y python3.6 python3.6-dev python3-pip git
+          apt-get install -y python3.6 python3.6-dev python3.6-distutils python3.6-venv python3-pip git curl
+          curl https://bootstrap.pypa.io/pip/3.6/get-pip.py | python3.6
           python3.6 -m pip install --upgrade pip
 
       - name: Set up Python 3.6 (Windows)
